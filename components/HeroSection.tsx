@@ -68,7 +68,7 @@ export default function HeroSection() {
       <div 
         className="absolute inset-x-0 top-0 bottom-[105px] w-full z-[1] pointer-events-none"
         style={{
-          backgroundImage: 'url(/300-60-15-monochrome.png)',
+          backgroundImage: 'url(/300-60-15-monochrome.webp)',
           backgroundRepeat: 'repeat',
           backgroundSize: '350px 350px',
           mixBlendMode: 'soft-light',
