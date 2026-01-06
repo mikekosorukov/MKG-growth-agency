@@ -47,8 +47,8 @@ export default function Home() {
         {/* Video Showcase Section - Duplicate */}
         <VideoShowcaseSection id="content-showcase-problems-2" />
         
-        {/* Divider Section */}
-        <DividerSection />
+        {/* Divider Section - with horizontal lines decoration */}
+        <DividerSection variant="lines" />
         
         {/* Outcomes Section */}
         <OutcomesSection />
