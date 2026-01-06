@@ -46,7 +46,7 @@ export default function OutcomesSection() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
-          backgroundImage: 'url(/300-60-15-monochrome.png)',
+          backgroundImage: 'url(/300-60-15-monochrome.webp)',
           backgroundRepeat: 'repeat',
           backgroundSize: '350px 350px',
           mixBlendMode: 'soft-light',
