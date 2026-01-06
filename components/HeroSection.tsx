@@ -61,12 +61,12 @@ export default function HeroSection() {
   return (
     <section 
       ref={sectionRef}
-      className="hero-section-bg box-border relative flex w-full flex-col items-center gap-[40px] px-[20px] pb-[10px] pt-[120px] sm:gap-[50px] sm:px-[40px] sm:pb-[15px] sm:pt-[130px] md:gap-[60px] md:px-[60px] md:pb-[20px] md:pt-[145px] lg:gap-[80px] lg:px-[80px] lg:pb-[0px] lg:pt-[170px] !overflow-visible mb-0 min-[1185px]:mb-[-105px]"
+      className="hero-section-bg box-border relative flex w-full flex-col items-center gap-[40px] px-[20px] pb-[10px] pt-[120px] sm:gap-[50px] sm:px-[40px] sm:pb-[15px] sm:pt-[130px] md:gap-[60px] md:px-[60px] md:pb-[20px] md:pt-[145px] lg:gap-[80px] lg:px-[80px] lg:pb-[0px] lg:pt-[170px] !overflow-visible border-b border-solid border-[#3f4367]"
       aria-label="Hero section"
     >
       {/* Noise texture overlay */}
       <div 
-        className="absolute inset-x-0 top-0 bottom-[105px] w-full z-[1] pointer-events-none"
+        className="absolute inset-x-0 top-0 bottom-0 w-full z-[1] pointer-events-none"
         style={{
           backgroundImage: 'url(/300-60-15-monochrome.webp)',
           backgroundRepeat: 'repeat',
@@ -88,8 +88,8 @@ export default function HeroSection() {
           opacity: backgroundOpacity,
           maskImage: 'url(/static-shapes-background-mask.svg)',
           WebkitMaskImage: 'url(/static-shapes-background-mask.svg)',
-          maskSize: '100% 100%',
-          WebkitMaskSize: '100% 100%',
+          maskSize: '100% calc(100% + 150px)',
+          WebkitMaskSize: '100% calc(100% + 150px)',
           maskPosition: 'center -100px',
           WebkitMaskPosition: 'center -100px',
           maskRepeat: 'no-repeat',
@@ -98,7 +98,7 @@ export default function HeroSection() {
       >
         {/* Static shapes background image - fixed width, centered, with horizontal gradient fade */}
         <div 
-          className="absolute bottom-[35px]"
+          className="absolute bottom-[-35px]"
           style={{ 
             width: '1453px',  // 1440px viewport + 13px overflow (matches original design)
             left: '50%',
@@ -136,7 +136,7 @@ export default function HeroSection() {
 
       {/* Hero Animation - adjusted margins to prevent clipping at smaller viewports */}
       {/* Below 1185px: reduced negative margins to ensure animation is fully visible */}
-      <div className="relative w-full flex justify-center -mt-[40px] sm:-mt-[60px] md:-mt-[80px] min-[1185px]:-mt-[150px] mb-0 min-[1185px]:mb-[-40px] pointer-events-none z-[2]">
+      <div className="relative w-full flex justify-center -mt-[40px] sm:-mt-[60px] md:-mt-[80px] lg:-mt-[120px] min-[1185px]:-mt-[150px] mb-0 lg:mb-[-110px] min-[1185px]:mb-[-180px] pointer-events-none z-[2]">
         <HeroScrollAnimation progress={progress} pathProgress={pathProgress} shapesProgress={shapesProgress} />
       </div>
     </section>
