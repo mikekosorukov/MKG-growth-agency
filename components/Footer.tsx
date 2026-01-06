@@ -35,7 +35,7 @@ export default function Footer() {
 
         {/* Copyright Text - Center (Absolutely Positioned) */}
         <p className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 text-[#a5aee9] text-sm text-center whitespace-nowrap font-variation-100">
-          MKG @ 2025. All rights reserved.
+          MKG @ 2026. All rights reserved.
         </p>
 
         {/* Social Icons - Right */}
