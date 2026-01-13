@@ -33,7 +33,7 @@ export default function OutcomesSection() {
     },
     {
       id: 'card2',
-      tag: 'Prosumer marketplace, growth stage, ~110 employees',
+      tag: 'Marketplace, growth stage, ~110 employees',
       title: 'Customer churn reduced by 30%',
       description: 'The existing growth constraint was high early churn. Analysis showed that churn was driven by inconsistent service quality on the supply side, which hampered the customer experience early in the lifecycle. We identified the key leading indicator tied to churn, mapped the highest-impact levers, and rebuilt the supplier quality loop. This improved the leading churn metric by 40× and reduced customer churn by 30% over the next three months.',
       imageUrl: '/outcomes_2.png',
@@ -78,12 +78,19 @@ export default function OutcomesSection() {
 
         {/* Content */}
         <div className="flex flex-col gap-[16px] p-[16px] pt-[24px] flex-grow">
-          {/* Tag - clips on right when container shrinks */}
+          {/* Tags - split by comma into separate pills */}
           <div className="overflow-hidden mr-[-16px] pr-[31px]">
-            <div className="bg-[rgba(112,120,184,0.01)] border border-solid border-[#7078B8] box-border flex items-center px-[12px] py-[2px] rounded-[12px] w-fit">
-              <p className="font-normal leading-[1.4] text-[12px] text-[#7078B8] whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-                {card.tag}
-              </p>
+            <div className="flex flex-wrap items-center gap-[8px]">
+              {card.tag.split(',').map((tagPart, index) => (
+                <div 
+                  key={index}
+                  className="bg-[rgba(112,120,184,0.01)] border border-solid border-[#7078B8] box-border flex items-center px-[12px] py-[2px] rounded-[12px]"
+                >
+                  <p className="font-normal leading-[1.4] text-[12px] text-[#7078B8] whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    {tagPart.trim()}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
           
