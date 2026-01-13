@@ -60,6 +60,19 @@ export default function Notification({ isVisible, onClose }: NotificationProps) 
     };
   }, [isVisible, onClose]);
 
+  // Auto-close after 5 seconds
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const autoCloseTimeout = setTimeout(() => {
+      onClose();
+    }, 4000);
+
+    return () => {
+      clearTimeout(autoCloseTimeout);
+    };
+  }, [isVisible, onClose]);
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -110,7 +123,7 @@ export default function Notification({ isVisible, onClose }: NotificationProps) 
               <div className="relative flex h-[48px] shrink-0 items-center justify-end">
                 <button
                   onClick={onClose}
-                  className="relative flex size-[48px] shrink-0 items-center justify-center gap-[10px] transition-opacity hover:opacity-70"
+                  className="relative flex size-[48px] shrink-0 items-center justify-center gap-[10px] cursor-pointer transition-all hover:brightness-150"
                   aria-label="Close notification"
                 >
                   <div className="relative size-[11px] shrink-0 overflow-clip">
