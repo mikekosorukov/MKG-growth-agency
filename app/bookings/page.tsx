@@ -22,7 +22,6 @@ export default function BookingsPage() {
         a.q.push(ar);
       };
       const d = C.document;
-      // @ts-expect-error - Cal.com embed pattern
       C.Cal = C.Cal || function (...args: unknown[]) {
         const cal = C.Cal;
         // @ts-expect-error - Cal.com embed pattern
