@@ -22,6 +22,8 @@ export default function HeroScrollAnimation({ progress, pathProgress, shapesProg
   const pathRevealEase = cubicBezier(0, 0, 0.35, 1);
   // Ease-out curve for accent shapes - normal speed at start, decelerates smoothly at end
   const accentShapesEase = cubicBezier(0, 0, 0.3, 1);
+  // Aggressive ease-out for base fill - reaches ~80% by 20% of scroll
+  const baseFillEase = cubicBezier(0, 0.7, 0.1, 1);
 
   // Octagon animations (first shape to animate) - uses extended shapesProgress
   const octagonScale = useTransform(shapesProgress, [0, 0.4], [0.35, 1], { ease: sCurveEase });
@@ -30,6 +32,7 @@ export default function HeroScrollAnimation({ progress, pathProgress, shapesProg
   const shadowBlur = useTransform(shapesProgress, [0, 0.4], [0, 9], { ease: smoothEase });
   const strokeOpacity = useTransform(shapesProgress, [0.1, 0.4], [0, 1], { ease: smoothEase });
   const fillOpacity = useTransform(shapesProgress, [0, 0.4], [0, 0.3], { ease: smoothEase });
+  const baseFillOpacity = useTransform(shapesProgress, [0, 0.4], [0.3, 1], { ease: baseFillEase });
 
   // Triangle animations (second shape, delayed) - uses extended shapesProgress
   const triangleScale = useTransform(shapesProgress, [0.18, 0.55], [0.35, 1], { ease: sCurveEase });
@@ -38,6 +41,7 @@ export default function HeroScrollAnimation({ progress, pathProgress, shapesProg
   const triangleShadowBlur = useTransform(shapesProgress, [0.18, 0.55], [0, 9], { ease: smoothEase });
   const triangleStrokeOpacity = useTransform(shapesProgress, [0.28, 0.55], [0, 1], { ease: smoothEase });
   const triangleFillOpacity = useTransform(shapesProgress, [0.18, 0.55], [0, 0.3], { ease: smoothEase });
+  const triangleBaseFillOpacity = useTransform(shapesProgress, [0.18, 0.55], [0.3, 1], { ease: baseFillEase });
 
   // Rectangle animations (third shape, more delay) - uses extended shapesProgress
   const rectangleScale = useTransform(shapesProgress, [0.4, 0.7], [0.35, 1], { ease: sCurveEase });
@@ -45,6 +49,7 @@ export default function HeroScrollAnimation({ progress, pathProgress, shapesProg
   const rectangleShadowBlur = useTransform(shapesProgress, [0.4, 0.7], [0, 9], { ease: smoothEase });
   const rectangleStrokeOpacity = useTransform(shapesProgress, [0.5, 0.7], [0, 1], { ease: smoothEase });
   const rectangleFillOpacity = useTransform(shapesProgress, [0.4, 0.7], [0, 0.3], { ease: smoothEase });
+  const rectangleBaseFillOpacity = useTransform(shapesProgress, [0.4, 0.7], [0.3, 1], { ease: baseFillEase });
 
   // Sparkle animations - delayed to appear later in the scroll
   const sparkleScaleLeft = useTransform(progress, [0.75, 0.85, 0.87], [0, 1.25, 1], { ease: smoothEase });
@@ -100,7 +105,7 @@ export default function HeroScrollAnimation({ progress, pathProgress, shapesProg
               scale: octagonScale
             }}
           >
-            <HeroOctagon dy={shadowDy} blur={shadowBlur} strokeOpacity={strokeOpacity} fillOpacity={fillOpacity} />
+            <HeroOctagon dy={shadowDy} blur={shadowBlur} strokeOpacity={strokeOpacity} fillOpacity={fillOpacity} baseFillOpacity={baseFillOpacity} />
           </motion.div>
 
           {/* Shape 2: Triangle (middle) */}
@@ -114,7 +119,7 @@ export default function HeroScrollAnimation({ progress, pathProgress, shapesProg
               scale: triangleScale
             }}
           >
-            <HeroTriangle dy={triangleShadowDy} blur={triangleShadowBlur} strokeOpacity={triangleStrokeOpacity} fillOpacity={triangleFillOpacity} />
+            <HeroTriangle dy={triangleShadowDy} blur={triangleShadowBlur} strokeOpacity={triangleStrokeOpacity} fillOpacity={triangleFillOpacity} baseFillOpacity={triangleBaseFillOpacity} />
           </motion.div>
 
           {/* Shape 3: Rectangle (right) */}
@@ -128,7 +133,7 @@ export default function HeroScrollAnimation({ progress, pathProgress, shapesProg
               scale: rectangleScale
             }}
           >
-            <HeroRectangle dy={rectangleShadowDy} blur={rectangleShadowBlur} strokeOpacity={rectangleStrokeOpacity} fillOpacity={rectangleFillOpacity} />
+            <HeroRectangle dy={rectangleShadowDy} blur={rectangleShadowBlur} strokeOpacity={rectangleStrokeOpacity} fillOpacity={rectangleFillOpacity} baseFillOpacity={rectangleBaseFillOpacity} />
           </motion.div>
         </div>
 
