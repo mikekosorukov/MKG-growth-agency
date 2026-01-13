@@ -1,8 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -11,7 +10,6 @@ type CalApi = NonNullable<typeof window.Cal>;
 
 export default function BookingsPage() {
   const embedRef = useRef<HTMLDivElement>(null);
-  const [isCalendarLoading, setIsCalendarLoading] = useState(true);
   const calInitialized = useRef(false);
 
   useEffect(() => {
@@ -70,15 +68,6 @@ export default function BookingsPage() {
         layout: 'month_view',
       });
     }
-
-    // Hide loading indicator after a delay
-    const timer = setTimeout(() => {
-      setIsCalendarLoading(false);
-    }, 3000);
-
-    return () => {
-      clearTimeout(timer);
-    };
   }, []);
 
   return (
@@ -143,35 +132,6 @@ export default function BookingsPage() {
             
             {/* Calendar Widget Container - Cal.com Cloud integration */}
             <div className="relative w-full max-w-[1200px]">
-              {/* Loading Indicator - Spinning Octagon */}
-              {isCalendarLoading && (
-                <div 
-                  className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-[16px] pointer-events-none"
-                  style={{ minHeight: '600px' }}
-                >
-                  <p className="text-[14px] font-normal text-[#a5aee9] tracking-wide">
-                    The calendar is loading ...
-                  </p>
-                  <div 
-                    className="animate-spin"
-                    style={{ 
-                      width: '45px', 
-                      height: '45px',
-                      animationDuration: '2s',
-                      animationTimingFunction: 'linear'
-                    }}
-                  >
-                    <Image
-                      src="/hero-layer-3-octagon.svg"
-                      alt="Loading..."
-                      width={45}
-                      height={45}
-                      className="w-full h-full"
-                    />
-                  </div>
-                </div>
-              )}
-              
               <div 
                 ref={embedRef}
                 id="cal-embed"
