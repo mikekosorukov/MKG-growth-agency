@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Disclosure, Transition } from '@headlessui/react';
+import { useState } from 'react';
 
 interface FAQItem {
   question: string;
@@ -9,31 +9,37 @@ interface FAQItem {
 }
 
 export default function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const faqs: FAQItem[] = [
     {
-      question: 'Can you build the app?',
+      question: 'How are you different from traditional GTM or growth agencies?',
       answer:
-        'Yes, we specialize in building custom applications from the ground up. Our team has extensive experience in full-stack development, mobile app development, and web applications. We work closely with you to understand your requirements and deliver a product that meets your business objectives and delights your users.',
+        'We focus exclusively on early- and early-growth-stage B2B and prosumer tech companies, leveraging deep expertise in this segment. Unlike traditional agencies, we optimize for business outcomes rather than producing assets or running isolated campaigns.\n\nWe dive deep into the context of your product, market, and business to build an effective GTM system that your team can continue to use and build upon after the engagement ends.',
     },
     {
-      question: 'Can you coach my staff?',
+      question: 'Do you only work with tech startups?',
       answer:
-        'Absolutely! We offer coaching and training programs tailored to your team\'s needs. Whether it\'s product management, growth strategies, or technical skills, we provide hands-on guidance and mentorship to help your staff develop the capabilities they need to drive your business forward.',
+        'We work with startups and SMEs where software or AI is a meaningful part of the product. We don\'t work with consumer, hardware, services, or physical products.',
     },
     {
-      question: 'Do you work with pre-seed startups?',
+      question: 'Why don\'t you list packages, timelines, or deliverables?',
       answer:
-        'Yes, we work with startups at all stages, including pre-seed. We understand the unique challenges early-stage companies face and offer flexible engagement models to fit your budget. Our goal is to help you validate your ideas, build an MVP, and position yourself for success in fundraising and growth.',
+        'Most tech companies operate in a messy environment with many unknowns before the scale phase. In that context, predefined packages, timelines, and deliverables tend to optimize for convenience rather than driving business growth.\n\nWe start by understanding your market, product, and business constraints. The shape of the engagement emerges from that context, not the other way around.',
     },
     {
-      question: 'Do you work with companies other than software?',
+      question: 'What do I actually get at the end of the process?',
       answer:
-        'While our core expertise is in software and technology, we work with companies across various industries. Our growth strategies and product development methodologies are applicable to any business looking to scale. We\'ve successfully partnered with e-commerce, healthcare, fintech, and service-based companies.',
+        'We don\'t believe that templatized GTM or product growth services deliver good results in tech, and we don\'t operate as a service shop.\n\nDepending on the company, the work may span areas such as strategy, positioning, messaging, onboarding optimization, website optimization, growth marketing, or coaching. The exact focus and outputs are defined after the initial discovery, once the real constraints and priorities are clear.',
     },
     {
-      question: 'How can we get in touch?',
+      question: 'How much does it cost?',
       answer:
-        'Getting in touch is easy! You can book a call directly through our website, send us an email, or connect with us on LinkedIn. We typically respond within 24 hours and are happy to discuss your project, answer questions, and explore how we can help you achieve your growth goals.',
+        'We don\'t price based on predefined services. We optimize for business outcomes; the "work we do" (and, consequently, how much it costs) is a function of that.',
+    },
+    {
+      question: 'Who from our team must be involved?',
+      answer:
+        'This depends on your stage.\n\nAt the traction stage, we typically work directly with a founder or co-founders. At early growth, we usually collaborate with 2–3 team members who have a deep understanding of the product, customers, and business strategy.',
     },
   ];
 
@@ -69,52 +75,54 @@ export default function FAQSection() {
 
       {/* FAQ Items */}
       <div className="relative z-10 flex w-full max-w-[900px] flex-col gap-[16px]">
-        {faqs.map((faq, index) => (
-          <Disclosure key={index} as="div">
-            {({ open }) => (
-              <div className="w-full border border-solid border-[#3f4367] bg-[#1d2241] transition-all hover:border-[#5f6387]">
-                <Disclosure.Button className="flex w-full cursor-pointer items-center justify-between gap-[8px] p-[16px] text-left transition-all hover:bg-[#222749]">
-                  <span className="font-variation-100 flex-1 text-[20px] font-bold leading-[1.1] text-[#a5aee9]">
-                    {faq.question}
-                  </span>
-                  <div className="relative size-[24px] shrink-0">
-                    {/* Plus Icon - visible when closed */}
-                    <div
-                      className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ease-in-out ${
-                        open ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'
-                      }`}
-                    >
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 6V1C8 0.734784 7.89464 0.48043 7.70711 0.292893C7.51957 0.105357 7.26522 0 7 0C6.73478 0 6.48043 0.105357 6.29289 0.292893C6.10536 0.48043 6 0.734784 6 1V6H1C0.734784 6 0.48043 6.10536 0.292893 6.29289C0.105357 6.48043 0 6.73478 0 7C0 7.26522 0.105357 7.51957 0.292893 7.70711C0.48043 7.89464 0.734784 8 1 8H6V13C6 13.2652 6.10536 13.5196 6.29289 13.7071C6.48043 13.8946 6.73478 14 7 14C7.26522 14 7.51957 13.8946 7.70711 13.7071C7.89464 13.5196 8 13.2652 8 13V8H13C13.2652 8 13.5196 7.89464 13.7071 7.70711C13.8946 7.51957 14 7.26522 14 7C14 6.73478 13.8946 6.48043 13.7071 6.29289C13.5196 6.10536 13.2652 6 13 6H8Z" fill="#A5AEE9"/>
-                      </svg>
-                    </div>
-                    {/* Minus Icon - visible when open */}
-                    <div
-                      className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ease-in-out ${
-                        open ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0'
-                      }`}
-                    >
-                      <svg width="14" height="2" viewBox="0 0 14 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 0C0.734784 0 0.48043 0.105357 0.292893 0.292893C0.105357 0.48043 0 0.734784 0 1C0 1.26522 0.105357 1.51957 0.292893 1.70711C0.48043 1.89464 0.734784 2 1 2H13C13.2652 2 13.5196 1.89464 13.7071 1.70711C13.8946 1.51957 14 1.26522 14 1C14 0.734784 13.8946 0.48043 13.7071 0.292893C13.5196 0.105357 13.2652 0 13 0H1Z" fill="#A5AEE9"/>
-                      </svg>
-                    </div>
+        {faqs.map((faq, index) => {
+          const isOpen = openIndex === index;
+          return (
+            <div key={index} className="w-full border border-solid border-[#3f4367] bg-[#1d2241] transition-all hover:border-[#5f6387]">
+              <button
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                className="flex w-full cursor-pointer items-center justify-between gap-[8px] p-[16px] text-left transition-all hover:bg-[#222749]"
+              >
+                <span className="font-variation-100 flex-1 text-[20px] font-bold leading-[1.1] text-[#a5aee9]">
+                  {faq.question}
+                </span>
+                <div className="relative size-[24px] shrink-0">
+                  {/* Plus Icon - visible when closed */}
+                  <div
+                    className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ease-in-out ${
+                      isOpen ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'
+                    }`}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 6V1C8 0.734784 7.89464 0.48043 7.70711 0.292893C7.51957 0.105357 7.26522 0 7 0C6.73478 0 6.48043 0.105357 6.29289 0.292893C6.10536 0.48043 6 0.734784 6 1V6H1C0.734784 6 0.48043 6.10536 0.292893 6.29289C0.105357 6.48043 0 6.73478 0 7C0 7.26522 0.105357 7.51957 0.292893 7.70711C0.48043 7.89464 0.734784 8 1 8H6V13C6 13.2652 6.10536 13.5196 6.29289 13.7071C6.48043 13.8946 6.73478 14 7 14C7.26522 14 7.51957 13.8946 7.70711 13.7071C7.89464 13.5196 8 13.2652 8 13V8H13C13.2652 8 13.5196 7.89464 13.7071 7.70711C13.8946 7.51957 14 7.26522 14 7C14 6.73478 13.8946 6.48043 13.7071 6.29289C13.5196 6.10536 13.2652 6 13 6H8Z" fill="#A5AEE9"/>
+                    </svg>
                   </div>
-                </Disclosure.Button>
-                <div className="grid grid-rows-[0fr] transition-all duration-300 ease-in-out data-[open]:grid-rows-[1fr]" data-open={open || undefined}>
-                  <div className="overflow-hidden">
-                    <Disclosure.Panel static className="border-t border-[#3f4367]">
-                      <div className="bg-[#0E1330]/40 px-[16px] pb-[16px] pt-[16px] opacity-0 transition-opacity duration-300 data-[open]:opacity-100" data-open={open || undefined}>
-                        <p className="text-[18px] font-normal leading-[1.4] text-[#a5aee9]">
-                          {faq.answer}
-                        </p>
-                      </div>
-                    </Disclosure.Panel>
+                  {/* Minus Icon - visible when open */}
+                  <div
+                    className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ease-in-out ${
+                      isOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0'
+                    }`}
+                  >
+                    <svg width="14" height="2" viewBox="0 0 14 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 0C0.734784 0 0.48043 0.105357 0.292893 0.292893C0.105357 0.48043 0 0.734784 0 1C0 1.26522 0.105357 1.51957 0.292893 1.70711C0.48043 1.89464 0.734784 2 1 2H13C13.2652 2 13.5196 1.89464 13.7071 1.70711C13.8946 1.51957 14 1.26522 14 1C14 0.734784 13.8946 0.48043 13.7071 0.292893C13.5196 0.105357 13.2652 0 13 0H1Z" fill="#A5AEE9"/>
+                    </svg>
+                  </div>
+                </div>
+              </button>
+              <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                <div className="overflow-hidden">
+                  <div className="border-t border-[#3f4367]">
+                    <div className={`bg-[#0E1330]/40 px-[16px] pb-[16px] pt-[16px] transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+                      <p className="text-[16px] font-normal leading-[1.4] text-[#a5aee9] whitespace-pre-line">
+                        {faq.answer}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            )}
-          </Disclosure>
-        ))}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

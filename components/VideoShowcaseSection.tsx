@@ -151,7 +151,7 @@ export default function VideoShowcaseSection({ id }: { id?: string }) {
                 Execution is where most founders jump right in, but outputs ≠ outcomes. Sales copy doesn&apos;t drive pipeline, and new onboarding doesn&apos;t improve retention on its own — unless they&apos;re the result of deep insight and a coherent strategy.
                 </p>
                 <p className="w-full text-[16px] font-normal leading-[1.4] text-[#a5aee9] sm:text-[17px] lg:text-[18px]">
-                We only deliver what the strategy determines will actually move the needle for this business at this stage. From there, execution can take different forms:
+                We only deliver what the strategy determines will actually move the needle for this business at this stage.
                 </p>
               </div>
             ) : (
