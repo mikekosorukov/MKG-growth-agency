@@ -1,20 +1,15 @@
-// Type definitions for Cal.com embed script
+// Type definitions for Cal.com cloud embed script
+interface CalApi {
+  (action: string, ...args: unknown[]): void;
+  q?: unknown[];
+  ns?: Record<string, CalApi>;
+  loaded?: boolean;
+}
+
 declare global {
   interface Window {
-    Cal?: (
-      type: 'inline' | 'popup' | 'popover',
-      config: {
-        elementOrSelector: HTMLElement | string;
-        calLink: string;
-        layout?: 'month_view' | 'column_view' | 'agenda';
-        config?: Record<string, unknown>;
-      }
-    ) => void;
+    Cal?: CalApi;
   }
 }
 
 export {};
-
-
-
-
