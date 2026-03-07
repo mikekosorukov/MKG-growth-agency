@@ -50,6 +50,12 @@ export default function Home() {
         {/* Divider Section - with horizontal lines decoration */}
         <DividerSection variant="lines" />
         
+        {/* Companies Section */}
+        <CompaniesSection />
+        
+        {/* Testimonials Section */}
+        <TestimonialsSection />
+        
         {/* Outcomes Section */}
         <OutcomesSection />
         
@@ -58,12 +64,9 @@ export default function Home() {
         
         {/* FAQ Section */}
         <FAQSection />
-        
-        {/* Companies Section */}
-        <CompaniesSection />
-        
-        {/* Testimonials Section */}
-        <TestimonialsSection />
+
+        {/* Divider Section - with angled stripe pattern */}
+        <DividerSection variant="angled" />
         
         {/* Booking Section */}
         <BookingSection />
