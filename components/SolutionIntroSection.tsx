@@ -29,7 +29,7 @@ export default function SolutionIntroSection() {
             id="solution-heading"
             className="w-full text-[26px] font-bold leading-[1.1] text-[#dcdff2] sm:text-[30px] md:text-[34px] lg:text-[38px]"
           >
-            GTM, rebuilt from the fundamentals up
+            GTM, built from the fundamentals up
           </h2>
         </div>
         
