@@ -22,21 +22,6 @@ export default function FAQSection() {
         'We work with startups and SMEs where software or AI is a meaningful part of the product. We don\'t work with consumer, hardware, services, or physical products.',
     },
     {
-      question: 'Why don\'t you list packages, timelines, or deliverables?',
-      answer:
-        'Most tech companies operate in a messy environment with many unknowns before the scale phase. In that context, predefined packages, timelines, and deliverables tend to optimize for convenience rather than driving business growth.\n\nWe start by understanding your market, product, and business constraints. The shape of the engagement emerges from that context, not the other way around.',
-    },
-    {
-      question: 'What do I actually get at the end of the process?',
-      answer:
-        'We don\'t believe that templatized GTM or product growth services deliver good results in tech, and we don\'t operate as a service shop.\n\nDepending on the company, the work may span areas such as strategy, positioning, messaging, onboarding optimization, website optimization, growth marketing, or coaching. The exact focus and outputs are defined after the initial discovery, once the real constraints and priorities are clear.',
-    },
-    {
-      question: 'How much does it cost?',
-      answer:
-        'We don\'t price based on predefined services. We optimize for business outcomes; the "work we do" (and, consequently, how much it costs) is a function of that.',
-    },
-    {
       question: 'Who from our team must be involved?',
       answer:
         'This depends on your stage.\n\nAt the traction stage, we typically work directly with a founder or co-founders. At early growth, we usually collaborate with 2–3 team members who have a deep understanding of the product, customers, and business strategy.',
@@ -45,7 +30,7 @@ export default function FAQSection() {
 
   return (
     <section
-      className="relative box-border flex w-full flex-col items-center gap-[40px] border border-solid border-[#3f4367] bg-[#171c39] px-[20px] py-[40px] sm:gap-[48px] sm:px-[40px] sm:py-[50px] md:gap-[56px] md:px-[60px] md:py-[60px] lg:gap-[64px] lg:px-[80px] lg:py-[80px] overflow-hidden"
+      className="relative box-border flex w-full flex-col items-center gap-[40px] bg-[#1d2241] px-[20px] py-[40px] sm:gap-[48px] sm:px-[40px] sm:py-[50px] md:gap-[56px] md:px-[60px] md:py-[60px] lg:gap-[64px] lg:px-[80px] lg:py-[80px] overflow-hidden"
       aria-label="Frequently Asked Questions"
     >
       {/* Noise texture overlay */}
@@ -78,7 +63,7 @@ export default function FAQSection() {
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
           return (
-            <div key={index} className="w-full border border-solid border-[#3f4367] bg-[#1d2241] transition-all hover:border-[#5f6387]">
+            <div key={index} className="w-full border border-solid border-[#3f4367] bg-[#171c39] transition-all hover:border-[#5f6387]">
               <button
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 className="flex w-full cursor-pointer items-center justify-between gap-[8px] p-[16px] text-left transition-all hover:bg-[#222749]"

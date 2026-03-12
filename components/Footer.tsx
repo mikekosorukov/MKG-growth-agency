@@ -29,7 +29,7 @@ export default function Footer() {
             />
           </div>
           <p className="text-[#a5aee9] text-sm lg:text-base font-normal leading-[1.4] whitespace-nowrap">
-            GTM & Product Growth
+            MKG Lab
           </p>
         </div>
 

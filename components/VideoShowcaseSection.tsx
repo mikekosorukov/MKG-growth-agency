@@ -31,7 +31,7 @@ export default function VideoShowcaseSection({ id }: { id?: string }) {
       id={id}
       className={`relative box-border flex w-full flex-col items-center ${
         id === 'content-showcase-problems-2' 
-          ? 'border-x border-t border-solid border-[#3f4367]' 
+          ? 'border border-solid border-[#3f4367]' 
           : 'border border-solid border-[#3f4367]'
       } bg-[#171c39] px-[20px] py-[40px] sm:px-[40px] sm:py-[50px] md:px-[60px] md:py-[60px] lg:px-[80px] lg:py-[80px] overflow-hidden`}
       aria-label="Video Showcase"
@@ -161,49 +161,6 @@ export default function VideoShowcaseSection({ id }: { id?: string }) {
             )}
           </div>
           
-          {/* Button - only show for content-showcase-problems-2 (duplicate section) */}
-          {id === 'content-showcase-problems-2' && (
-            <div className="relative flex shrink-0 items-start gap-[16px]">
-              <Link
-                href="/bookings"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative h-[48px] shrink-0 border border-solid border-[#8c99eb] bg-gradient-to-r from-[#323966] to-[#232b5c] hover:from-[#3a4170] hover:to-[#2a3467] transition-all cursor-pointer sm:h-[50px] md:h-[52px] lg:h-[56px]"
-                aria-label="Talk to us"
-              >
-              <div className="box-border flex h-full items-center justify-center overflow-clip rounded-[inherit] p-[12px] sm:p-[14px] lg:p-[16px]">
-                <div className="relative box-border flex shrink-0 items-center justify-center gap-[10px] px-[12px] py-0 sm:px-[14px] lg:px-[16px]">
-                  <span className="relative shrink-0 whitespace-pre text-nowrap text-[16px] font-medium leading-none tracking-[0.5px] sm:text-[17px] md:text-[18px] lg:text-[20px] bg-gradient-to-r from-[#c9d1ff] to-[#8c99eb] bg-clip-text text-transparent">
-                    Talk to Us
-                  </span>
-                </div>
-                {/* Chat Icon - appears on hover with sequential animation */}
-                <div className="relative shrink-0 h-[20px] w-0 sm:h-[23px] lg:h-[26px] overflow-visible group-hover:w-[20px] sm:group-hover:w-[23px] lg:group-hover:w-[26px] transition-all duration-300 ease-out">
-                  <div className="relative size-full">
-                    {/* chat-1: appears first quickly (larger bubble in back) */}
-                    <div className="absolute aspect-square left-[12.5%] right-[4.17%] top-[calc(50%-1px)] -translate-y-1/2 scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center">
-                      <Image
-                        src="/chat-1.svg"
-                        alt=""
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    {/* chat-2: appears with delay as chat-1 is about to reach design size (smaller bubble) */}
-                    <div className="absolute aspect-square left-0 right-1/2 top-[calc(50%+7px)] -translate-y-1/2 scale-0 group-hover:scale-100 transition-transform duration-300 delay-200 ease-out origin-center">
-                      <Image
-                        src="/chat-2.svg"
-                        alt=""
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            </div>
-          )}
         </div>
       </div>
       </div>

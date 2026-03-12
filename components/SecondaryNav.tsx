@@ -198,7 +198,7 @@ export default function SecondaryNav() {
               ease: 'easeInOut',
             }}
           >
-            GTM, rebuilt from the fundamentals up
+            GTM, built from the fundamentals up
           </motion.p>
         </div>
 

@@ -7,7 +7,7 @@ import Notification from './Notification';
 
 export default function OutcomesSection() {
   const [showNotification, setShowNotification] = useState(false);
-  const [expandedCards, setExpandedCards] = useState<{ [key: string]: boolean }>({});
+  const [expandedCards, setExpandedCards] = useState<{ [key: string]: boolean }>({ card1: true, card2: true, card3: true });
   const [showMoreCards, setShowMoreCards] = useState(false);
 
   const handleFullStudyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -26,7 +26,7 @@ export default function OutcomesSection() {
   const allCards = [
     {
       id: 'card1',
-      tag: 'B2B SaaS, early growth, sales-led',
+      tag: 'B2B SaaS, early growth, Product-led sales',
       title: '$1.2M in net-new qualified pipeline',
       description: 'The initial audit surfaced a clear segment-level opportunity. The product delivered strong value for a specific customer segment, but the GTM motion was not optimized for that segment. We refocused positioning and messaging, rebuilt the website flow to proactively capture high-fit accounts and convert them into meetings, and updated sales scripts and workflows, generating $1.2M in net-new qualified pipeline in 2.5 months.',
       imageUrl: '/outcomes_1.png',

@@ -1,14 +1,11 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import ProblemSection from "@/components/ProblemSection";
 import OutcomesSection from "@/components/OutcomesSection";
+import BenefitsSection from "@/components/BenefitsSection";
 import CompaniesSection from "@/components/CompaniesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import ContentShowcaseSection from "@/components/ContentShowcaseSection";
-import VideoShowcaseSection from "@/components/VideoShowcaseSection";
-import SolutionIntroSection from "@/components/SolutionIntroSection";
-import SecondaryNav from "@/components/SecondaryNav";
 import FAQSection from "@/components/FAQSection";
+import PricingSection from "@/components/PricingSection";
 import AboutSection from "@/components/AboutSection";
 import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
@@ -26,29 +23,17 @@ export default function Home() {
         {/* Divider Section */}
         <DividerSection />
         
-        {/* Problem Section */}
-        <ProblemSection />
-        
-        {/* Solution Intro Section */}
-        <SolutionIntroSection />
-        
-        {/* Secondary Navigation */}
-        <SecondaryNav />
-        
-        {/* Content Showcase Section */}
-        <ContentShowcaseSection id="content-showcase-outcomes" />
-        
-        {/* Video Showcase Section */}
-        <VideoShowcaseSection id="content-showcase-problems" />
-        
-        {/* Content Showcase Section */}
-        <ContentShowcaseSection id="content-showcase-solutions" />
-        
-        {/* Video Showcase Section - Duplicate */}
-        <VideoShowcaseSection id="content-showcase-problems-2" />
-        
+        {/* About Section */}
+        <AboutSection />
+
         {/* Divider Section - with horizontal lines decoration */}
         <DividerSection variant="lines" />
+        
+        {/* Benefits Section */}
+        <BenefitsSection />
+
+        {/* Outcomes Section */}
+        <OutcomesSection />
         
         {/* Companies Section */}
         <CompaniesSection />
@@ -56,18 +41,12 @@ export default function Home() {
         {/* Testimonials Section */}
         <TestimonialsSection />
         
-        {/* Outcomes Section */}
-        <OutcomesSection />
-        
-        {/* About Section */}
-        <AboutSection />
-        
+        {/* Pricing Section */}
+        <PricingSection />
+
         {/* FAQ Section */}
         <FAQSection />
 
-        {/* Divider Section - with angled stripe pattern */}
-        <DividerSection variant="angled" />
-        
         {/* Booking Section */}
         <BookingSection />
       </main>

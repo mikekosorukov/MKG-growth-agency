@@ -1,6 +1,7 @@
 export default function CompaniesSection() {
   return (
     <section
+      id="testimonials"
       className="relative box-border flex w-full flex-col items-center gap-[48px] bg-[#1d2241] px-[20px] pb-0 pt-[40px] sm:px-[40px] sm:pt-[50px] md:px-[60px] md:pt-[60px] lg:px-[80px] lg:pt-[80px] overflow-hidden"
       aria-labelledby="companies-heading"
     >
