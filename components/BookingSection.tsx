@@ -45,7 +45,7 @@ export default function BookingSection() {
               CONNECT
             </p>
             <h2 className="w-full text-[26px] font-bold leading-[1.1] text-[#dcdff2] sm:text-[30px] md:text-[34px] lg:text-[38px]">
-            Create an inflection point for your growth
+            Unlock compounding growth
             </h2>
           </div>
           

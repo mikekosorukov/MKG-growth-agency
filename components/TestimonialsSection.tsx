@@ -64,7 +64,7 @@ export default function TestimonialsSection() {
   const testimonials: Testimonial[] = [
     {
       authorName: 'Jonathan Kite',
-      authorRole: 'SEO at Rent Ready, a Real Estate Marketplace',
+      authorRole: 'CEO at Rent Ready, a Real Estate Marketplace',
       testimonialText: '"From discovery through execution, ... Mike\'s contributions significantly elevated our product, and his dedication to customer-driven innovation was evident in every project he touched."',
       authorTitle: 'Fractional Product Growth Lead',
       employmentType: 'Contractor',
@@ -85,6 +85,22 @@ export default function TestimonialsSection() {
       authorTitle: 'Fractional Product Growth Lead',
       employmentType: 'Contractor',
       avatarUrl: '/testimonial-icon-3.png',
+    },
+    {
+      authorName: 'Heather DeAcosta',
+      authorRole: 'Head of Product and Technology at Rent Ready',
+      testimonialText: '"Mike\'s approach to testing ideas helped us make informed product decisions. He was especially skilled in leading effective customer interviews, providing us with valuable qualitative and quantitative insights that shaped our strategies."',
+      authorTitle: '',
+      employmentType: '',
+      avatarUrl: '/heather.png',
+    },
+    {
+      authorName: 'Kateryna Hornysh',
+      authorRole: 'Head of Product at aqua-cloud',
+      testimonialText: '"Mike consistently impressed me with his strong focus on the customer needs and his commitment to driving growth in key metrics. If you\'re looking for someone who truly understands how to deliver results, Mike is your guy :)"',
+      authorTitle: '',
+      employmentType: '',
+      avatarUrl: '/Kate.png',
     },
   ];
 

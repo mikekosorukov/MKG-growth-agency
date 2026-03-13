@@ -7,30 +7,30 @@ export default function BenefitsSection() {
     {
       icon: '/icon/ionicons/filled/flame.svg',
       title: 'Activation',
-      text: "Most tech startups don't have the business expertise to bring their product to market — yet it's too early to hire a full-time executive."
+      text: "Proactively drive your customers toward product value through ICP-specific onboarding, guided journeys, and behavioral triggers."
     },
     {
       icon: '/icon/ionicons/filled/reload.svg',
       title: 'Engagement',
-      text: "Solving go-to-market with default tactics is a dangerous shortcut. Without truly understanding the customer first, that approach always fails."
+      text: "Enable long-term retention by designing product experiences that increase breadth and depth of engagement, drive repeated usage and user → team adoption."
     },
     {
       icon: '/icon/ionicons/filled/journal.svg',
       title: 'Monetization',
-      text: "One-and-done doesn't work for go-to-market. Without team alignment and buy-in, the GTM efforts will stall."
+      text: "Make your pricing and packaging your top growth lever. Design your freemium or trial to move customers to higher ACVs and convert usage into revenue more effectively."
     },
     {
       icon: '/icon/ionicons/filled/color-filter.svg',
       iconSize: 35,
       title: 'Holistic system',
-      text: "Placeholder text for the fourth benefit card. Replace with your actual content."
+      text: "Build a sustainable growth system where acquisition, engagement, and monetization compound on each other and grow revenue without additional headcount."
     }
   ];
 
   return (
     <section 
       id="benefits"
-      className="relative box-border flex w-full flex-col items-center gap-[40px] border border-solid border-[#3f4367] border-b-0 bg-[#1d2241] px-[40px] pt-[40px] pb-[50px] sm:gap-[48px] sm:px-[80px] sm:pt-[50px] sm:pb-[65px] md:gap-[56px] md:px-[120px] md:pt-[60px] md:pb-[80px] lg:gap-[64px] lg:px-[160px] lg:pt-[80px] lg:pb-[100px] overflow-hidden"
+      className="relative box-border flex w-full flex-col items-center gap-[40px] border border-solid border-[#3f4367] border-b-0 bg-[#1d2241] px-[20px] pt-[40px] pb-[50px] sm:gap-[48px] sm:px-[40px] sm:pt-[50px] sm:pb-[65px] md:gap-[56px] md:px-[60px] md:pt-[60px] md:pb-[80px] lg:gap-[64px] lg:px-[80px] lg:pt-[80px] lg:pb-[100px] overflow-hidden"
       style={{ boxShadow: '0 -6px 6px -6px rgba(5, 9, 32, 0.9), 0 6px 6px -6px rgba(5, 9, 32, 0.9)' }}
       aria-labelledby="benefits-heading"
     >
@@ -56,16 +56,16 @@ export default function BenefitsSection() {
           id="benefits-heading"
           className="w-full text-[26px] font-bold leading-[1.1] text-[#dcdff2] sm:text-[30px] md:text-[34px] lg:text-[38px]"
         >
-          Product-led growth and Product-led sales<br />to make your TOF efforts count
+          Product-led growth and Product-led sales<br className="hidden lg:block" />{' '}— your highest-leverage motions
         </h2>
       </div>
 
       {/* Cards Container */}
-      <div className="relative z-10 grid w-full max-w-[1280px] grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
+      <div className="relative z-10 grid w-full max-w-[1060px] grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-2">
         {cards.map((card, index) => (
           <article
             key={index}
-            className="flex flex-col items-center gap-[16px] border border-solid border-[#3f4367] bg-[#171c39] pt-[32px] px-[16px] pb-[32px]"
+            className="flex flex-col items-center gap-[16px] border border-solid border-[#3f4367] bg-[#171c39] pt-[32px] px-[16px] pb-[32px] lg:px-[78px]"
           >
             {/* Icon */}
             <div className="relative shrink-0" style={{ width: card.iconSize ?? 32, height: card.iconSize ?? 32 }}>
@@ -75,12 +75,11 @@ export default function BenefitsSection() {
                 width={card.iconSize ?? 32}
                 height={card.iconSize ?? 32}
                 className="block h-full w-full"
-                style={{ filter: 'brightness(0) saturate(100%) invert(73%) sepia(16%) saturate(500%) hue-rotate(195deg) brightness(102%)' }}
               />
             </div>
 
             {/* Title */}
-            <h3 className="w-full text-center text-[20px] font-bold leading-[1.1] text-[#dcdff2]">
+            <h3 className="w-full text-center text-[20px] font-bold leading-[1.1] text-[#dcdff2] mt-[8px]">
               {card.title}
             </h3>
             

@@ -44,7 +44,7 @@ export default function ApproachPage() {
               className="hero-heading hero-gradient-text relative w-full shrink-0 font-bold leading-[1.1]"
               style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}
             >
-              We help tech companies navigate the messy path to sustainable growth
+              Hockey stick growth is a result of compounding growth systems
             </h1>
           </div>
 

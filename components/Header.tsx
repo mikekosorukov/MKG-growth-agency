@@ -111,10 +111,11 @@ export default function Header() {
               Testimonials
             </Link>
             <Link
-              href="/approach"
+              href="/#outcomes"
+              onClick={(e) => handleNavClick(e, 'outcomes')}
               className="px-2 py-3 text-[#dcdff2] text-base font-medium hover:text-white transition-colors whitespace-nowrap"
             >
-              Approach
+              Case Studies
             </Link>
           </nav>
 
@@ -185,10 +186,11 @@ export default function Header() {
               Testimonials
             </Link>
             <Link
-              href="/approach"
+              href="/#outcomes"
               className="px-4 py-3 text-[#dcdff2] text-base font-medium hover:text-white hover:bg-[#232b5c] transition-colors rounded"
+              onClick={(e) => handleNavClick(e, 'outcomes')}
             >
-              Approach
+              Case Studies
             </Link>
           </div>
         </nav>

@@ -123,7 +123,7 @@ export default function HeroSection() {
       {/* H1 Title */}
       <div className="relative w-full max-w-5xl text-center z-10 -mt-[50px]">
         <h1 className="hero-heading hero-gradient-text relative w-full shrink-0 font-bold leading-[1.1]" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}>
-          Compounding product-led growth<br />systems for your B2B SaaS
+          Product-led systems that compound<br className="hidden md:block" />{' '}your B2B SaaS growth
         </h1>
       </div>
       
@@ -149,7 +149,7 @@ export default function HeroSection() {
             Mike Kosorukov
           </p>
           <p className="w-full text-[12px] font-normal leading-[1.2] text-[#a5aee9]">
-            Founder of MKG Lab and ex-YC<br />founding growth operator
+            Founder of MKG Lab | Ex-YC<br />growth operator
           </p>
         </div>
       </div>

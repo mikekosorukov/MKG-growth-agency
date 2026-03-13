@@ -50,7 +50,7 @@ export default function AboutSection() {
               className="relative w-full shrink-0 font-normal leading-[1.4] text-[#a5aee9]"
               style={{ fontSize: 'clamp(14px, 1.4vw, 18px)', fontVariationSettings: "'wdth' 100" }}
             >
-              For the past seven years, I've worked with B2B and prosumer tech founders and teams as a full-time operator, fractional lead, and advisor. MKG Labs is where that experience comes together to help bring tech products to market with clarity and impact.
+              For the past seven years, I've worked with B2B and prosumer tech founders and teams as a full-time operator, fractional lead, and advisor. MKG Lab is where that experience comes together to help bring tech products to market with clarity and impact.
             </p>
           </div>
         </div>

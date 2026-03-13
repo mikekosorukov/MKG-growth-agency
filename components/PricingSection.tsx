@@ -115,9 +115,8 @@ const tiers: PricingTier[] = [
       'Always free',
     ],
     arrowItems: [
-      'Placeholder arrow item one',
-      'Placeholder arrow item two',
-      'Placeholder arrow item three',
+      'Determine whether we\'re the right fit',
+      'Get free advice from a senior operator',
     ],
     ctaText: 'Book a free consultation',
   },
@@ -125,19 +124,18 @@ const tiers: PricingTier[] = [
     icon: <PinIcon />,
     title: 'Product-led Growth Audit',
     price: '$5000*',
-    description: '360° in-depth assessment of your status quo across retention, monetization, and acquisition + custom 6-month plan',
+    description: '360° in-depth assessment of your current state across retention, monetization, and acquisition + custom 6-month plan',
     descriptionTag: '*Discounts for early-stage',
     items: [
-      '2 week engagement',
+      '2-week engagement',
       'Growth model assessment',
       'GTM and positioning assessment',
       'Highest-leverage opportunities map',
       'Recommendations and custom 6-month plan',
     ],
     arrowItems: [
-      'Placeholder arrow item one',
-      'Placeholder arrow item two',
-      'Placeholder arrow item three',
+      'Get clarity on the path to winning',
+      'Confidence to move forward on your own',
     ],
     ctaText: 'Book a call',
     featured: true,
@@ -146,7 +144,7 @@ const tiers: PricingTier[] = [
     icon: <FlagIcon />,
     title: 'Product-led Growth Advisory',
     price: 'From $3500 p/m',
-    description: 'Embedded leadership for a defined period — acting as your Head of Product or Growth to build the function, the motion, and the team from within.',
+    description: 'Embedded Product Growth expertise so you can scale with confidence. Ongoing engagement where I commit to business outcomes rather than deliverables.',
     items: [
       '3-12 months engagement',
       'Weekly strategic sessions with your team',
@@ -156,9 +154,8 @@ const tiers: PricingTier[] = [
       'Team building and mentoring',
     ],
     arrowItems: [
-      'Placeholder arrow item one',
-      'Placeholder arrow item two',
-      'Placeholder arrow item three',
+      'Ensure growth without extra headcount',
+      'Build your own expertise by working with an ex-YC, ex-Reforge practitioner',
     ],
     ctaText: 'Book a call',
   },
@@ -291,7 +288,7 @@ export default function PricingSection() {
           Three paths toward durable growth
           </h2>
           <p className="mt-[4px] w-full max-w-[700px] text-[16px] font-normal leading-[1.5] text-[#a5aee9] sm:text-[17px] md:text-[18px]">
-            Growth audit to create an inflection point in your startup&apos;s growth trajectory.<br />Advisory for continuous growth and coaching.
+            A growth audit to create an inflection point.<br className="hidden sm:block" />{' '}Advisory to sustain momentum and build your team&apos;s capabilities.
           </p>
         </div>
 
