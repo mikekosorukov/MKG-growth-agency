@@ -1,6 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+const logos = [
+  { src: '/Voximplant_logo.png', alt: 'Voximplant' },
+  { src: '/aqua_logo.png', alt: 'Aqua' },
+  { src: '/capture_logo.png', alt: 'Capture' },
+  { src: '/jet_logo.png', alt: 'Jet' },
+  { src: '/grotech_logo.png', alt: 'Grotech' },
+  { src: '/yc_logo.png', alt: 'YC' },
+  { src: '/rent_logo.png', alt: 'Rent' },
+  { src: '/drivt_logo.png', alt: 'Drivt' },
+  { src: '/andagon_logo.png', alt: 'Andagon' },
+];
+
+const track = [...logos, ...logos];
+
 export default function BookingSection() {
 
   return (
@@ -31,7 +45,7 @@ export default function BookingSection() {
               CONNECT
             </p>
             <h2 className="w-full text-[26px] font-bold leading-[1.1] text-[#dcdff2] sm:text-[30px] md:text-[34px] lg:text-[38px]">
-            The GTM system for sustainable growth
+            Unlock compounding growth
             </h2>
           </div>
           
@@ -99,6 +113,25 @@ export default function BookingSection() {
               </div>
             </div>
           </Link>
+        </div>
+
+        {/* Logo carousel */}
+        <div
+          className="w-full overflow-hidden"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+          }}
+        >
+          <div className="flex animate-marquee pointer-events-none" style={{ width: 'max-content' }}>
+            {track.map((logo, i) => (
+              <div key={`${logo.alt}-${i}`} className="mx-[22px] flex items-center">
+                <div className="relative h-10 w-36 opacity-50">
+                  <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

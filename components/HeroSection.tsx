@@ -123,15 +123,35 @@ export default function HeroSection() {
       {/* H1 Title */}
       <div className="relative w-full max-w-5xl text-center z-10 -mt-[50px]">
         <h1 className="hero-heading hero-gradient-text relative w-full shrink-0 font-bold leading-[1.1]" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}>
-          We help tech companies navigate the messy path to sustainable growth
+          Product-led systems that compound<br className="hidden md:block" />{' '}your B2B SaaS growth
         </h1>
       </div>
       
       {/* H2 Subtitle - ref for scroll timing */}
       <div ref={h2Ref} className="relative w-full max-w-3xl text-center -mt-[20px] sm:-mt-[25px] md:-mt-[30px] lg:-mt-[40px] z-10">
           <p className="relative w-full shrink-0 font-normal leading-[1.4] text-[#a5aee9]" style={{ fontSize: 'clamp(16px, 1.6vw, 20px)' }}>
-          We partner with traction and early-growth tech startups and SMEs to build <br className="hidden md:block" />a complete GTM system grounded in deep customer insight
+          Strategic advising and hands-on execution to turn your product<br className="hidden sm:block" /> into your primary growth channel
           </p>
+      </div>
+
+      {/* Testimonial badge */}
+      <div className="relative z-10 flex items-center justify-center gap-[8px] -mt-[20px] sm:-mt-[25px] md:-mt-[30px] lg:-mt-[40px]">
+        <div className="relative h-[58px] w-[58px] shrink-0 overflow-hidden rounded-full bg-[#a5aee9]/75">
+          <Image
+            src="/mike_avatar.svg"
+            alt="Mike Kosorukov"
+            fill
+            className="object-contain scale-[1.45] object-center translate-x-[-3%] translate-y-[2%]"
+          />
+        </div>
+        <div className="flex min-w-0 flex-col items-start gap-[4px]">
+          <p className="w-full text-[14px] font-medium leading-[1.1] text-[#dcdff2]">
+            Mike Kosorukov
+          </p>
+          <p className="w-full text-[12px] font-normal leading-[1.2] text-[#a5aee9]">
+            Founder of MKG Lab | Ex-YC<br />growth operator
+          </p>
+        </div>
       </div>
 
       {/* Hero Animation - adjusted margins to prevent clipping at smaller viewports */}

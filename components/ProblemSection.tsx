@@ -15,7 +15,7 @@ export default function ProblemSection() {
     },
     {
       icon: '/problemicon-3.png',
-      text: "One-and-done doesn't work for go-to-market. Without team alignment and buy-in, the GTM efforts will stall."
+      text: "Make your pricing and packaging your top growth lever. Design your freemium or trial to escalate customers to higher ACVs and convert usage into revenue more effectively."
     }
   ];
 
@@ -48,7 +48,7 @@ export default function ProblemSection() {
           id="problem-heading"
           className="w-full text-[26px] font-bold leading-[1.1] text-[#dcdff2] sm:text-[30px] md:text-[34px] lg:text-[38px]"
         >
-          Most GTM fails not because it&apos;s hard,<br />but because it&apos;s shallow
+          Most GTM fails not because it&apos;s hard,<br className="hidden sm:block" />{' '}but because it&apos;s shallow
         </h2>
       </div>
 
