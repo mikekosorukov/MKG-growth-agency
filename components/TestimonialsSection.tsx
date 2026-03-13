@@ -100,7 +100,7 @@ export default function TestimonialsSection() {
       testimonialText: '"Mike consistently impressed me with his strong focus on the customer needs and his commitment to driving growth in key metrics. If you\'re looking for someone who truly understands how to deliver results, Mike is your guy :)"',
       authorTitle: '',
       employmentType: '',
-      avatarUrl: '/Kate.png',
+      avatarUrl: '/kate.png',
     },
   ];
 
