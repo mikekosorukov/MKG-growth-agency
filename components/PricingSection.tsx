@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface PricingItem {
   text: string;
@@ -122,10 +125,10 @@ const tiers: PricingTier[] = [
   },
   {
     icon: <PinIcon />,
-    title: 'Product-led Growth Audit',
-    price: '$5000*',
+    title: 'Product Growth Audit',
+    price: '$5000',
     description: '360° in-depth assessment of your current state across retention, monetization, and acquisition + custom 6-month plan',
-    descriptionTag: '*Discounts for early-stage',
+    descriptionTag: undefined,
     items: [
       '2-week engagement',
       'Growth model assessment',
@@ -142,9 +145,9 @@ const tiers: PricingTier[] = [
   },
   {
     icon: <FlagIcon />,
-    title: 'Product-led Growth Advisory',
-    price: 'From $3500 p/m',
-    description: 'Embedded Product Growth expertise so you can scale with confidence. Ongoing engagement where I commit to business outcomes rather than deliverables.',
+    title: 'Product Growth Advisory',
+    price: 'From $3500/m',
+    description: 'Embedded Product Growth expertise. Ongoing engagement where I commit to business outcomes rather than deliverables.',
     items: [
       '3-12 months engagement',
       'Weekly strategic sessions with your team',
@@ -161,7 +164,7 @@ const tiers: PricingTier[] = [
   },
 ];
 
-function PricingCard({ tier }: { tier: PricingTier }) {
+function PricingCard({ tier, earlyStage }: { tier: PricingTier; earlyStage: boolean }) {
   return (
     <article
       className="grid grid-rows-subgrid row-span-6 gap-[20px] p-[28px] lg:p-[32px] border border-solid border-[#3f4367] bg-[#1d2241]"
@@ -180,7 +183,28 @@ function PricingCard({ tier }: { tier: PricingTier }) {
         </p>
       </div>
 
-      {/* Block 3: Checklist */}
+      {/* Block 3: Price + Tag */}
+      <div className="flex flex-col gap-[24px] justify-end">
+        <div className="flex flex-wrap items-center gap-[12px]">
+          <p className={`text-[26px] font-medium leading-[1.3] text-[#8c99eb] lg:text-[30px] transition-all duration-300 ${earlyStage ? 'line-through opacity-50' : ''}`}>
+            {tier.price}
+          </p>
+          {earlyStage && (
+            <div className="bg-[rgba(178,188,255,0.09)] border border-solid border-[#B2BCFF] flex items-center justify-center px-[14px] py-[4px] rounded-[12px] w-fit transition-all duration-300">
+              <span className="text-[13px] font-normal leading-[1.4] text-[#B2BCFF] whitespace-nowrap">
+                Custom discount
+              </span>
+            </div>
+          )}
+          {!earlyStage && tier.descriptionTag && (
+            <span className="text-[12px] font-normal leading-[1.4] text-[#7078B8]">
+              {tier.descriptionTag}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Block 4: Checklist */}
       <div className="flex flex-col gap-[20px]">
         <div className="h-px w-full bg-[#3f4367]" />
         <ul className="flex flex-col gap-[10px]">
@@ -206,7 +230,7 @@ function PricingCard({ tier }: { tier: PricingTier }) {
         </ul>
       </div>
 
-      {/* Block 4: Arrow items */}
+      {/* Block 5: Arrow items */}
       <div className="flex flex-col gap-[20px]">
         {tier.arrowItems && tier.arrowItems.length > 0 && (
           <>
@@ -225,23 +249,9 @@ function PricingCard({ tier }: { tier: PricingTier }) {
         )}
       </div>
 
-      {/* Block 5: Price + Tag */}
+      {/* Block 6: CTA */}
       <div className="flex flex-col gap-[24px] justify-end">
         <div className="h-px w-full bg-[#3f4367]" />
-        <div className="flex flex-wrap items-center justify-between gap-[12px]">
-          <p className="text-[22px] font-medium leading-[1.3] text-[#8c99eb] lg:text-[26px]">
-            {tier.price}
-          </p>
-          {tier.descriptionTag && (
-            <span className="text-[12px] font-normal leading-[1.4] text-[#7078B8]">
-              {tier.descriptionTag}
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* Block 6: CTA */}
-      <div className="flex flex-col justify-end">
         <Link
           href="/bookings"
           target="_blank"
@@ -259,6 +269,8 @@ function PricingCard({ tier }: { tier: PricingTier }) {
 }
 
 export default function PricingSection() {
+  const [stage, setStage] = useState<'early' | 'growth'>('growth');
+
   return (
     <section
       id="pricing"
@@ -290,12 +302,36 @@ export default function PricingSection() {
           <p className="mt-[4px] w-full max-w-[700px] text-[16px] font-normal leading-[1.5] text-[#a5aee9] sm:text-[17px] md:text-[18px]">
             A growth audit to create an inflection point.<br className="hidden sm:block" />{' '}Advisory to sustain momentum and build your team&apos;s capabilities.
           </p>
+
+          {/* Stage toggle */}
+          <div className="mt-[24px] flex items-center gap-[0px] rounded-full border border-solid border-[#3f4367] bg-[#0a0e1f]/60 p-[4px]">
+            <button
+              onClick={() => setStage('early')}
+              className={`relative rounded-full px-[20px] py-[8px] text-[14px] font-medium transition-all duration-300 cursor-pointer ${
+                stage === 'early'
+                  ? 'bg-gradient-to-r from-[#323966] to-[#232b5c] text-[#dcdff2] shadow-sm'
+                  : 'text-[#a5aee9] hover:text-[#dcdff2]'
+              }`}
+            >
+              Early-stage
+            </button>
+            <button
+              onClick={() => setStage('growth')}
+              className={`relative rounded-full px-[20px] py-[8px] text-[14px] font-medium transition-all duration-300 cursor-pointer ${
+                stage === 'growth'
+                  ? 'bg-gradient-to-r from-[#323966] to-[#232b5c] text-[#dcdff2] shadow-sm'
+                  : 'text-[#a5aee9] hover:text-[#dcdff2]'
+              }`}
+            >
+              Growth-stage
+            </button>
+          </div>
         </div>
 
         {/* Cards grid */}
         <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
-          {tiers.map((tier) => (
-            <PricingCard key={tier.title} tier={tier} />
+          {tiers.map((tier, index) => (
+            <PricingCard key={tier.title} tier={tier} earlyStage={stage === 'early' && index > 0} />
           ))}
         </div>
       </div>
