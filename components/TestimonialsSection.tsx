@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 interface Testimonial {
   authorName: string;
   authorRole: string;
-  testimonialText: string;
+  testimonialText: React.ReactNode;
   authorTitle: string;
   employmentType: string;
   avatarUrl: string;
@@ -65,23 +65,23 @@ export default function TestimonialsSection() {
     {
       authorName: 'Jonathan Kite',
       authorRole: 'CEO at Rent Ready, a Real Estate Marketplace',
-      testimonialText: '"From discovery through execution, ... Mike\'s contributions significantly elevated our product, and his dedication to customer-driven innovation was evident in every project he touched."',
+      testimonialText: <>&ldquo;From discovery through execution, ... Mike&apos;s contributions significantly elevated our product, and his dedication to <strong className="font-semibold text-[#dcdff2]">customer-driven innovation</strong> was evident in every project he touched.&rdquo;</>,
       authorTitle: 'Fractional Product Growth Lead',
       employmentType: 'Contractor',
       avatarUrl: '/testimonial-1.png',
     },
     {
-      authorName: 'Kirill Chabanov',
-      authorRole: 'COO at aqua cloud, a Test Management SaaS',
-      testimonialText: '"Mike\'s sharp in understanding the market and the customers, often diving deep into research and data analysis. That helped us a lot with better positioning of our product."',
-      authorTitle: 'Product Manager: Digital Innovation',
-      employmentType: 'Full-time',
-      avatarUrl: '/testimonial-icon-2.jpeg',
+      authorName: 'Kateryna Hornysh',
+      authorRole: 'Head of Product at aqua-cloud',
+      testimonialText: <>&ldquo;Mike consistently impressed me with his strong focus on the customer needs and his commitment to driving <strong className="font-semibold text-[#dcdff2]">growth for key metrics</strong>. If you&apos;re looking for someone who truly knows how to deliver results, Mike is your guy :)&rdquo;</>,
+      authorTitle: '',
+      employmentType: '',
+      avatarUrl: '/kate.png',
     },
     {
       authorName: 'Leonid Netrebskii',
       authorRole: 'Head of Software Engineering at Rent Ready, a Real Estate Marketplace',
-      testimonialText: '"Mike revolutionized our product approach: development teams are now happy to see the goals and values of their work, and product managers are focused on business impact."',
+      testimonialText: <>&ldquo;Mike <strong className="font-semibold text-[#dcdff2]">revolutionized our product approach</strong>: development teams are now happy to see the goals and values of their work, and product managers are focused on business impact.&rdquo;</>,
       authorTitle: 'Fractional Product Growth Lead',
       employmentType: 'Contractor',
       avatarUrl: '/testimonial-icon-3.png',
@@ -89,18 +89,18 @@ export default function TestimonialsSection() {
     {
       authorName: 'Heather DeAcosta',
       authorRole: 'Head of Product and Technology at Rent Ready',
-      testimonialText: '"Mike\'s approach to testing ideas helped us make informed product decisions. He was especially skilled in leading effective customer interviews, providing us with valuable qualitative and quantitative insights that shaped our strategies."',
+      testimonialText: <>&ldquo;Mike&apos;s approach to testing ideas helped us make informed product decisions. He was especially skilled in leading effective customer interviews, providing us with valuable <strong className="font-semibold text-[#dcdff2]">insights that shaped our strategies</strong>.&rdquo;</>,
       authorTitle: '',
       employmentType: '',
       avatarUrl: '/heather.png',
     },
     {
-      authorName: 'Kateryna Hornysh',
-      authorRole: 'Head of Product at aqua-cloud',
-      testimonialText: '"Mike consistently impressed me with his strong focus on the customer needs and his commitment to driving growth in key metrics. If you\'re looking for someone who truly understands how to deliver results, Mike is your guy :)"',
-      authorTitle: '',
-      employmentType: '',
-      avatarUrl: '/kate.png',
+      authorName: 'Kirill Chabanov',
+      authorRole: 'COO at aqua cloud, a Test Management SaaS',
+      testimonialText: <>&ldquo;Mike&apos;s sharp in understanding the market and the customers, often diving deep into research and data analysis. That helped us a lot with <strong className="font-semibold text-[#dcdff2]">better positioning of our product</strong>.&rdquo;</>,
+      authorTitle: 'Product Manager: Digital Innovation',
+      employmentType: 'Full-time',
+      avatarUrl: '/testimonial-icon-2.jpeg',
     },
   ];
 
@@ -173,12 +173,8 @@ export default function TestimonialsSection() {
                     </div>
 
                     {/* Testimonial Text */}
-                    <blockquote className="text-center text-[24px] font-normal leading-[1.4] text-[#a5aee9]">
-                      {testimonial.testimonialText.split('\n\n').map((paragraph, pIndex) => (
-                        <p key={pIndex} className={pIndex > 0 ? 'mt-4' : ''}>
-                          {paragraph}
-                        </p>
-                      ))}
+                    <blockquote className="text-center font-normal leading-[1.4] text-[#a5aee9]" style={{ fontSize: 'clamp(14px, 1.4vw, 18px)' }}>
+                      <p>{testimonial.testimonialText}</p>
                     </blockquote>
 
                     {/* View on LinkedIn Button */}

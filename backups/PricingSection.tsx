@@ -1,6 +1,12 @@
+/**
+ * Snapshot copy of components/PricingSection.tsx (not imported by the app).
+ * Edit here freely; merge changes into components/PricingSection.tsx when ready.
+ */
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface PricingItem {
   text: string;
@@ -10,7 +16,9 @@ interface PricingItem {
 interface PricingTier {
   icon: React.ReactNode;
   title: string;
+  price: string;
   description: string;
+  descriptionTag?: string;
   items: (string | PricingItem)[];
   arrowItems?: string[];
   ctaText?: string;
@@ -103,80 +111,105 @@ const FlagIcon = () => (
 
 const tiers: PricingTier[] = [
   {
-    icon: <PinIcon />,
-    title: 'GTM Diagnostic',
-    description: 'I do a 360° diagnostic of your positioning, growth model, and go-to-market motion. I deliver an assessment with a clear path to success.',
+    icon: <EnvelopeIcon />,
+    title: '1:1 Consultation',
+    price: 'Free',
+    description: 'A free 30-minute call to discuss your current growth challenges, explore opportunities, and see if we\'re a good fit to work together.',
     items: [
-      'One week to deliver',
-      'Get data-backed GTM decisions',
-      'Receive a clear action roadmap',
+      '30-minute video call',
+      'Uncover growth opportunities',
+      'Explore working together',
+      'Always free',
     ],
-    arrowItems: [],
-    ctaText: 'Book a discovery call',
-    featured: true,
+    arrowItems: [
+      'Determine whether we\'re the right fit',
+      'Get free advice from a senior operator',
+    ],
+    ctaText: 'Book a free consultation',
   },
   {
-    icon: <EnvelopeIcon />,
-    title: 'Ongoing Partnership',
-    description: 'Ongoing engagement with weekly deep-dives. We fix what\'s broken, identify your growth levers, and execute a focused GTM strategy together.',
+    icon: <PinIcon />,
+    title: 'Product Growth Audit',
+    price: '$5000',
+    description: '360° in-depth assessment of your current state across retention, monetization, and acquisition + custom 6-month plan',
+    descriptionTag: undefined,
     items: [
-      '3-12+ months engagement',
-      'Get business results, not deliverables',
-      'Flexible engagement format',
+      '2-week engagement',
+      'Growth model assessment',
+      'GTM and positioning assessment',
+      'Highest-leverage opportunities map',
+      'Recommendations and custom 6-month plan',
     ],
-    arrowItems: [],
-    ctaText: 'Book a discovery call',
+    arrowItems: [
+      'Get clarity on the path to winning',
+      'Confidence to move forward on your own',
+    ],
+    ctaText: 'Book a call',
+    featured: true,
   },
   {
     icon: <FlagIcon />,
-    title: 'Focused Engagement',
-    description: 'Time-bound projects with clear deliverables: redesign activation flow, build a foundational GTM strategy, or fix your positioning and messaging.',
+    title: 'Product Growth Advisory',
+    price: 'From $3500/m',
+    description: 'Embedded Product Growth expertise. Ongoing engagement where I commit to business outcomes rather than deliverables.',
     items: [
-      '2-3 weeks sprints',
-      'Get specific results fast',
-      'Hands-on execution in tranches with your team',
+      '3-12 months engagement',
+      'Weekly strategic sessions with your team',
+      'Optional async access',
+      'Tailored growth strategy',
+      'PLG and PLS motions implementation',
+      'Team building and mentoring',
     ],
-    arrowItems: [],
-    ctaText: 'Book a discovery call',
-  },
-  {
-    icon: <PinIcon />,
-    title: '1-on-1 free consultation',
-    description: '',
-    items: [
-      '30-45 minutes call',
-      'Discuss your challenges and get expert opinion',
-      'Explore working together',
+    arrowItems: [
+      'Ensure growth without extra headcount',
+      'Build your own expertise by working with an ex-YC, ex-Reforge practitioner',
     ],
-    arrowItems: [],
-    ctaText: 'Get your free consultation',
-    featured: true,
+    ctaText: 'Book a call',
   },
 ];
 
-function PricingCard({ tier, centered }: { tier: PricingTier; centered?: boolean }) {
+function PricingCard({ tier, earlyStage }: { tier: PricingTier; earlyStage: boolean }) {
   return (
     <article
-      className="grid grid-rows-subgrid row-span-5 gap-[20px] p-[28px] lg:p-[32px] border border-solid border-[#3f4367] bg-[#1d2241]"
+      className="grid grid-rows-subgrid row-span-6 gap-[20px] p-[28px] lg:p-[32px] border border-solid border-[#3f4367] bg-[#1d2241]"
     >
       {/* Block 1: Title */}
-      <div className={`flex flex-col gap-[4px] ${centered ? 'items-center text-center' : ''}`}>
+      <div className="flex flex-col gap-[4px]">
         <h3 className="text-[20px] font-bold leading-[1.2] text-[#dcdff2] lg:text-[22px] whitespace-pre-line">
           {tier.title}
         </h3>
       </div>
 
       {/* Block 2: Description */}
-      {tier.description && (
-        <div className="flex flex-col gap-[14px]">
-          <p className="text-[14px] leading-[1.6] text-[#dcdff2] lg:text-[15px]">
-            {tier.description}
-          </p>
-        </div>
-      )}
+      <div className="flex flex-col gap-[14px]">
+        <p className="text-[14px] leading-[1.6] text-[#dcdff2] lg:text-[15px]">
+          {tier.description}
+        </p>
+      </div>
 
-      {/* Block 3: Checklist */}
-      <div className={`flex flex-col gap-[20px] ${centered ? 'items-center' : ''}`}>
+      {/* Block 3: Price + Tag */}
+      <div className="flex flex-col gap-[24px] justify-end">
+        <div className="flex flex-wrap items-center gap-[12px]">
+          <p className={`text-[26px] font-medium leading-[1.3] text-[#8c99eb] lg:text-[30px] transition-all duration-300 ${earlyStage ? 'line-through opacity-50' : ''}`}>
+            {tier.price}
+          </p>
+          {earlyStage && (
+            <div className="bg-[rgba(178,188,255,0.09)] border border-solid border-[#B2BCFF] flex items-center justify-center px-[14px] py-[4px] rounded-[12px] w-fit transition-all duration-300">
+              <span className="text-[13px] font-normal leading-[1.4] text-[#B2BCFF] whitespace-nowrap">
+                Custom discount
+              </span>
+            </div>
+          )}
+          {!earlyStage && tier.descriptionTag && (
+            <span className="text-[12px] font-normal leading-[1.4] text-[#7078B8]">
+              {tier.descriptionTag}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Block 4: Checklist */}
+      <div className="flex flex-col gap-[20px]">
         <div className="h-px w-full bg-[#3f4367]" />
         <ul className="flex flex-col gap-[10px]">
           {tier.items.map((item) => {
@@ -201,7 +234,7 @@ function PricingCard({ tier, centered }: { tier: PricingTier; centered?: boolean
         </ul>
       </div>
 
-      {/* Block 4: Arrow items */}
+      {/* Block 5: Arrow items */}
       <div className="flex flex-col gap-[20px]">
         {tier.arrowItems && tier.arrowItems.length > 0 && (
           <>
@@ -220,8 +253,9 @@ function PricingCard({ tier, centered }: { tier: PricingTier; centered?: boolean
         )}
       </div>
 
-      {/* Block 5: CTA */}
+      {/* Block 6: CTA */}
       <div className="flex flex-col gap-[24px] justify-end">
+        <div className="h-px w-full bg-[#3f4367]" />
         <Link
           href="/bookings"
           target="_blank"
@@ -239,6 +273,8 @@ function PricingCard({ tier, centered }: { tier: PricingTier; centered?: boolean
 }
 
 export default function PricingSection() {
+  const [stage, setStage] = useState<'early' | 'growth'>('growth');
+
   return (
     <section
       id="pricing"
@@ -262,32 +298,45 @@ export default function PricingSection() {
         {/* Section header */}
         <div className="flex flex-col items-center gap-[8px] text-center">
           <p className="text-[12px] font-normal leading-[1.4] text-[#ff885d] sm:text-[13px] md:text-[14px]">
-            FORMAT
+            SERVICES
           </p>
           <h2 className="text-[26px] font-bold leading-[1.1] text-[#dcdff2] sm:text-[30px] md:text-[34px] lg:text-[38px]">
           Three paths toward durable growth
           </h2>
+          <p className="mt-[4px] w-full max-w-[700px] text-[16px] font-normal leading-[1.5] text-[#a5aee9] sm:text-[17px] md:text-[18px]">
+            A growth audit to create an inflection point.<br className="hidden sm:block" />{' '}Advisory to sustain momentum and build your team&apos;s capabilities.
+          </p>
+
+          {/* Stage toggle */}
+          <div className="mt-[24px] flex items-center gap-[0px] rounded-full border border-solid border-[#3f4367] bg-[#0a0e1f]/60 p-[4px]">
+            <button
+              onClick={() => setStage('early')}
+              className={`relative rounded-full px-[20px] py-[8px] text-[14px] font-medium transition-all duration-300 cursor-pointer ${
+                stage === 'early'
+                  ? 'bg-gradient-to-r from-[#323966] to-[#232b5c] text-[#dcdff2] shadow-sm'
+                  : 'text-[#a5aee9] hover:text-[#dcdff2]'
+              }`}
+            >
+              Early-stage
+            </button>
+            <button
+              onClick={() => setStage('growth')}
+              className={`relative rounded-full px-[20px] py-[8px] text-[14px] font-medium transition-all duration-300 cursor-pointer ${
+                stage === 'growth'
+                  ? 'bg-gradient-to-r from-[#323966] to-[#232b5c] text-[#dcdff2] shadow-sm'
+                  : 'text-[#a5aee9] hover:text-[#dcdff2]'
+              }`}
+            >
+              Growth-stage
+            </button>
+          </div>
         </div>
 
         {/* Cards grid */}
         <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
-          {tiers.slice(0, 3).map((tier) => (
-            <PricingCard key={tier.title} tier={tier} />
+          {tiers.map((tier, index) => (
+            <PricingCard key={tier.title} tier={tier} earlyStage={stage === 'early' && index > 0} />
           ))}
-        </div>
-        {/* Centered 4th card */}
-        <div className="flex w-full flex-col items-center gap-[40px]">
-          <p className="w-full text-center text-[20px] font-normal leading-[1.4] text-[#a5aee9] sm:text-[22px] md:text-[24px] pt-[16px] sm:pt-[24px] md:pt-[32px]">
-            Not sure what&apos;s best for you?
-          </p>
-          <div className="relative w-full lg:max-w-[calc(66.666%-5px)]">
-            <div className="absolute -top-[13px] left-1/2 -translate-x-1/2 z-10 rounded-[12px] bg-[#171c39]">
-              <div className="bg-[rgba(231,165,233,0.15)] border border-solid border-[#E7A5E9] flex items-center justify-center px-[12px] py-[2px] rounded-[12px] w-fit">
-                <span className="text-[13px] font-medium leading-[1.4] text-[#E7A5E9] whitespace-nowrap">Start here</span>
-              </div>
-            </div>
-            <PricingCard tier={tiers[3]} centered />
-          </div>
         </div>
       </div>
     </section>

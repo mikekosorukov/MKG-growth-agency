@@ -89,9 +89,6 @@ export default function DividerSection({ variant = 'default' }: DividerSectionPr
           >
             Trusted by 10+ B2B SaaS startups backed by top investors
           </p>
-          <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[1.4] text-[14px] text-[#7078B8] whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-            From traction to growth stages
-          </p>
         </div>
 
         {/* Marquee track */}
