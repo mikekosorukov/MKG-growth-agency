@@ -101,7 +101,7 @@ export default function Header() {
               onClick={(e) => handleNavClick(e, 'pricing')}
               className="px-2 py-3 text-[#dcdff2] text-base font-medium hover:text-white transition-colors whitespace-nowrap"
             >
-              Services
+              How I work
             </Link>
             <Link
               href="/#testimonials"
@@ -115,7 +115,7 @@ export default function Header() {
               onClick={(e) => handleNavClick(e, 'outcomes')}
               className="px-2 py-3 text-[#dcdff2] text-base font-medium hover:text-white transition-colors whitespace-nowrap"
             >
-              Case Studies
+              Results
             </Link>
           </nav>
 
@@ -176,7 +176,7 @@ export default function Header() {
               className="px-4 py-3 text-[#dcdff2] text-base font-medium hover:text-white hover:bg-[#232b5c] transition-colors rounded"
               onClick={(e) => handleNavClick(e, 'pricing')}
             >
-              Services
+              How I work
             </Link>
             <Link
               href="/#testimonials"
@@ -190,7 +190,7 @@ export default function Header() {
               className="px-4 py-3 text-[#dcdff2] text-base font-medium hover:text-white hover:bg-[#232b5c] transition-colors rounded"
               onClick={(e) => handleNavClick(e, 'outcomes')}
             >
-              Case Studies
+              Results
             </Link>
           </div>
         </nav>

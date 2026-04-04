@@ -28,7 +28,7 @@ export default function CompaniesSection() {
             id="companies-heading"
             className="w-full text-[26px] font-bold leading-[1.1] text-[#dcdff2] sm:text-[30px] md:text-[34px] lg:text-[38px]"
           >
-            What founders and teams say<br className="hidden sm:block" />{' '}about working with me
+            From the teams I&apos;ve worked with
           </h2>
         </div>
       </div>

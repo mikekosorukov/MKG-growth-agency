@@ -7,7 +7,7 @@ import Notification from './Notification';
 
 export default function OutcomesSection() {
   const [showNotification, setShowNotification] = useState(false);
-  const [expandedCards, setExpandedCards] = useState<{ [key: string]: boolean }>({ card1: true, card2: true, card3: true });
+  const [expandedCards, setExpandedCards] = useState<{ [key: string]: boolean }>({});
   const [showMoreCards, setShowMoreCards] = useState(false);
 
   const handleFullStudyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -171,13 +171,13 @@ export default function OutcomesSection() {
       {/* Section Title */}
       <div className="relative z-10 flex w-full max-w-[1280px] flex-col items-center gap-[6px] text-center sm:gap-[8px]">
         <p className="w-full text-[12px] font-normal leading-[1.4] text-[#ff885d] sm:text-[13px] md:text-[14px]">
-          OUTCOMES
+          SUCCESS STORIES
         </p>
         <h2
           id="outcomes-heading"
           className="w-full text-[26px] font-bold leading-[1.1] text-[#dcdff2] sm:text-[30px] md:text-[34px] lg:text-[38px]"
         >
-          The results delivered in the past
+          Results that compound
         </h2>
       </div>
 
@@ -205,6 +205,31 @@ export default function OutcomesSection() {
           </div>
         </button>
       )}
+
+      {/* Testimonial quote */}
+      <div className="relative z-10 flex w-full max-w-[900px] flex-col items-center gap-[24px] text-center">
+        <blockquote className="text-[20px] font-normal leading-[1.4] text-[#a5aee9] sm:text-[22px] md:text-[24px]">
+          &ldquo;Thanks to Mike&apos;s work, we had impressive positive changes in how we go to market and how our funnel works.&rdquo;
+        </blockquote>
+        <div className="flex items-center gap-[10px]">
+          <div className="relative h-[58px] w-[58px] shrink-0 overflow-hidden rounded-full bg-[#171c39]">
+            <Image
+              src="/testimonial-icon-2.jpeg"
+              alt="Kirill Chabanov"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="flex min-w-0 flex-col items-start gap-[4px] text-left">
+            <p className="w-full text-[14px] font-medium leading-[1.1] text-[#dcdff2]">
+              Kirill Chabanov
+            </p>
+            <p className="w-full text-[12px] font-normal leading-[1.2] text-[#a5aee9]">
+              CMO & COO at aqua cloud
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Notification */}
       <Notification 

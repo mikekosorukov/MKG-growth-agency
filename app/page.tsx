@@ -1,11 +1,11 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import OutcomesSection from "@/components/OutcomesSection";
-import BenefitsSection from "@/components/BenefitsSection";
+import ChallengesSection from "@/components/ChallengesSection";
 import CompaniesSection from "@/components/CompaniesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import FAQSection from "@/components/FAQSection";
 import PricingSection from "@/components/PricingSection";
+import ComparisonSection from "@/components/ComparisonSection";
 import AboutSection from "@/components/AboutSection";
 import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
@@ -29,8 +29,8 @@ export default function Home() {
         {/* Divider Section - with horizontal lines decoration */}
         <DividerSection variant="lines" />
         
-        {/* Benefits Section */}
-        <BenefitsSection />
+        {/* Challenges Section */}
+        <ChallengesSection />
 
         {/* Outcomes Section */}
         <OutcomesSection />
@@ -44,8 +44,8 @@ export default function Home() {
         {/* Pricing Section */}
         <PricingSection />
 
-        {/* FAQ Section */}
-        <FAQSection />
+        {/* Comparison Section */}
+        <ComparisonSection />
 
         {/* Booking Section */}
         <BookingSection />

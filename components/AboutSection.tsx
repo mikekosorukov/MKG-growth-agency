@@ -25,16 +25,16 @@ export default function AboutSection() {
       {/* Content container - centered with max-width */}
       <div className="relative z-10 w-full max-w-[1280px] flex flex-col items-stretch gap-[40px] sm:gap-[50px] md:gap-[60px] lg:flex-row lg:items-center lg:gap-[80px]">
       {/* Left Column - Content */}
-      <div className="box-border flex w-full shrink-0 flex-col items-start gap-[32px] px-0 py-[16px] sm:gap-[40px] sm:py-[20px] md:gap-[48px] md:py-[24px] lg:min-h-px lg:min-w-px lg:grow lg:basis-0 lg:gap-[64px] lg:py-[32px]">
+      <div className="box-border flex w-full shrink-0 flex-col items-start gap-[24px] px-0 py-[16px] sm:gap-[28px] sm:py-[20px] md:gap-[32px] md:py-[24px] lg:min-h-px lg:min-w-px lg:grow lg:basis-0 lg:gap-[40px] lg:py-[32px]">
         {/* Section Text */}
-        <div className="relative flex w-full shrink-0 flex-col items-start gap-[24px] sm:gap-[32px] md:gap-[40px] lg:gap-[48px]">
+        <div className="relative flex w-full shrink-0 flex-col items-start gap-[16px] sm:gap-[20px] md:gap-[24px] lg:gap-[28px]">
           {/* Top - Heading */}
           <div className="relative flex w-full shrink-0 flex-col items-center gap-[8px]">
             <h2 
               className="relative w-full shrink-0 font-bold leading-[1.1] text-[#dcdff2]"
               style={{ fontSize: 'clamp(26px, 3.2vw, 38px)', fontVariationSettings: "'wdth' 100" }}
             >
-              The commercial brain behind your tech product
+              Hi, I&apos;m Mike Kosorukov
             </h2>
           </div>
           
@@ -44,13 +44,13 @@ export default function AboutSection() {
               className="relative w-full shrink-0 font-normal leading-[1.4] text-[#a5aee9]"
               style={{ fontSize: 'clamp(14px, 1.4vw, 18px)', fontVariationSettings: "'wdth' 100" }}
             >
-              I'm Mike, founder of MKG Labs. My GTM path started as the first hire at an early-stage startup, where I spent months trying to sell a product nobody wanted—something Y Combinator eventually forced us to confront. That experience reshaped how I think about growth and GTM: market reality and customer behavior have guided my decisions ever since.
+              I am a GTM and Product Growth expert. I started in tech as a founding GTM hire at a YC-backed startup, where I spent months trying to sell a product nobody wanted — until YC and later Reforge reshaped how I approach startup growth.
             </p>
             <p 
               className="relative w-full shrink-0 font-normal leading-[1.4] text-[#a5aee9]"
               style={{ fontSize: 'clamp(14px, 1.4vw, 18px)', fontVariationSettings: "'wdth' 100" }}
             >
-              For the past seven years, I've worked with B2B and prosumer tech founders and teams as a full-time operator, fractional lead, and advisor. MKG Lab is where that experience comes together to help bring tech products to market with clarity and impact.
+              For the last seven years, I&apos;ve helped multiple B2B SaaS and AI companies <strong className="font-semibold text-[#dcdff2]">find go-to-market fit, drive new bookings, and build durable self-serve revenue engines</strong>.
             </p>
           </div>
         </div>
@@ -122,10 +122,10 @@ export default function AboutSection() {
       </div>
       
       {/* Right Column - Photo Container */}
-      <div className="w-full shrink-0 lg:flex lg:shrink-0 lg:grow lg:basis-0 lg:flex-row lg:items-center lg:self-stretch">
+      <div className="w-full shrink-0 lg:flex lg:shrink-0 lg:grow-0 lg:basis-[43%] lg:flex-row lg:items-center lg:self-stretch">
         <div 
           className="relative w-full overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#1d2241] p-[24px]"
-          style={{ aspectRatio: '1 / 1' }}
+          style={{ aspectRatio: '4 / 3' }}
         >
           {/* Dot pattern background - static */}
           <div 
@@ -144,7 +144,7 @@ export default function AboutSection() {
             style={{ boxShadow: '0 0 6px 0 rgba(5, 9, 32, 0.9)' }}
           >
             <Image
-              src="/About_photo.png"
+              src="/photo.png"
               alt="Mike Kosorukov"
               fill
               className="object-cover"

@@ -123,20 +123,20 @@ export default function HeroSection() {
       {/* H1 Title */}
       <div className="relative w-full max-w-5xl text-center z-10 -mt-[50px]">
         <h1 className="hero-heading hero-gradient-text relative w-full shrink-0 font-bold leading-[1.1]" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}>
-          Product-led systems that compound<br className="hidden md:block" />{' '}your B2B SaaS growth
+          Convert early traction into<br className="hidden md:block" />{' '}lasting revenue growth
         </h1>
       </div>
       
       {/* H2 Subtitle - ref for scroll timing */}
       <div ref={h2Ref} className="relative w-full max-w-3xl text-center -mt-[20px] sm:-mt-[25px] md:-mt-[30px] lg:-mt-[40px] z-10">
           <p className="relative w-full shrink-0 font-normal leading-[1.4] text-[#a5aee9]" style={{ fontSize: 'clamp(16px, 1.6vw, 20px)' }}>
-          Strategic advising and hands-on execution to turn your product<br className="hidden sm:block" /> into your primary growth channel
+          I help early-stage B2B SaaS &amp; AI founders find a Go-to-market Fit<br className="hidden sm:block" /> and build an efficient Growth Engine
           </p>
       </div>
 
       {/* Testimonial badge */}
       <div className="relative z-10 flex items-center justify-center gap-[8px] -mt-[20px] sm:-mt-[25px] md:-mt-[30px] lg:-mt-[40px]">
-        <div className="relative h-[58px] w-[58px] shrink-0 overflow-hidden rounded-full bg-[#a5aee9]/75">
+        <div className="relative h-[70px] w-[70px] shrink-0 overflow-hidden rounded-full bg-[#a5aee9]/75">
           <Image
             src="/mike_avatar.svg"
             alt="Mike Kosorukov"
@@ -149,8 +149,15 @@ export default function HeroSection() {
             Mike Kosorukov
           </p>
           <p className="w-full text-[12px] font-normal leading-[1.2] text-[#a5aee9]">
-            Founder of MKG Lab | Ex-YC<br />growth operator
+            Founder of MKG Lab
           </p>
+          <div className="flex items-center gap-[6px]">
+            <span className="text-[12px] font-normal leading-[1.2] text-[#a5aee9]">Ex-</span>
+            <Image src="/yc.png" alt="Y Combinator" width={20} height={20} className="object-contain" />
+            <span className="text-[12px] font-normal leading-[1.2] text-[#a5aee9]">,</span>
+            <Image src="/reforge.png" alt="Reforge" width={20} height={20} className="object-contain" />
+            <span className="text-[12px] font-normal leading-[1.2] text-[#a5aee9]">alum</span>
+          </div>
         </div>
       </div>
 
