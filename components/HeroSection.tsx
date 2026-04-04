@@ -122,15 +122,15 @@ export default function HeroSection() {
 
       {/* H1 Title */}
       <div className="relative w-full max-w-5xl text-center z-10 -mt-[50px]">
-        <h1 className="hero-heading hero-gradient-text relative w-full shrink-0 font-bold leading-[1.1]" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}>
-          Convert early traction into<br className="hidden md:block" />{' '}lasting revenue growth
+        <h1 className="hero-heading hero-gradient-text relative w-full shrink-0 font-bold leading-[1.1]" style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}>
+          The inflection point in<br className="hidden md:block" />{' '}your revenue growth
         </h1>
       </div>
       
       {/* H2 Subtitle - ref for scroll timing */}
       <div ref={h2Ref} className="relative w-full max-w-3xl text-center -mt-[20px] sm:-mt-[25px] md:-mt-[30px] lg:-mt-[40px] z-10">
           <p className="relative w-full shrink-0 font-normal leading-[1.4] text-[#a5aee9]" style={{ fontSize: 'clamp(16px, 1.6vw, 20px)' }}>
-          I help early-stage B2B SaaS &amp; AI founders find a Go-to-market Fit<br className="hidden sm:block" /> and build an efficient Growth Engine
+          I help B2B SaaS &amp; AI founders find a Go-to-market Fit<br className="hidden sm:block" /> and build an efficient Growth Engine
           </p>
       </div>
 
