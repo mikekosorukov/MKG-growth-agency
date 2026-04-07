@@ -148,7 +148,7 @@ export default function TestimonialsSection() {
               {testimonials.map((testimonial, index) => (
                 <article
                   key={index}
-                  className="relative flex min-w-0 flex-[0_0_100%] flex-col border border-solid border-[#3f4367] bg-[#171c39] px-[40px] py-[24px] md:flex-[0_0_calc(50%-8px)] lg:flex-[0_0_calc(33.333%-11px)]"
+                  className="relative flex min-w-0 flex-[0_0_100%] flex-col overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#171c39] px-[40px] py-[24px] md:flex-[0_0_calc(50%-8px)] lg:flex-[0_0_calc(33.333%-11px)]"
                 >
                   {/* Content Wrapper - grows to fill space */}
                   <div className="relative z-10 flex flex-col gap-[16px] flex-grow">

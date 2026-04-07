@@ -41,9 +41,10 @@ export default function OutcomesSection() {
     {
       id: 'card3',
       tag: 'B2B SaaS, growth stage, product-led',
-      title: '2× activation for a suite of AI products',
-      description: 'Newly introduced AI capabilities faced adoption friction among existing and new vibe-coding users. We identified user desired outcomes and experience bottlenecks, mapped the user journey, and, partnering with the product team, created a coherent experience from the website visit to receiving first product value, resulting in a 100% increase in activation rate.',
+      title: '370% revenue growth Year-over-Year',
+      description: 'The business had strong product signals but revenue was not compounding. We tightened ICP and positioning, rebuilt the path from website to first value, and aligned GTM with product onboarding — resulting in 370% revenue growth year-over-year.',
       imageUrl: '/outcomes_3.png',
+      fullStudyHref: '/case-studies/jet-marketplace',
     },
   ];
 
@@ -56,7 +57,7 @@ export default function OutcomesSection() {
     return (
       <article
         key={card.id}
-        className="flex flex-col justify-between border border-solid border-[#3f4367] bg-[#1d2241]"
+        className="flex flex-col justify-between overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#1d2241]"
       >
         {/* Image Area */}
         <div className="relative h-[220px] w-full overflow-hidden">
@@ -126,8 +127,8 @@ export default function OutcomesSection() {
         {/* Button */}
         <div className="p-[16px] pt-0 mt-auto">
           <Link
-            href="#case-study"
-            onClick={handleFullStudyClick}
+            href={card.fullStudyHref ?? '#case-study'}
+            onClick={card.fullStudyHref ? undefined : handleFullStudyClick}
             className="group inline-flex items-center gap-[7px] py-[16px] transition-all"
             aria-label={`View full study: ${card.title}`}
           >
@@ -231,10 +232,9 @@ export default function OutcomesSection() {
         </div>
       </div>
 
-      {/* Notification */}
-      <Notification 
-        isVisible={showNotification} 
-        onClose={() => setShowNotification(false)} 
+      <Notification
+        isVisible={showNotification}
+        onClose={() => setShowNotification(false)}
       />
     </section>
   );

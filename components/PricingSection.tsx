@@ -157,7 +157,7 @@ const tiers: PricingTier[] = [
 function PricingCard({ tier, centered }: { tier: PricingTier; centered?: boolean }) {
   return (
     <article
-      className="grid grid-rows-subgrid row-span-5 gap-[20px] p-[28px] lg:p-[32px] border border-solid border-[#3f4367] bg-[#1d2241]"
+      className="grid grid-rows-subgrid row-span-5 gap-[20px] overflow-hidden rounded-[5px] p-[28px] lg:p-[32px] border border-solid border-[#3f4367] bg-[#1d2241]"
     >
       {/* Block 1: Title */}
       <div className={`flex flex-col gap-[4px] ${centered ? 'items-center text-center' : ''}`}>
