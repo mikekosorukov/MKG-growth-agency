@@ -16,6 +16,7 @@ interface ClientInfo {
 
 interface CaseStudyLayoutProps {
   study: StudyMeta;
+  sidebarStudy?: StudyMeta;
   client?: ClientInfo;
   heroImage?: string;
   nextCaseStudy?: { href: string; label: string };
@@ -48,12 +49,13 @@ function MetaRow({ label, value, href, suffix }: { label: string; value: string;
 
 export default function CaseStudyLayout({
   study,
+  sidebarStudy,
   client,
-
   heroImage,
   nextCaseStudy,
   children,
 }: CaseStudyLayoutProps) {
+  const sidebar = sidebarStudy ?? study;
   return (
     <div className="min-h-screen bg-[#171c39] overflow-x-clip">
       <Header />
@@ -68,7 +70,7 @@ export default function CaseStudyLayout({
             backgroundRepeat: 'repeat',
             backgroundSize: '350px 350px',
             mixBlendMode: 'soft-light',
-            opacity: 0.65,
+            opacity: 0.85,
           }}
         />
 
@@ -91,12 +93,12 @@ export default function CaseStudyLayout({
                   />
 
                   {/* Logo */}
-                  {study.logo && (
+                  {sidebar.logo && (
                     <div className="relative z-10 flex items-center justify-center p-[24px] border-b border-[#3f4367]">
                       <div className="overflow-hidden rounded-[16px]">
                         <Image
-                          src={study.logo}
-                          alt={`${study.company} logo`}
+                          src={sidebar.logo}
+                          alt={`${sidebar.company} logo`}
                           width={120}
                           height={60}
                           className="object-contain max-h-[60px] w-auto"
@@ -107,30 +109,34 @@ export default function CaseStudyLayout({
 
                   {/* Metadata rows */}
                   <div className="relative z-10 flex flex-col px-[16px]">
-                    {study.website && (
+                    {sidebar.website && (
                       <MetaRow
                         label="Website"
-                        value={study.website}
-                        href={`https://${study.website}`}
+                        value={sidebar.website}
+                        href={`https://${sidebar.website}`}
                       />
                     )}
-                    {study.companyType && (
-                      <MetaRow label="Company type" value={study.companyType} />
+                    {sidebar.companyType && (
+                      <MetaRow label="Company type" value={sidebar.companyType} />
                     )}
-                    {study.companyStage && (
-                      <MetaRow label="Founded" value={study.companyStage} suffix="🇺🇸" />
+                    {sidebar.companyStage && (
+                      <MetaRow
+                        label="Founded"
+                        value={sidebar.companyStage}
+                        suffix={sidebar.companyStageSuffix ?? '🇺🇸'}
+                      />
                     )}
-                    {study.funding && (
-                      <MetaRow label="Funding" value={study.funding} />
+                    {sidebar.funding && (
+                      <MetaRow label="Funding" value={sidebar.funding} />
                     )}
-                    {study.teamSize && (
-                      <MetaRow label="Team size" value={study.teamSize} />
+                    {sidebar.teamSize && (
+                      <MetaRow label="Team size" value={sidebar.teamSize} />
                     )}
-                    {study.engagement && (
-                      <MetaRow label="Engagement" value={study.engagement} />
+                    {sidebar.engagement && (
+                      <MetaRow label="Engagement" value={sidebar.engagement} />
                     )}
-                    {study.dateRange && (
-                      <MetaRow label="Period" value={study.dateRange} />
+                    {sidebar.dateRange && (
+                      <MetaRow label="Period" value={sidebar.dateRange} />
                     )}
                   </div>
 
@@ -142,7 +148,7 @@ export default function CaseStudyLayout({
 
                 {/* Back link */}
                 <Link
-                  href="/case-studies"
+                  href="/#outcomes"
                   className="inline-flex items-center gap-[8px] text-[13px] font-normal text-[#7078B8] hover:text-[#a5aee9] transition-colors mb-[40px]"
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

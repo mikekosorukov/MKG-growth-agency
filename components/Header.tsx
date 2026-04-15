@@ -104,18 +104,18 @@ export default function Header() {
               How I work
             </Link>
             <Link
-              href="/#testimonials"
-              onClick={(e) => handleNavClick(e, 'testimonials')}
-              className="px-2 py-3 text-[#dcdff2] text-base font-medium hover:text-white transition-colors whitespace-nowrap"
-            >
-              Testimonials
-            </Link>
-            <Link
               href="/#outcomes"
               onClick={(e) => handleNavClick(e, 'outcomes')}
               className="px-2 py-3 text-[#dcdff2] text-base font-medium hover:text-white transition-colors whitespace-nowrap"
             >
               Results
+            </Link>
+            <Link
+              href="/#testimonials"
+              onClick={(e) => handleNavClick(e, 'testimonials')}
+              className="px-2 py-3 text-[#dcdff2] text-base font-medium hover:text-white transition-colors whitespace-nowrap"
+            >
+              Testimonials
             </Link>
           </nav>
 
@@ -179,18 +179,18 @@ export default function Header() {
               How I work
             </Link>
             <Link
-              href="/#testimonials"
-              className="px-4 py-3 text-[#dcdff2] text-base font-medium hover:text-white hover:bg-[#232b5c] transition-colors rounded"
-              onClick={(e) => handleNavClick(e, 'testimonials')}
-            >
-              Testimonials
-            </Link>
-            <Link
               href="/#outcomes"
               className="px-4 py-3 text-[#dcdff2] text-base font-medium hover:text-white hover:bg-[#232b5c] transition-colors rounded"
               onClick={(e) => handleNavClick(e, 'outcomes')}
             >
               Results
+            </Link>
+            <Link
+              href="/#testimonials"
+              className="px-4 py-3 text-[#dcdff2] text-base font-medium hover:text-white hover:bg-[#232b5c] transition-colors rounded"
+              onClick={(e) => handleNavClick(e, 'testimonials')}
+            >
+              Testimonials
             </Link>
           </div>
         </nav>

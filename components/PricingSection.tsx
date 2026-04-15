@@ -154,10 +154,18 @@ const tiers: PricingTier[] = [
   },
 ];
 
-function PricingCard({ tier, centered }: { tier: PricingTier; centered?: boolean }) {
+function PricingCard({
+  tier,
+  centered,
+  showCta = true,
+}: {
+  tier: PricingTier;
+  centered?: boolean;
+  showCta?: boolean;
+}) {
   return (
     <article
-      className="grid grid-rows-subgrid row-span-5 gap-[20px] overflow-hidden rounded-[5px] p-[28px] lg:p-[32px] border border-solid border-[#3f4367] bg-[#1d2241]"
+      className={`grid grid-rows-subgrid gap-[20px] overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#1d2241] p-[20px] lg:p-[24px] ${showCta ? 'row-span-5' : 'row-span-4'}`}
     >
       {/* Block 1: Title */}
       <div className={`flex flex-col gap-[4px] ${centered ? 'items-center text-center' : ''}`}>
@@ -221,19 +229,21 @@ function PricingCard({ tier, centered }: { tier: PricingTier; centered?: boolean
       </div>
 
       {/* Block 5: CTA */}
-      <div className="flex flex-col gap-[24px] justify-end">
-        <Link
-          href="/bookings"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative h-[42px] flex w-full items-center justify-center border border-[#8c99eb] bg-gradient-to-r from-[#323966] to-[#232b5c] hover:from-[#3a4170] hover:to-[#2a3467] transition-all"
-          aria-label={`${tier.ctaText || 'Get in touch'} — ${tier.title}`}
-        >
-          <span className="text-sm sm:text-base font-medium tracking-wide bg-gradient-to-r from-[#c9d1ff] to-[#8c99eb] bg-clip-text text-transparent">
-            {tier.ctaText || 'Get in touch'}
-          </span>
-        </Link>
-      </div>
+      {showCta && (
+        <div className="flex flex-col gap-[24px] justify-end">
+          <Link
+            href="/bookings"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative h-[42px] flex w-full items-center justify-center border border-[#8c99eb] bg-gradient-to-r from-[#323966] to-[#232b5c] hover:from-[#3a4170] hover:to-[#2a3467] transition-all"
+            aria-label={`${tier.ctaText || 'Get in touch'} — ${tier.title}`}
+          >
+            <span className="text-sm sm:text-base font-medium tracking-wide bg-gradient-to-r from-[#c9d1ff] to-[#8c99eb] bg-clip-text text-transparent">
+              {tier.ctaText || 'Get in touch'}
+            </span>
+          </Link>
+        </div>
+      )}
     </article>
   );
 }
@@ -254,7 +264,7 @@ export default function PricingSection() {
           backgroundRepeat: 'repeat',
           backgroundSize: '350px 350px',
           mixBlendMode: 'soft-light',
-          opacity: 0.65,
+          opacity: 0.85,
         }}
       />
 
@@ -270,9 +280,9 @@ export default function PricingSection() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid w-full max-w-[1040px] grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
           {tiers.slice(0, 3).map((tier) => (
-            <PricingCard key={tier.title} tier={tier} />
+            <PricingCard key={tier.title} tier={tier} showCta={false} />
           ))}
         </div>
         {/* Centered 4th card */}

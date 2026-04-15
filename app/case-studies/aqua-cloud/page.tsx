@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import CaseStudyLayout from '@/components/CaseStudyLayout';
 import { getCaseStudyBySlug } from '@/lib/case-studies';
 import Callout from '@/components/mdx/Callout';
+import Stats from '@/components/mdx/Stats';
 
 export const metadata: Metadata = {
   title: 'aqua cloud – $1.2M in net-new qualified pipeline in under 3 months',
@@ -11,85 +12,116 @@ export const metadata: Metadata = {
 
 export default function AquaCloudCaseStudyPage() {
   const study = getCaseStudyBySlug('aqua-cloud');
+  const jetStudy = getCaseStudyBySlug('jet-marketplace');
 
   return (
     <CaseStudyLayout
       study={study}
+      client={{
+        name: 'Kirill Chabanov',
+        title: 'CMO & COO at aqua cloud',
+        avatar: '/testimonial-icon-2.jpeg',
+      }}
+      heroImage="/aqua_screen.png"
+      sidebarStudy={{
+        ...jetStudy,
+        logo: '/aqua.png',
+        company: 'aqua cloud',
+        website: 'aqua-cloud.io',
+        companyStage: '2019, DE',
+        companyStageSuffix: '🇩🇪',
+        funding: 'Private equity',
+        teamSize: '23',
+        dateRange: '9 months, 2023',
+      }}
       nextCaseStudy={{
         href: '/case-studies/jet-marketplace',
-        label: 'Jet – Customer churn reduced by 30% in three months',
+        label: 'Jet – 26x ARR Growth in 2 years',
       }}
     >
+      <div className="border-l-2 border-[#ff885d] pl-[20px] sm:pl-[24px]">
+        <h3>Executive Summary</h3>
+        <p>
+          Jet is a growth-stage B2B marketplace with roughly 110 employees. Despite healthy
+          acquisition numbers, early customer churn was eroding revenue momentum. By diagnosing
+          the root cause as an activation failure rather than a product issue, and redesigning
+          the onboarding experience accordingly, we reduced churn by 30% within three months.
+        </p>
+      </div>
+
+      <Stats items={[
+        { value: '26x', label: 'MRR growth in 2 years' },
+        { value: '280%', label: 'Annual churn reduction' },
+        { value: '8k', label: 'Active users' },
+      ]} />
+
       <hr />
 
-      <h2>Executive Summary</h2>
+      <h2>What is Jet Admin?</h2>
       <p>
-        aqua cloud is an early-stage B2B SaaS company with a strong product but an unoptimized
-        go-to-market motion. By refocusing positioning on a high-fit customer segment, rebuilding
-        the website conversion flow, and restructuring sales workflows, we generated $1.2M in
-        net-new qualified pipeline in just 2.5 months.
+        Jet Admin is a low-code platform for building internal tools and admin experiences on top
+        of your databases and APIs—so teams can ship secure, role-based back-office UIs without
+        maintaining a bespoke stack. At the time of this work, Jet was a growth-stage B2B company
+        scaling acquisition; the product was strong, but early lifecycle retention was the
+        constraint on revenue compounding.
       </p>
 
-      <Callout type="insight">
-        The core issue wasn&apos;t the product — it was that aqua cloud was selling to everyone
-        and converting no one. Narrowing the ICP unlocked every other lever.
-      </Callout>
-
-      <h2>The Challenge</h2>
+      <h2>The Challenge - Flat Traction but No Growth</h2>
       <p>
-        When we first engaged, aqua cloud had strong inbound interest but a leaky conversion
-        funnel. Demos were being booked but few were converting to paid. The sales team was
-        spending most of its time on low-fit leads with no clear qualification criteria.
+        Jet was acquiring customers steadily, but month-two retention was consistently poor.
+        The customer success team was fielding high volumes of support requests from users
+        who felt lost in the product. Leadership assumed the issue was post-sale service quality.
       </p>
       <ul>
-        <li>No clear ICP definition beyond firmographic data</li>
-        <li>Website messaging too generic — speaking to everyone, resonating with no one</li>
-        <li>Sales process unstructured, no qualification framework</li>
-        <li>Marketing and sales working in silos with no shared language</li>
+        <li>No defined activation milestone — success looked different to every team member</li>
+        <li>Onboarding sequence built around product features, not customer outcomes</li>
+        <li>High time-to-first-value: median 14 days before customers did anything meaningful</li>
+        <li>CS team reactive, spending time on triage rather than proactive success</li>
       </ul>
 
-      <h2>The Approach</h2>
+      <h2>The Solution – Understand THE WHY and Build the GTM System</h2>
 
-      <h3>1. ICP Sharpening</h3>
+      <h3>1. Churn Diagnosis</h3>
       <p>
-        We ran a deep customer analysis across existing accounts to identify the highest-LTV
-        segment. This revealed a tight cluster: Series A–B SaaS companies with a cloud security
-        mandate but no dedicated SecOps headcount — teams that needed aqua cloud&apos;s automation
-        most acutely and had budget authority to act quickly.
+        We mapped the customer journey from signup to first meaningful action, interviewing
+        churned customers and reviewing product analytics. A clear pattern emerged: customers
+        who completed three specific actions in their first session had dramatically better
+        30-day retention. Those who skipped those steps almost always churned.
       </p>
 
-      <h3>2. Website Conversion Rebuild</h3>
+      <h3>2. Activation Milestone Definition</h3>
       <p>
-        Repositioned the homepage around the sharpened ICP pain point. Rewrote the
-        above-the-fold copy, restructured the demo CTA flow, and added social proof targeted
-        at the segment. The goal was to make high-fit visitors feel immediately understood
-        and low-fit visitors self-select out.
+        Defined a single activation milestone — the combination of actions correlated with
+        long-term retention — and rebuilt the entire onboarding flow around driving new
+        users to that moment as quickly as possible. Removed every step that didn&apos;t
+        serve that goal.
       </p>
 
-      <h3>3. Sales Workflow Restructure</h3>
+      <h3>3. Onboarding Redesign</h3>
       <p>
-        Introduced a qualification framework (adapted MEDDIC) to score inbound leads before
-        investing demo time. Built a lightweight scoring layer in CRM that flagged high-fit
-        leads automatically. This freed up roughly 40% of sales bandwidth previously lost
-        to low-fit discovery calls.
+        Worked with the product team to implement an outcome-first onboarding sequence:
+        progressive disclosure of features, contextual tooltips tied to the activation path,
+        and an automated email trigger when users stalled mid-onboarding. CS was repositioned
+        to intervene proactively at the 48-hour mark for accounts not yet activated.
       </p>
 
       <Callout type="quote">
-        &ldquo;Within six weeks of the repositioning, our demo-to-proposal rate went from 18%
-        to 41%.&rdquo; — Head of Sales, aqua cloud
+        &ldquo;We&apos;d been trying to solve churn with better support tickets. The real fix
+        was making the product work for customers in the first 48 hours.&rdquo;
+        — Head of Customer Success, Jet
       </Callout>
 
-      <h2>Results</h2>
+      <h2>The Results - &ldquo;Hockey Stick&rdquo; Growth</h2>
       <p>
-        Over the 2.5-month engagement we tracked the following outcomes against the baseline
-        from the 90 days prior:
+        Measured over three months following the onboarding redesign launch, compared against
+        the prior three-month cohort:
       </p>
       <ul>
-        <li><strong>$1.2M</strong> in net-new qualified pipeline generated</li>
-        <li><strong>41%</strong> demo-to-proposal conversion rate (up from 18%)</li>
-        <li><strong>3×</strong> increase in high-fit inbound leads month-over-month</li>
-        <li>Average sales cycle shortened by 12 days</li>
-        <li>Sales team capacity reclaimed: ~40% of time redirected to high-fit accounts</li>
+        <li><strong>30%</strong> reduction in monthly customer churn</li>
+        <li>Median time-to-first-value cut from 14 days to 3 days</li>
+        <li><strong>58%</strong> of new users reaching the activation milestone within 48 hours (up from 21%)</li>
+        <li>CS support volume down 35% — team redirected to strategic accounts</li>
+        <li>NPS improved from 28 to 47 over the period</li>
       </ul>
     </CaseStudyLayout>
   );

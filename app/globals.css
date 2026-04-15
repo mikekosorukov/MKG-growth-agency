@@ -393,3 +393,13 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  20%      { transform: scale(1.08); }
+  40%      { transform: scale(1); }
+}
+
+.group:hover .badge-pulse-on-hover {
+  animation: badge-pulse 1.5s ease-in-out infinite;
+}

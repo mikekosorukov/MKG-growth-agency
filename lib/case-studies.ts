@@ -11,6 +11,8 @@ export interface StudyMeta {
   website?: string;
   companyType?: string;
   companyStage?: string;
+  /** Shown after “Founded” value (defaults to US in layout if omitted). */
+  companyStageSuffix?: string;
   teamSize?: string;
   engagement?: string;
   funding?: string;
@@ -37,7 +39,7 @@ const caseStudies: StudyMeta[] = [
   },
   {
     slug: 'jet-marketplace',
-    headline: 'Customer churn reduced by 30% in three months',
+    headline: '26x ARR Growth in 2 years',
     company: 'Jet',
     role: 'Growth Advisor',
     dateRange: '2020–2022',
@@ -48,7 +50,7 @@ const caseStudies: StudyMeta[] = [
     website: 'jetadmin.io',
     companyType: 'AI & B2B SaaS',
     companyStage: '2019, US',
-    teamSize: '8',
+    teamSize: '12',
     engagement: 'Growth Lead',
     funding: 'Seed, Y Combinator',
     skills: ['Churn Reduction', 'Customer Success', 'Marketplace Growth'],

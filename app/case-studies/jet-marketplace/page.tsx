@@ -5,7 +5,7 @@ import Callout from '@/components/mdx/Callout';
 import Stats from '@/components/mdx/Stats';
 
 export const metadata: Metadata = {
-  title: 'Jet – Customer churn reduced by 30% in three months',
+  title: 'Jet – 26x ARR Growth in 2 years',
   description:
     'Jet is a growth-stage marketplace with ~110 employees experiencing high early customer churn. By diagnosing activation failure and redesigning the onboarding flow, we reduced churn by 30% in three months.',
 };
@@ -38,14 +38,23 @@ export default function JetMarketplaceCaseStudyPage() {
       </div>
 
       <Stats items={[
-        { value: '30%', label: 'Reduction in monthly churn' },
-        { value: '3 days', label: 'Median time-to-first-value' },
-        { value: '47', label: 'NPS (up from 28)' },
+        { value: '26x', label: 'MRR growth in 2 years' },
+        { value: '280%', label: 'Annual churn reduction' },
+        { value: '8k', label: 'Active users' },
       ]} />
 
       <hr />
 
-      <h2>The Challenge</h2>
+      <h2>What is Jet Admin?</h2>
+      <p>
+        Jet Admin is a low-code platform for building internal tools and admin experiences on top
+        of your databases and APIs—so teams can ship secure, role-based back-office UIs without
+        maintaining a bespoke stack. At the time of this work, Jet was a growth-stage B2B company
+        scaling acquisition; the product was strong, but early lifecycle retention was the
+        constraint on revenue compounding.
+      </p>
+
+      <h2>The Challenge - Flat Traction but No Growth</h2>
       <p>
         Jet was acquiring customers steadily, but month-two retention was consistently poor.
         The customer success team was fielding high volumes of support requests from users
@@ -58,7 +67,7 @@ export default function JetMarketplaceCaseStudyPage() {
         <li>CS team reactive, spending time on triage rather than proactive success</li>
       </ul>
 
-      <h2>The Approach</h2>
+      <h2>The Solution – Understand THE WHY and Build the GTM System</h2>
 
       <h3>1. Churn Diagnosis</h3>
       <p>
@@ -90,7 +99,7 @@ export default function JetMarketplaceCaseStudyPage() {
         — Head of Customer Success, Jet
       </Callout>
 
-      <h2>Results</h2>
+      <h2>The Results - &ldquo;Hockey Stick&rdquo; Growth</h2>
       <p>
         Measured over three months following the onboarding redesign launch, compared against
         the prior three-month cohort:

@@ -25,26 +25,29 @@ export default function OutcomesSection() {
   // All cards
   const allCards = [
     {
+      id: 'card3',
+      tag: 'Early-stage, Product-led, PLS',
+      title: '26x MRR Growth in 2 years',
+      description: 'The business had strong product signals but revenue was not compounding. We tightened ICP and positioning, rebuilt the path from website to first value, and aligned GTM with product onboarding — resulting in 26x ARR Growth over two years.',
+      imageUrl: '/jethomepage.png',
+      screenshotImage: true,
+      fullStudyHref: '/case-studies/jet-marketplace',
+    },
+    {
       id: 'card1',
-      tag: 'B2B SaaS, early growth, Product-led sales',
+      tag: 'Growth-stage, GTM, Engineering',
       title: '$1.2M in net-new qualified pipeline',
       description: 'The initial audit surfaced a clear segment-level opportunity. The product delivered strong value for a specific customer segment, but the GTM motion was not optimized for that segment. We refocused positioning and messaging, rebuilt the website flow to proactively capture high-fit accounts and convert them into meetings, and updated sales scripts and workflows, generating $1.2M in net-new qualified pipeline in 2.5 months.',
-      imageUrl: '/outcomes_1.png',
+      imageUrl: '/aqua_screen.png',
+      screenshotImage: true,
+      fullStudyHref: '/case-studies/aqua-cloud',
     },
     {
       id: 'card2',
-      tag: 'Marketplace, growth stage, ~110 employees',
+      tag: 'Scale-up, Product-led',
       title: 'Customer churn reduced by 30%',
       description: 'The existing growth constraint was high early churn. Analysis showed that churn was driven by inconsistent service quality on the supply side, which hampered the customer experience early in the lifecycle. We identified the key leading indicator tied to churn, mapped the highest-impact levers, and rebuilt the supplier quality loop. This improved the leading churn metric by 40× and reduced customer churn by 30% over the next three months.',
       imageUrl: '/outcomes_2.png',
-    },
-    {
-      id: 'card3',
-      tag: 'B2B SaaS, growth stage, product-led',
-      title: '370% revenue growth Year-over-Year',
-      description: 'The business had strong product signals but revenue was not compounding. We tightened ICP and positioning, rebuilt the path from website to first value, and aligned GTM with product onboarding — resulting in 370% revenue growth year-over-year.',
-      imageUrl: '/outcomes_3.png',
-      fullStudyHref: '/case-studies/jet-marketplace',
     },
   ];
 
@@ -54,32 +57,41 @@ export default function OutcomesSection() {
 
   const renderCard = (card: typeof allCards[0]) => {
     const isExpanded = expandedCards[card.id];
-    return (
-      <article
-        key={card.id}
-        className="flex flex-col justify-between overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#1d2241]"
-      >
+    const href = card.fullStudyHref ?? '#case-study';
+    const hasLink = !!card.fullStudyHref;
+
+    const cardContent = (
+      <>
         {/* Image Area */}
         <div className="relative h-[220px] w-full overflow-hidden">
           {/* Background */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-r from-[#323966] to-[#232b5c]" />
           </div>
-          {/* Centered Image */}
-          <div className="absolute inset-0 flex items-center justify-center px-[30px] py-[46px] sm:px-[36px] sm:py-[52px] md:px-[44px] md:py-[56px] lg:px-[50px] lg:py-[60px]">
+          {card.screenshotImage ? (
             <Image
               src={card.imageUrl}
               alt={card.title}
-              width={400}
-              height={240}
-              className="h-full w-auto max-w-full object-contain"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover object-top"
             />
-          </div>
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center px-[30px] py-[46px] sm:px-[36px] sm:py-[52px] md:px-[44px] md:py-[56px] lg:px-[50px] lg:py-[60px]">
+              <Image
+                src={card.imageUrl}
+                alt={card.title}
+                width={400}
+                height={240}
+                className="h-full w-auto max-w-full object-contain"
+              />
+            </div>
+          )}
         </div>
 
         {/* Content */}
         <div className="flex flex-col gap-[16px] p-[16px] pt-[24px] flex-grow">
-          {/* Tags - split by comma into separate pills */}
+          {/* Tags */}
           <div className="overflow-hidden mr-[-16px] pr-[31px]">
             <div className="flex flex-wrap items-center gap-[8px]">
               {card.tag.split(',').map((tagPart, index) => (
@@ -107,7 +119,7 @@ export default function OutcomesSection() {
             </p>
             {!isExpanded && card.description.length > 150 && (
               <button
-                onClick={() => toggleCardExpansion(card.id)}
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleCardExpansion(card.id); }}
                 className="text-[#8c99eb] hover:text-[#b4c0ff] transition-colors cursor-pointer ml-1 inline"
               >
                 ... more
@@ -115,7 +127,7 @@ export default function OutcomesSection() {
             )}
             {isExpanded && (
               <button
-                onClick={() => toggleCardExpansion(card.id)}
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleCardExpansion(card.id); }}
                 className="text-[#8c99eb] hover:text-[#b4c0ff] transition-colors cursor-pointer mt-2 inline-block"
               >
                 show less
@@ -124,14 +136,9 @@ export default function OutcomesSection() {
           </div>
         </div>
 
-        {/* Button */}
+        {/* Footer */}
         <div className="p-[16px] pt-0 mt-auto">
-          <Link
-            href={card.fullStudyHref ?? '#case-study'}
-            onClick={card.fullStudyHref ? undefined : handleFullStudyClick}
-            className="group inline-flex items-center gap-[7px] py-[16px] transition-all"
-            aria-label={`View full study: ${card.title}`}
-          >
+          <span className="inline-flex items-center gap-[7px] py-[16px] transition-all">
             <span className="bg-gradient-to-r from-[#c9d1ff] to-[#8c99eb] bg-clip-text text-[20px] font-medium leading-none tracking-[0.5px] text-transparent transition-all group-hover:from-[#e8edff] group-hover:to-[#b4c0ff]">
               Full study
             </span>
@@ -144,8 +151,24 @@ export default function OutcomesSection() {
                 className="size-full"
               />
             </div>
-          </Link>
+          </span>
         </div>
+      </>
+    );
+
+    const cardClassName = "group flex flex-col justify-between overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#1d2241] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-2 hover:border-[#5f6387]";
+
+    if (hasLink) {
+      return (
+        <Link key={card.id} href={href} className={cardClassName} aria-label={`View full study: ${card.title}`}>
+          {cardContent}
+        </Link>
+      );
+    }
+
+    return (
+      <article key={card.id} onClick={() => setShowNotification(true)} className={cardClassName}>
+        {cardContent}
       </article>
     );
   };
@@ -165,14 +188,14 @@ export default function OutcomesSection() {
           backgroundRepeat: 'repeat',
           backgroundSize: '350px 350px',
           mixBlendMode: 'soft-light',
-          opacity: 0.65,
+          opacity: 0.85,
         }}
       />
       
       {/* Section Title */}
       <div className="relative z-10 flex w-full max-w-[1280px] flex-col items-center gap-[6px] text-center sm:gap-[8px]">
         <p className="w-full text-[12px] font-normal leading-[1.4] text-[#ff885d] sm:text-[13px] md:text-[14px]">
-          SUCCESS STORIES
+          CASE STUDIES
         </p>
         <h2
           id="outcomes-heading"
