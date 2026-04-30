@@ -36,7 +36,7 @@ export default function AquaCloudCaseStudyPage() {
       }}
       nextCaseStudy={{
         href: '/case-studies/jet-marketplace',
-        label: 'Jet – 26x ARR Growth in 2 years',
+        label: 'Jet – 26x MRR Growth in 2 years',
       }}
     >
       <div className="border-l-2 border-[#ff885d] pl-[20px] sm:pl-[24px]">

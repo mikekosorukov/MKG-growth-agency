@@ -10,6 +10,7 @@ const logos = [
   { src: '/rent_logo.png', alt: 'Rent' },
   { src: '/drivt_logo.png', alt: 'Drivt' },
   { src: '/andagon_logo.png', alt: 'Andagon' },
+  { src: '/noclick.png', alt: 'Noclick' },
 ];
 
 const track = [...logos, ...logos];
@@ -28,7 +29,7 @@ export default function LogoCarousel() {
       >
         <div className="flex animate-marquee pointer-events-none" style={{ width: 'max-content' }}>
           {track.map((logo, i) => (
-            <div key={`${logo.alt}-${i}`} className="mx-[22px] flex items-center">
+            <div key={`${logo.alt}-${i}`} className="mx-[14px] flex items-center">
               <div className="relative h-10 w-36 opacity-65">
                 <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
               </div>

@@ -39,7 +39,7 @@ const caseStudies: StudyMeta[] = [
   },
   {
     slug: 'jet-marketplace',
-    headline: '26x ARR Growth in 2 years',
+    headline: '26x MRR Growth in 2 years',
     company: 'Jet',
     role: 'Growth Advisor',
     dateRange: '2020–2022',
@@ -72,6 +72,24 @@ const caseStudies: StudyMeta[] = [
     engagement: 'Product & growth',
     funding: 'Series A+',
     skills: ['Activation', 'Onboarding', 'Product-led growth'],
+  },
+  {
+    slug: 'gtm-diagnostic',
+    headline: 'GTM clarity from in-depth diagnostic',
+    company: 'B2B SaaS',
+    role: 'Growth Advisor',
+    dateRange: '2024 – 2025',
+    cardDescription:
+      'In-depth diagnostic that surfaced the core GTM constraints and delivered a clear, prioritized action plan.',
+    cardImage: '/noclickhome.png',
+    tags: ['B2B SaaS', 'GTM', 'Diagnostic'],
+    logo: '/noclickcolor.png',
+    companyType: 'B2B SaaS',
+    companyStage: 'Growth stage',
+    teamSize: '50–200',
+    engagement: 'GTM Diagnostic',
+    funding: 'Series A+',
+    skills: ['GTM Strategy', 'Positioning', 'Diagnostic'],
   },
 ];
 

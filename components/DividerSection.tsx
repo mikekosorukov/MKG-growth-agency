@@ -64,6 +64,20 @@ const logos: LogoItem[] = [
   { src: '/rent_logo.png', alt: 'Rent', caseStudy: true },
   { src: '/drivt_logo.png', alt: 'Drivt' },
   { src: '/andagon_logo.png', alt: 'Andagon' },
+  {
+    src: '/noclick.png', alt: 'Noclick', caseStudy: true,
+    popup: {
+      logo: '/noclickcolor.png',
+      logoWidth: 35,
+      logoHeight: 35,
+      brandName: 'Noclick',
+      quote: 'The diagnostic gave us clarity we had been missing for months — a clear picture of where to focus and why.',
+      avatar: '/dhruv.png',
+      avatarName: 'Dhruv Yadav',
+      avatarTitle: 'Founder at NoClick',
+      href: '/case-studies/gtm-diagnostic',
+    },
+  },
 ];
 
 interface PopupState {
@@ -226,7 +240,7 @@ export default function DividerSection({ variant = 'default' }: DividerSectionPr
                       setHoveredCaseStudy(false);
                       handleMouseLeave();
                     }}
-                    className="group flex flex-col items-center gap-2 mx-[22px] cursor-pointer"
+                    className="group flex flex-col items-center gap-2 mx-[14px] cursor-pointer"
                   >
                     {logoImg}{badge}
                   </Link>
@@ -239,7 +253,7 @@ export default function DividerSection({ variant = 'default' }: DividerSectionPr
                   onClick={logo.caseStudy ? () => setShowNotification(true) : undefined}
                   onMouseEnter={logo.caseStudy ? () => setHoveredCaseStudy(true) : undefined}
                   onMouseLeave={logo.caseStudy ? () => setHoveredCaseStudy(false) : undefined}
-                  className={`group flex flex-col items-center gap-2 mx-[22px] ${logo.caseStudy ? 'cursor-pointer' : ''}`}
+                  className={`group flex flex-col items-center gap-2 mx-[14px] ${logo.caseStudy ? 'cursor-pointer' : ''}`}
                 >
                   {logoImg}{badge}
                 </div>
@@ -277,7 +291,7 @@ export default function DividerSection({ variant = 'default' }: DividerSectionPr
           <div className="flex w-full flex-row justify-start px-[24px] pt-[24px] pb-[20px]">
             <div className="flex flex-row items-center gap-[10px]">
               <div
-                className="relative shrink-0"
+                className="relative shrink-0 overflow-hidden rounded-[4px]"
                 style={{ width: `${popupLogoWidth}px`, height: `${popupLogoHeight}px` }}
               >
                 <Image

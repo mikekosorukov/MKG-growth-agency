@@ -8,7 +8,6 @@ import Notification from './Notification';
 export default function OutcomesSection() {
   const [showNotification, setShowNotification] = useState(false);
   const [expandedCards, setExpandedCards] = useState<{ [key: string]: boolean }>({});
-  const [showMoreCards, setShowMoreCards] = useState(false);
 
   const handleFullStudyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -28,7 +27,7 @@ export default function OutcomesSection() {
       id: 'card3',
       tag: 'Early-stage, Product-led, PLS',
       title: '26x MRR Growth in 2 years',
-      description: 'The business had strong product signals but revenue was not compounding. We tightened ICP and positioning, rebuilt the path from website to first value, and aligned GTM with product onboarding — resulting in 26x ARR Growth over two years.',
+      description: 'The business had strong product signals but revenue was not compounding. We tightened ICP and positioning, rebuilt the path from website to first value, and aligned GTM with product onboarding — resulting in 26x MRR Growth over two years.',
       imageUrl: '/jethomepage.png',
       screenshotImage: true,
       fullStudyHref: '/case-studies/jet-marketplace',
@@ -49,11 +48,19 @@ export default function OutcomesSection() {
       description: 'The existing growth constraint was high early churn. Analysis showed that churn was driven by inconsistent service quality on the supply side, which hampered the customer experience early in the lifecycle. We identified the key leading indicator tied to churn, mapped the highest-impact levers, and rebuilt the supplier quality loop. This improved the leading churn metric by 40× and reduced customer churn by 30% over the next three months.',
       imageUrl: '/outcomes_2.png',
     },
+    {
+      id: 'card-gtm-diagnostic',
+      tag: 'B2B SaaS, GTM, Diagnostic',
+      title: 'GTM clarity from in-depth diagnostic',
+      description:
+        'In-depth diagnostic that surfaced the core GTM constraints and delivered a clear, prioritized action plan.',
+      imageUrl: '/noclickhome.png',
+      screenshotImage: true,
+      fullStudyHref: '/case-studies/gtm-diagnostic',
+    },
   ];
 
-  // Cards to display (first 3 or all)
-  const visibleCards = showMoreCards ? allCards : allCards.slice(0, 3);
-  const hasMoreCards = allCards.length > 3;
+  const visibleCards = allCards.slice(0, 3);
 
   const renderCard = (card: typeof allCards[0]) => {
     const isExpanded = expandedCards[card.id];
@@ -210,25 +217,18 @@ export default function OutcomesSection() {
         {visibleCards.map(card => renderCard(card))}
       </div>
 
-      {/* Load More / Load Less Button - only show if more than 3 cards */}
-      {hasMoreCards && (
-        <button
-          onClick={() => setShowMoreCards(!showMoreCards)}
-          className="group relative z-10 flex shrink-0 items-center justify-center border border-solid border-[#494f8e] bg-[#0E1330]/30 px-[12px] py-[12px] transition-all hover:bg-[#1f2446] hover:border-[#7a82c4] cursor-pointer"
-          aria-label={showMoreCards ? "Load less case studies" : "Load more case studies"}
-        >
-          <div className={`relative h-[20px] w-[20px] text-[#494f8e] transition-all group-hover:text-[#7a82c4] ${showMoreCards ? 'rotate-180 group-hover:-translate-y-1' : 'group-hover:translate-y-1'}`}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-full">
-              <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div className="flex items-center justify-center gap-[8px] px-[12px] py-0">
-            <span className="text-[14px] font-medium leading-none tracking-[0.5px] text-[#494f8e] whitespace-pre transition-colors group-hover:text-[#7a82c4]">
-              {showMoreCards ? 'Load less' : 'Load more'}
-            </span>
-          </div>
-        </button>
-      )}
+      {/* All Case Studies Button */}
+      <Link
+        href="/case-studies"
+        className="group relative z-10 h-[46px] shrink-0 flex items-center justify-center gap-[8px] px-4 sm:px-7 border border-[#8c99eb] bg-transparent hover:bg-[#1f2446] transition-all"
+      >
+        <span className="text-sm sm:text-base font-medium tracking-wide bg-gradient-to-r from-[#c9d1ff] to-[#8c99eb] bg-clip-text text-transparent">
+          All Case Studies
+        </span>
+        <svg width="14" height="14" viewBox="0 0 12 10" fill="none" className="text-[#8c99eb] transition-transform group-hover:translate-x-0.5">
+          <path d="M1 5H11M11 5L7 1M11 5L7 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </Link>
 
       {/* Testimonial quote */}
       <div className="relative z-10 flex w-full max-w-[900px] flex-col items-center gap-[24px] text-center">

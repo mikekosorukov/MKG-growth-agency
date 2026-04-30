@@ -148,7 +148,7 @@ export default function CaseStudyLayout({
 
                 {/* Back link */}
                 <Link
-                  href="/#outcomes"
+                  href="/case-studies"
                   className="inline-flex items-center gap-[8px] text-[13px] font-normal text-[#7078B8] hover:text-[#a5aee9] transition-colors mb-[40px]"
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

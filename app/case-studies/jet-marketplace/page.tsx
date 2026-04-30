@@ -5,7 +5,7 @@ import Callout from '@/components/mdx/Callout';
 import Stats from '@/components/mdx/Stats';
 
 export const metadata: Metadata = {
-  title: 'Jet – 26x ARR Growth in 2 years',
+  title: 'Jet – 26x MRR Growth in 2 years',
   description:
     'Jet is a growth-stage marketplace with ~110 employees experiencing high early customer churn. By diagnosing activation failure and redesigning the onboarding flow, we reduced churn by 30% in three months.',
 };

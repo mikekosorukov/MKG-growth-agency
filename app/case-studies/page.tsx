@@ -17,6 +17,7 @@ const heroImages: Record<string, string> = {
   'jet-marketplace': '/jethomepage.png',
   'aqua-cloud': '/aqua_screen.png',
   'ai-product-activation': '/outcomes_3.png',
+  'gtm-diagnostic': '/noclickhome.png',
 };
 
 export default function CaseStudiesPage() {
@@ -28,7 +29,7 @@ export default function CaseStudiesPage() {
 
       <main className="overflow-visible">
         <section
-          className="relative box-border flex w-full flex-col items-center gap-[40px] px-[20px] pt-[120px] pb-[60px] sm:gap-[48px] sm:px-[40px] sm:pt-[130px] sm:pb-[80px] md:gap-[56px] md:px-[60px] md:pt-[145px] md:pb-[100px] lg:gap-[64px] lg:px-[80px] lg:pt-[170px] lg:pb-[120px] border-b border-solid border-[#3f4367] overflow-hidden"
+          className="relative box-border flex w-full flex-col items-center gap-[40px] px-[20px] pt-[80px] pb-[60px] sm:gap-[48px] sm:px-[40px] sm:pt-[90px] sm:pb-[80px] md:gap-[56px] md:px-[60px] md:pt-[100px] md:pb-[100px] lg:gap-[64px] lg:px-[80px] lg:pt-[120px] lg:pb-[120px] border-b border-solid border-[#3f4367] overflow-hidden"
           aria-labelledby="case-studies-heading"
         >
           {/* Noise texture */}
@@ -46,13 +47,10 @@ export default function CaseStudiesPage() {
 
           {/* Header */}
           <div className="relative z-10 flex w-full max-w-[1280px] flex-col items-center gap-[6px] text-center sm:gap-[8px]">
-            <p className="w-full text-[12px] font-normal leading-[1.4] text-[#ff885d] sm:text-[13px] md:text-[14px]">
-              CASE STUDIES
-            </p>
             <h1
               id="case-studies-heading"
-              className="w-full font-bold leading-[1.1] text-[#dcdff2]"
-              style={{ fontSize: 'clamp(28px, 3.5vw, 42px)' }}
+              className="hero-heading hero-gradient-text w-full font-bold leading-[1.1]"
+              style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}
             >
               Results that compound
             </h1>
