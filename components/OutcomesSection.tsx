@@ -4,6 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import Notification from './Notification';
+import { getAllCaseStudies } from '@/lib/case-studies';
+
+const homepageTagLineByHref = Object.fromEntries(
+  getAllCaseStudies().map((s) => [`/case-studies/${s.slug}`, s.homepageTagLine])
+);
 
 export default function OutcomesSection() {
   const [showNotification, setShowNotification] = useState(false);
@@ -25,16 +30,14 @@ export default function OutcomesSection() {
   const allCards = [
     {
       id: 'card3',
-      tag: 'Early-stage, Product-led, PLS',
-      title: '26x MRR Growth in 2 years',
-      description: 'The business had strong product signals but revenue was not compounding. We tightened ICP and positioning, rebuilt the path from website to first value, and aligned GTM with product onboarding — resulting in 26x MRR Growth over two years.',
+      title: '$150k to $2M ARR Growth in 1.5 years',
+      description: 'The business had strong product signals but revenue was not compounding. We tightened ICP and positioning, rebuilt the path from website to first value, and aligned GTM with product onboarding — resulting in $150k to $2M ARR growth in 1.5 years.',
       imageUrl: '/jethomepage.png',
       screenshotImage: true,
-      fullStudyHref: '/case-studies/jet-marketplace',
+      fullStudyHref: '/case-studies/jet-admin',
     },
     {
       id: 'card1',
-      tag: 'Growth-stage, GTM, Engineering',
       title: '$1.2M in net-new qualified pipeline',
       description: 'The initial audit surfaced a clear segment-level opportunity. The product delivered strong value for a specific customer segment, but the GTM motion was not optimized for that segment. We refocused positioning and messaging, rebuilt the website flow to proactively capture high-fit accounts and convert them into meetings, and updated sales scripts and workflows, generating $1.2M in net-new qualified pipeline in 2.5 months.',
       imageUrl: '/aqua_screen.png',
@@ -43,20 +46,20 @@ export default function OutcomesSection() {
     },
     {
       id: 'card2',
-      tag: 'Scale-up, Product-led',
       title: 'Customer churn reduced by 30%',
       description: 'The existing growth constraint was high early churn. Analysis showed that churn was driven by inconsistent service quality on the supply side, which hampered the customer experience early in the lifecycle. We identified the key leading indicator tied to churn, mapped the highest-impact levers, and rebuilt the supplier quality loop. This improved the leading churn metric by 40× and reduced customer churn by 30% over the next three months.',
-      imageUrl: '/outcomes_2.png',
+      imageUrl: '/RRhome.png',
+      screenshotImage: true,
+      fullStudyHref: '/case-studies/rent-ready',
     },
     {
-      id: 'card-gtm-diagnostic',
-      tag: 'B2B SaaS, GTM, Diagnostic',
+      id: 'card-noclick',
       title: 'GTM clarity from in-depth diagnostic',
       description:
         'In-depth diagnostic that surfaced the core GTM constraints and delivered a clear, prioritized action plan.',
       imageUrl: '/noclickhome.png',
       screenshotImage: true,
-      fullStudyHref: '/case-studies/gtm-diagnostic',
+      fullStudyHref: '/case-studies/noclick',
     },
   ];
 
@@ -66,6 +69,8 @@ export default function OutcomesSection() {
     const isExpanded = expandedCards[card.id];
     const href = card.fullStudyHref ?? '#case-study';
     const hasLink = !!card.fullStudyHref;
+    const tagLine =
+      card.fullStudyHref != null ? homepageTagLineByHref[card.fullStudyHref] ?? '' : '';
 
     const cardContent = (
       <>
@@ -99,9 +104,10 @@ export default function OutcomesSection() {
         {/* Content */}
         <div className="flex flex-col gap-[16px] p-[16px] pt-[24px] flex-grow">
           {/* Tags */}
+          {tagLine ? (
           <div className="overflow-hidden mr-[-16px] pr-[31px]">
             <div className="flex flex-wrap items-center gap-[8px]">
-              {card.tag.split(',').map((tagPart, index) => (
+              {tagLine.split(',').map((tagPart, index) => (
                 <div 
                   key={index}
                   className="bg-[rgba(112,120,184,0.01)] border border-solid border-[#7078B8] box-border flex items-center px-[12px] py-[2px] rounded-[12px]"
@@ -113,6 +119,7 @@ export default function OutcomesSection() {
               ))}
             </div>
           </div>
+          ) : null}
           
           {/* Title */}
           <h3 className="text-[20px] font-bold leading-[1.1] text-[#dcdff2]">

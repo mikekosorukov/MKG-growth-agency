@@ -1,6 +1,8 @@
 export interface StudyMeta {
   slug: string;
   headline: string;
+  /** Comma-separated labels; rendered as chips matching the home Outcomes section. */
+  homepageTagLine: string;
   company: string;
   role: string;
   dateRange: string;
@@ -23,11 +25,12 @@ const caseStudies: StudyMeta[] = [
   {
     slug: 'aqua-cloud',
     headline: '$1.2M in net-new qualified pipeline in under 3 months',
+    homepageTagLine: 'Growth-stage, GTM, Engineering',
     company: 'aqua cloud',
     role: 'Growth Advisor',
     dateRange: '2024 – 2025',
     cardDescription:
-      'aqua cloud is an early-stage B2B SaaS company with a strong product but an unoptimized go-to-market motion.',
+      'An audit revealed the product delivered strong value for a specific segment, but GTM wasn\'t built around it. Refocusing positioning, the website, and sales workflows generated $1.2M in net-new qualified pipeline in 2.5 months.',
     tags: ['B2B SaaS', 'Product-Led Sales', 'Pipeline Generation'],
     logo: '/case-studies/aqua-cloud/logo.png',
     website: 'aquacloud.io',
@@ -38,13 +41,14 @@ const caseStudies: StudyMeta[] = [
     skills: ['B2B SaaS', 'Product-Led Sales', 'Pipeline Generation'],
   },
   {
-    slug: 'jet-marketplace',
-    headline: '26x MRR Growth in 2 years',
+    slug: 'jet-admin',
+    headline: '$150k to $2M ARR Growth in 18 Months',
+    homepageTagLine: 'Early-stage, Product-led, PLS',
     company: 'Jet',
     role: 'Growth Advisor',
     dateRange: '2020–2022',
     cardDescription:
-      'Jet is a growth-stage marketplace with ~110 employees experiencing high early customer churn.',
+      'Revenue wasn\'t keeping pace with strong product signals — ICP, positioning, and the path from website to first value all needed work. Aligning GTM with product onboarding drove ARR growth from $150k to $2M in 1.5 years.',
     tags: ['Marketplace', 'Churn Reduction', 'Customer Success'],
     logo: '/jetlogo2.png',
     website: 'jetadmin.io',
@@ -56,31 +60,33 @@ const caseStudies: StudyMeta[] = [
     skills: ['Churn Reduction', 'Customer Success', 'Marketplace Growth'],
   },
   {
-    slug: 'ai-product-activation',
-    headline: '370% revenue growth Year-over-Year',
+    slug: 'rent-ready',
+    headline: 'Customer churn reduced by 30%',
+    homepageTagLine: 'Scale-up, Product-led',
     company: 'B2B SaaS',
     role: 'Growth Advisor',
     dateRange: '2024 – 2025',
     cardDescription:
-      'Growth-stage B2B SaaS: go-to-market and product experience work that compounded into 370% revenue growth year-over-year.',
-    cardImage: '/outcomes_3.png',
-    tags: ['B2B SaaS', 'Product-led', 'Activation'],
-    logo: '/outcomes_3.png',
+      'High early churn traced back to inconsistent supplier quality degrading the customer experience. Rebuilding the quality loop improved the leading churn metric by 40× and reduced churn by 30% in three months.',
+    cardImage: '/RRhome.png',
+    tags: ['B2B SaaS', 'Product-led', 'Churn Reduction'],
+    logo: '/rrlogo.png',
     companyType: 'B2B SaaS',
     companyStage: 'Growth stage',
     teamSize: '50–200',
     engagement: 'Product & growth',
     funding: 'Series A+',
-    skills: ['Activation', 'Onboarding', 'Product-led growth'],
+    skills: ['Churn Reduction', 'Product-led growth', 'Customer Experience'],
   },
   {
-    slug: 'gtm-diagnostic',
+    slug: 'noclick',
     headline: 'GTM clarity from in-depth diagnostic',
+    homepageTagLine: 'B2B SaaS, GTM, Diagnostic',
     company: 'B2B SaaS',
     role: 'Growth Advisor',
     dateRange: '2024 – 2025',
     cardDescription:
-      'In-depth diagnostic that surfaced the core GTM constraints and delivered a clear, prioritized action plan.',
+      'An in-depth diagnostic surfaced the core GTM constraints holding growth back. The output was a clear, prioritized action plan ready to execute.',
     cardImage: '/noclickhome.png',
     tags: ['B2B SaaS', 'GTM', 'Diagnostic'],
     logo: '/noclickcolor.png',

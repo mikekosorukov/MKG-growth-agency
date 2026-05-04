@@ -1,30 +1,31 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import CaseStudyLayout from '@/components/CaseStudyLayout';
 import { getCaseStudyBySlug } from '@/lib/case-studies';
-import Callout from '@/components/mdx/Callout';
 import Stats from '@/components/mdx/Stats';
+import VideoPlaceholder from '@/components/VideoPlaceholder';
 
 export const metadata: Metadata = {
-  title: 'Jet – 26x MRR Growth in 2 years',
+  title: 'Customer churn reduced by 30%',
   description:
-    'Jet is a growth-stage marketplace with ~110 employees experiencing high early customer churn. By diagnosing activation failure and redesigning the onboarding flow, we reduced churn by 30% in three months.',
+    'How identifying the leading churn indicator and rebuilding the supplier quality loop reduced customer churn by 30% in three months.',
 };
 
-export default function JetMarketplaceCaseStudyPage() {
-  const study = getCaseStudyBySlug('jet-marketplace');
+export default function RentReadyCaseStudyPage() {
+  const study = getCaseStudyBySlug('rent-ready');
 
   return (
     <CaseStudyLayout
       study={study}
       client={{
-        name: 'Anton Svetlov',
-        title: 'Founder and CEO at Jet Admin',
-        avatar: '/svetlov.jpeg',
+        name: 'Jonathan Kite',
+        title: 'CEO at Rent Ready',
+        avatar: '/testimonial-1.png',
       }}
-      heroImage="/jethomepage.png"
+      heroImage="/RRhome.png"
       nextCaseStudy={{
         href: '/case-studies/aqua-cloud',
-        label: 'aqua cloud – $1.2M in net-new qualified pipeline in under 3 months',
+        label: 'aqua cloud – $1.2M in net-new qualified pipeline in 3 months',
       }}
     >
       <div className="border-l-2 border-[#ff885d] pl-[20px] sm:pl-[24px]">
@@ -38,12 +39,16 @@ export default function JetMarketplaceCaseStudyPage() {
       </div>
 
       <Stats items={[
-        { value: '26x', label: 'MRR growth in 2 years' },
-        { value: '280%', label: 'Annual churn reduction' },
-        { value: '8k', label: 'Active users' },
+        { value: '30%', label: 'Reduction in monthly customer churn' },
+        { value: '40x', label: 'Improvement in leading churn metric' },
+        { value: '4 Months', label: 'Timeline' },
       ]} />
 
       <hr />
+
+      <div className="my-[40px]">
+        <VideoPlaceholder />
+      </div>
 
       <h2>What is Jet Admin?</h2>
       <p>
@@ -93,11 +98,22 @@ export default function JetMarketplaceCaseStudyPage() {
         to intervene proactively at the 48-hour mark for accounts not yet activated.
       </p>
 
-      <Callout type="quote">
-        &ldquo;We&apos;d been trying to solve churn with better support tickets. The real fix
-        was making the product work for customers in the first 48 hours.&rdquo;
-        — Head of Customer Success, Jet
-      </Callout>
+      <div className="my-[32px] rounded-[5px] border border-[#3f4367] bg-[#1d2241] px-[24px] py-[24px] sm:px-[28px] sm:py-[28px]">
+        <p className="mb-[20px] text-[16px] italic font-normal leading-[1.6] text-[#c5caf0] sm:text-[17px]">
+          &ldquo;From discovery through execution, Mike&apos;s contributions significantly elevated
+          our product, and his dedication to customer-driven innovation was evident in every
+          project he touched.&rdquo;
+        </p>
+        <div className="flex items-center gap-[12px]">
+          <div className="relative h-[44px] w-[44px] shrink-0 overflow-hidden rounded-full bg-[#171c39]">
+            <Image src="/testimonial-1.png" alt="Jonathan Kite" fill className="object-cover" />
+          </div>
+          <div className="flex flex-col gap-[2px]">
+            <span className="text-[14px] font-medium leading-[1.2] text-[#dcdff2]">Jonathan Kite</span>
+            <span className="text-[12px] font-normal leading-[1.3] text-[#7078B8]">CEO at Rent Ready, a Real Estate Marketplace</span>
+          </div>
+        </div>
+      </div>
 
       <h2>The Results - &ldquo;Hockey Stick&rdquo; Growth</h2>
       <p>

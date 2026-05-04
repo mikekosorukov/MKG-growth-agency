@@ -2,42 +2,30 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import CaseStudyLayout from '@/components/CaseStudyLayout';
 import { getCaseStudyBySlug } from '@/lib/case-studies';
-import Callout from '@/components/mdx/Callout';
 import Stats from '@/components/mdx/Stats';
+import VideoPlaceholder from '@/components/VideoPlaceholder';
 
 export const metadata: Metadata = {
-  title: 'aqua cloud – $1.2M in net-new qualified pipeline in 3 months',
+  title: 'GTM clarity from in-depth diagnostic',
   description:
-    'aqua cloud is an early-stage B2B SaaS company with a strong product but an unoptimized go-to-market motion. By refocusing positioning and restructuring sales workflows, we generated $1.2M in net-new qualified pipeline in 2.5 months.',
+    'An in-depth diagnostic that surfaced the core GTM constraints and delivered a clear, prioritized action plan.',
 };
 
-export default function AquaCloudCaseStudyPage() {
-  const study = getCaseStudyBySlug('aqua-cloud');
-  const jetStudy = getCaseStudyBySlug('jet-admin');
+export default function NoclickCaseStudyPage() {
+  const study = getCaseStudyBySlug('noclick');
 
   return (
     <CaseStudyLayout
       study={study}
       client={{
-        name: 'Kirill Chabanov',
-        title: 'CMO & COO at aqua cloud',
-        avatar: '/testimonial-icon-2.jpeg',
+        name: 'Dhruv Yadav',
+        title: 'Founder at NoClick',
+        avatar: '/dhruv.png',
       }}
-      heroImage="/aqua_screen.png"
-      sidebarStudy={{
-        ...jetStudy,
-        logo: '/aqua.png',
-        company: 'aqua cloud',
-        website: 'aqua-cloud.io',
-        companyStage: '2019, DE',
-        companyStageSuffix: '🇩🇪',
-        funding: 'Private equity',
-        teamSize: '23',
-        dateRange: '9 months, 2023',
-      }}
+      heroImage="/noclickhome.png"
       nextCaseStudy={{
-        href: '/case-studies/jet-admin',
-        label: 'Jet – 26x MRR Growth in 2 years',
+        href: '/case-studies/rent-ready',
+        label: 'B2B SaaS – Customer churn reduced by 30%',
       }}
     >
       <div className="border-l-2 border-[#ff885d] pl-[20px] sm:pl-[24px]">
@@ -51,14 +39,18 @@ export default function AquaCloudCaseStudyPage() {
       </div>
 
       <Stats items={[
-        { value: '$1.2M', label: 'Net new qualified pipeline' },
-        { value: '65', label: 'New Enterprise leads per month' },
-        { value: '36+', label: 'Pages and flows optimized' },
+        { value: '26x', label: 'MRR growth in 2 years' },
+        { value: '280%', label: 'Annual churn reduction' },
+        { value: '8k', label: 'Active users' },
       ]} />
 
       <hr />
 
-      <h2>What is aqua-cloud?</h2>
+      <div className="my-[40px]">
+        <VideoPlaceholder />
+      </div>
+
+      <h2>What is Jet Admin?</h2>
       <p>
         Jet Admin is a low-code platform for building internal tools and admin experiences on top
         of your databases and APIs—so teams can ship secure, role-based back-office UIs without
@@ -67,7 +59,7 @@ export default function AquaCloudCaseStudyPage() {
         constraint on revenue compounding.
       </p>
 
-      <h2>The Challenge - Plateauing Revenue Growth</h2>
+      <h2>The Challenge - Flat Traction but No Growth</h2>
       <p>
         Jet was acquiring customers steadily, but month-two retention was consistently poor.
         The customer success team was fielding high volumes of support requests from users
@@ -80,7 +72,7 @@ export default function AquaCloudCaseStudyPage() {
         <li>CS team reactive, spending time on triage rather than proactive success</li>
       </ul>
 
-      <h2>The Solution - ICP Alignment, ABM Automation, and Key Pages Redesign</h2>
+      <h2>The Solution – Understand THE WHY and Build the GTM System</h2>
 
       <h3>1. Churn Diagnosis</h3>
       <p>
@@ -106,29 +98,24 @@ export default function AquaCloudCaseStudyPage() {
         to intervene proactively at the 48-hour mark for accounts not yet activated.
       </p>
 
-      <Callout type="quote">
-        &ldquo;We&apos;d been trying to solve churn with better support tickets. The real fix
-        was making the product work for customers in the first 48 hours.&rdquo;
-        — Head of Customer Success, Jet
-      </Callout>
-
       <div className="my-[32px] rounded-[5px] border border-[#3f4367] bg-[#1d2241] px-[24px] py-[24px] sm:px-[28px] sm:py-[28px]">
         <p className="mb-[20px] text-[16px] italic font-normal leading-[1.6] text-[#c5caf0] sm:text-[17px]">
-          &ldquo;Thanks to Mike&apos;s work, we had impressive positive changes in how we go to
-          market and how our funnel works.&rdquo;
+          &ldquo;The diagnostic gave us clarity we had been missing for months — a clear picture
+          of where to focus and why. Mike&apos;s ability to cut through the noise and surface the
+          highest-leverage GTM priorities was exactly what we needed.&rdquo;
         </p>
         <div className="flex items-center gap-[12px]">
           <div className="relative h-[44px] w-[44px] shrink-0 overflow-hidden rounded-full bg-[#171c39]">
-            <Image src="/testimonial-icon-2.jpeg" alt="Kirill Chabanov" fill className="object-cover" />
+            <Image src="/dhruv.png" alt="Dhruv Yadav" fill className="object-cover" />
           </div>
           <div className="flex flex-col gap-[2px]">
-            <span className="text-[14px] font-medium leading-[1.2] text-[#dcdff2]">Kirill Chabanov</span>
-            <span className="text-[12px] font-normal leading-[1.3] text-[#7078B8]">CMO &amp; COO at aqua cloud</span>
+            <span className="text-[14px] font-medium leading-[1.2] text-[#dcdff2]">Dhruv Yadav</span>
+            <span className="text-[12px] font-normal leading-[1.3] text-[#7078B8]">Founder at NoClick</span>
           </div>
         </div>
       </div>
 
-      <h2>The Results - Accelerated Pipeline and Positioning Clarity</h2>
+      <h2>The Results - &ldquo;Hockey Stick&rdquo; Growth</h2>
       <p>
         Measured over three months following the onboarding redesign launch, compared against
         the prior three-month cohort:

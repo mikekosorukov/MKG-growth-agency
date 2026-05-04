@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 };
 
 const heroImages: Record<string, string> = {
-  'jet-marketplace': '/jethomepage.png',
+  'jet-admin': '/jethomepage.png',
   'aqua-cloud': '/aqua_screen.png',
-  'ai-product-activation': '/outcomes_3.png',
-  'gtm-diagnostic': '/noclickhome.png',
+  'rent-ready': '/RRhome.png',
+  'noclick': '/noclickhome.png',
 };
 
 export default function CaseStudiesPage() {
@@ -55,7 +55,7 @@ export default function CaseStudiesPage() {
               Results that compound
             </h1>
             <p className="mt-[8px] max-w-[600px] text-[16px] font-normal leading-[1.6] text-[#a5aee9] sm:text-[17px] md:text-[18px]">
-              Real engagements with growth-stage tech companies. Each study covers the diagnosis, the work, and the measurable outcome.
+              Real engagements with B2B tech companies. Learn about the work I&apos;ve delivered and how it impacted their growth.
             </p>
           </div>
 
@@ -88,38 +88,33 @@ export default function CaseStudiesPage() {
 
                   {/* Content */}
                   <div className="flex flex-1 flex-col gap-[16px] p-[16px] pt-[24px]">
-                    {/* Tags */}
-                    <div className="flex flex-wrap items-center gap-[8px]">
-                      {study.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="border border-solid border-[#7078B8] px-[12px] py-[2px] rounded-[12px] text-[12px] font-normal leading-[1.4] text-[#7078B8] whitespace-nowrap"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="overflow-hidden mr-[-16px] pr-[31px]">
+                      <div className="flex flex-wrap items-center gap-[8px]">
+                        {study.homepageTagLine.split(',').map((tagPart, index) => (
+                          <div
+                            key={`${study.slug}-${index}`}
+                            className="bg-[rgba(112,120,184,0.01)] border border-solid border-[#7078B8] box-border flex items-center px-[12px] py-[2px] rounded-[12px]"
+                          >
+                            <p
+                              className="font-normal leading-[1.4] text-[12px] text-[#7078B8] whitespace-nowrap"
+                              style={{ fontVariationSettings: "'wdth' 100" }}
+                            >
+                              {tagPart.trim()}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
 
-                    {/* Headline */}
                     <h2 className="text-[20px] font-bold leading-[1.1] text-[#dcdff2]">
                       {study.headline}
                     </h2>
 
-                    {/* Description */}
                     {study.cardDescription && (
                       <p className="text-[16px] font-normal leading-[1.4] text-[#a5aee9] line-clamp-3">
                         {study.cardDescription}
                       </p>
                     )}
-
-                    {/* Meta row */}
-                    <div className="mt-auto flex items-center gap-[12px] pt-[8px] text-[13px] font-normal text-[#7078B8]">
-                      <span>{study.company}</span>
-                      <span className="text-[#3f4367]">·</span>
-                      <span>{study.role}</span>
-                      <span className="text-[#3f4367]">·</span>
-                      <span>{study.dateRange}</span>
-                    </div>
                   </div>
 
                   {/* Footer arrow */}

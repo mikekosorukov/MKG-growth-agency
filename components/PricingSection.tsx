@@ -145,7 +145,7 @@ const tiers: PricingTier[] = [
     description: '',
     items: [
       '30-45 minutes call',
-      'Discuss your challenges and get expert opinion',
+      'Discuss your challenges',
       'Explore working together',
     ],
     arrowItems: [],
@@ -290,13 +290,15 @@ export default function PricingSection() {
           <p className="w-full text-center text-[20px] font-normal leading-[1.4] text-[#a5aee9] sm:text-[22px] md:text-[24px] pt-[16px] sm:pt-[24px] md:pt-[32px]">
             Not sure what&apos;s best for you?
           </p>
-          <div className="relative w-full lg:max-w-[calc(66.666%-5px)]">
-            <div className="absolute -top-[13px] left-1/2 -translate-x-1/2 z-10 rounded-[12px] bg-[#171c39]">
-              <div className="bg-[rgba(231,165,233,0.15)] border border-solid border-[#E7A5E9] flex items-center justify-center px-[12px] py-[2px] rounded-[12px] w-fit">
-                <span className="text-[13px] font-medium leading-[1.4] text-[#E7A5E9] whitespace-nowrap">Start here</span>
+          <div className="relative mx-auto flex w-full max-w-[1040px] justify-center">
+            <div className="relative w-full lg:w-[calc((100%-32px)/3)] lg:max-w-none">
+              <div className="absolute -top-[13px] left-1/2 -translate-x-1/2 z-10 rounded-[12px] bg-[#171c39]">
+                <div className="bg-[rgba(231,165,233,0.15)] border border-solid border-[#E7A5E9] flex items-center justify-center px-[12px] py-[2px] rounded-[12px] w-fit">
+                  <span className="text-[13px] font-medium leading-[1.4] text-[#E7A5E9] whitespace-nowrap">Start here</span>
+                </div>
               </div>
+              <PricingCard tier={tiers[3]} centered />
             </div>
-            <PricingCard tier={tiers[3]} centered />
           </div>
         </div>
       </div>

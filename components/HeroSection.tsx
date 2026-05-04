@@ -10,6 +10,7 @@ export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [endScroll, setEndScroll] = useState(800); // Default fallback
   const { scrollY } = useScroll();
+  const stretchedEndScroll = endScroll * 1.5;
 
   useEffect(() => {
     const updateScrollLimit = () => {
@@ -39,14 +40,14 @@ export default function HeroSection() {
   }, []);
 
   // Map scroll to progress: 0 (start/assembled) -> 1 (end/disassembled)
-  // Start at 15px scroll, end when H2 top touches viewport top (minus 60px offset)
-  const progress = useTransform(scrollY, [15, endScroll], [0, 1], { clamp: true });
+  // The shared end point is stretched by 50% so every layer unfolds over a longer scroll.
+  const progress = useTransform(scrollY, [15, stretchedEndScroll], [0, 1], { clamp: true });
   
   // Extended progress for path animation - takes longer to complete (3.2x the scroll distance)
-  const pathProgress = useTransform(scrollY, [15, endScroll * 3.2], [0, 1], { clamp: true });
+  const pathProgress = useTransform(scrollY, [15, stretchedEndScroll * 3.2], [0, 1], { clamp: true });
   
   // Extended progress for main shapes animation - takes longer to complete (1.5x the scroll distance)
-  const shapesProgress = useTransform(scrollY, [15, endScroll * 1.5], [0, 1], { clamp: true });
+  const shapesProgress = useTransform(scrollY, [15, stretchedEndScroll * 1.5], [0, 1], { clamp: true });
   
   // Ease-out curve for background opacity - drops abruptly at start, then smooths out
   const opacityEaseOut = cubicBezier(0, 0, 0.3, 1);
