@@ -29,10 +29,6 @@ export default function RentReadyCaseStudyPage() {
         avatar: '/testimonial-1.png',
       }}
       heroImage="/RRhome.png"
-      nextCaseStudy={{
-        href: '/case-studies/aqua-cloud',
-        label: 'aqua cloud – $1.2M in net-new qualified pipeline in 2.5 months',
-      }}
     >
       <div className="border-l-2 border-[#ff885d] pl-[20px] sm:pl-[24px]">
         <h3>Executive Summary</h3>

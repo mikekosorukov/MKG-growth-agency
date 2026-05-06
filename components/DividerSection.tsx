@@ -79,7 +79,7 @@ const logos: LogoItem[] = [
   { src: '/drivt_logo.png', alt: 'Drivt' },
   { src: '/andagon_logo.png', alt: 'Andagon' },
   {
-    src: '/noclick.png', alt: 'Noclick', caseStudy: true,
+    src: '/Noclick.png', alt: 'Noclick', caseStudy: true,
     popup: {
       logo: '/noclickcolor.png',
       logoWidth: 35,

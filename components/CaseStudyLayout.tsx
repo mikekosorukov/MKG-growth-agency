@@ -3,10 +3,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AIProductActivationCard from '@/components/AIProductActivationCard';
 import BookingSection from '@/components/BookingSection';
-import DividerSection from '@/components/DividerSection';
-import type { StudyMeta } from '@/lib/case-studies';
+import { getAllCaseStudies, type StudyMeta } from '@/lib/case-studies';
+
+const studyCardImages: Record<string, string> = {
+  'jet-admin': '/jethomepage.png',
+  'aqua-cloud': '/aqua_screen.png',
+  'rent-ready': '/RRhome.png',
+  noclick: '/noclickhome.png',
+};
 
 interface ClientInfo {
   name: string;
@@ -19,7 +24,6 @@ interface CaseStudyLayoutProps {
   sidebarStudy?: StudyMeta;
   client?: ClientInfo;
   heroImage?: string;
-  nextCaseStudy?: { href: string; label: string };
   children: ReactNode;
 }
 
@@ -47,15 +51,94 @@ function MetaRow({ label, value, href, suffix }: { label: string; value: string;
   );
 }
 
+function shuffleStudies(studies: StudyMeta[]): StudyMeta[] {
+  return [...studies].sort(() => Math.random() - 0.5);
+}
+
+function StudyRecommendationCard({ study }: { study: StudyMeta }) {
+  const image = studyCardImages[study.slug] ?? study.cardImage ?? study.logo;
+
+  return (
+    <Link
+      href={`/case-studies/${study.slug}`}
+      className="group flex flex-col overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#1d2241] transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-2 hover:border-[#5f6387] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8c99eb]"
+      aria-label={`Read case study: ${study.headline}`}
+    >
+      <div className="relative h-[220px] w-full overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#323966] to-[#232b5c]" />
+        </div>
+        {image && (
+          <Image
+            src={image}
+            alt={study.headline}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover object-top"
+          />
+        )}
+      </div>
+
+      <div className="flex flex-1 flex-col gap-[16px] p-[16px] pt-[24px]">
+        <div className="mr-[-16px] overflow-hidden pr-[31px]">
+          <div className="flex flex-wrap items-center gap-[8px]">
+            {study.homepageTagLine.split(',').map((tagPart, index) => (
+              <div
+                key={`${study.slug}-${index}`}
+                className="box-border flex items-center rounded-[12px] border border-solid border-[#7078B8] bg-[rgba(112,120,184,0.01)] px-[12px] py-[2px]"
+              >
+                <p
+                  className="whitespace-nowrap text-[12px] font-normal leading-[1.4] text-[#7078B8]"
+                  style={{ fontVariationSettings: "'wdth' 100" }}
+                >
+                  {tagPart.trim()}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <h3 className="text-[20px] font-bold leading-[1.1] text-[#dcdff2]">
+          {study.headline}
+        </h3>
+
+        {study.cardDescription && (
+          <p className="line-clamp-3 text-[16px] font-normal leading-[1.4] text-[#a5aee9]">
+            {study.cardDescription}
+          </p>
+        )}
+      </div>
+
+      <div className="flex items-center gap-[7px] px-[16px] pb-[20px]">
+        <span className="bg-gradient-to-r from-[#c9d1ff] to-[#8c99eb] bg-clip-text text-[18px] font-medium leading-none tracking-[0.5px] text-transparent transition-all group-hover:from-[#e8edff] group-hover:to-[#b4c0ff]">
+          Read case study
+        </span>
+        <div className="relative h-[24px] w-[24px] text-[#8c99eb] transition-transform duration-500 group-hover:translate-x-1 group-hover:rotate-[360deg]">
+          <Image
+            src="/arrow-right.svg"
+            alt=""
+            width={24}
+            height={24}
+            className="size-full"
+          />
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default function CaseStudyLayout({
   study,
   sidebarStudy,
   client,
   heroImage,
-  nextCaseStudy,
   children,
 }: CaseStudyLayoutProps) {
   const sidebar = sidebarStudy ?? study;
+  const recommendedStudies = shuffleStudies(
+    getAllCaseStudies().filter((candidate) => candidate.slug !== study.slug)
+  ).slice(0, 3);
+
   return (
     <div className="min-h-screen bg-[#171c39] overflow-x-clip">
       <Header />
@@ -266,20 +349,32 @@ export default function CaseStudyLayout({
                   {children}
                 </div>
 
-                {/* Next case study — see AIProductActivationCard.tsx */}
-                {nextCaseStudy && (
-                  <AIProductActivationCard
-                    href={nextCaseStudy.href}
-                    label={nextCaseStudy.label}
-                  />
-                )}
               </div>
             </div>
           </div>
         </div>
+
+        <section
+          className="relative z-10 box-border flex w-full flex-col items-center gap-[40px] bg-[#1d2241] px-[20px] py-[60px] sm:gap-[48px] sm:px-[40px] sm:py-[72px] md:gap-[56px] md:px-[60px] md:py-[80px] lg:gap-[64px] lg:px-[80px] lg:py-[96px]"
+          aria-labelledby="more-case-studies-heading"
+        >
+          <div className="flex w-full max-w-[1280px] flex-col items-center text-center">
+            <h2
+              id="more-case-studies-heading"
+              className="w-full text-[26px] font-bold leading-[1.1] text-[#dcdff2] sm:text-[30px] md:text-[34px] lg:text-[38px]"
+            >
+              Read more studies
+            </h2>
+          </div>
+
+          <div className="grid w-full max-w-[1280px] grid-cols-1 gap-[20px] sm:grid-cols-2 lg:grid-cols-3">
+            {recommendedStudies.map((recommendedStudy) => (
+              <StudyRecommendationCard key={recommendedStudy.slug} study={recommendedStudy} />
+            ))}
+          </div>
+        </section>
       </main>
 
-      <DividerSection variant="angled" />
       <BookingSection />
       <Footer />
     </div>
