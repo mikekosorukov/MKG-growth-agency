@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import Notification from './Notification';
 
@@ -8,28 +9,143 @@ interface DividerSectionProps {
   variant?: 'default' | 'lines' | 'angled';
 }
 
-const logos = [
+interface PopupData {
+  logo: string;
+  logoWidth?: number;
+  logoHeight?: number;
+  brandName?: string;
+  quote: string;
+  avatar: string;
+  avatarName: string;
+  avatarTitle: string;
+  href: string;
+}
+
+interface LogoItem {
+  src: string;
+  alt: string;
+  caseStudy?: boolean;
+  popup?: PopupData;
+}
+
+const logos: LogoItem[] = [
   { src: '/Voximplant_logo.png', alt: 'Voximplant' },
-  { src: '/aqua_logo.png', alt: 'Aqua', caseStudy: true },
+  {
+    src: '/aqua_logo.png', alt: 'Aqua', caseStudy: true,
+    popup: {
+      logo: '/aqua.png',
+      logoWidth: 35,
+      logoHeight: 35,
+      brandName: 'aqua cloud',
+      quote: 'Thanks to Mike\'s work, we had impressive positive changes in how we go to market and how our funnel works.',
+      avatar: '/testimonial-icon-2.jpeg',
+      avatarName: 'Kirill Chabanov',
+      avatarTitle: 'CMO & COO at aqua cloud',
+      href: '/case-studies/aqua-cloud',
+    },
+  },
   { src: '/capture_logo.png', alt: 'Capture' },
-  { src: '/jet_logo.png', alt: 'Jet', caseStudy: true },
+  {
+    src: '/jet_logo.png', alt: 'Jet', caseStudy: true,
+    popup: {
+      logo: '/jetlogo3.png',
+      logoWidth: 35,
+      logoHeight: 35,
+      brandName: 'Jet Admin',
+      quote: 'Mike worked in the trenches with us, bringing a new product to a global market and helping turn Jet Admin into one of the niche leaders.',
+      avatar: '/svetlov.jpeg',
+      avatarName: 'Anton Svetlov',
+      avatarTitle: 'Founder and CEO at Jet Admin',
+      href: '/case-studies/jet-admin',
+    },
+  },
   { src: '/grotech_logo.png', alt: 'Grotech' },
   { src: '/yc_logo.png', alt: 'YC' },
-  { src: '/rent_logo.png', alt: 'Rent', caseStudy: true },
+  {
+    src: '/rent_logo.png', alt: 'Rent Ready', caseStudy: true,
+    popup: {
+      logo: '/rrlogo.png',
+      logoWidth: 35,
+      logoHeight: 35,
+      brandName: 'Rent Ready',
+      quote:
+        'From discovery through execution, Mike\'s contributions significantly elevated our product, and his dedication to customer-driven innovation was evident in every project he touched.',
+      avatar: '/testimonial-1.png',
+      avatarName: 'Jonathan Kite',
+      avatarTitle: 'CEO at Rent Ready, a Real Estate Marketplace',
+      href: '/case-studies/rent-ready',
+    },
+  },
   { src: '/drivt_logo.png', alt: 'Drivt' },
   { src: '/andagon_logo.png', alt: 'Andagon' },
+  {
+    src: '/noclick.png', alt: 'Noclick', caseStudy: true,
+    popup: {
+      logo: '/noclickcolor.png',
+      logoWidth: 35,
+      logoHeight: 35,
+      brandName: 'Noclick',
+      quote: 'The diagnostic gave us clarity we had been missing for months — a clear picture of where to focus and why.',
+      avatar: '/dhruv.png',
+      avatarName: 'Dhruv Yadav',
+      avatarTitle: 'Founder at NoClick',
+      href: '/case-studies/noclick',
+    },
+  },
 ];
+
+interface PopupState {
+  data: PopupData;
+  x: number;
+  placement: 'above' | 'below';
+  anchorTop: number;
+  anchorBottom: number;
+}
 
 export default function DividerSection({ variant = 'default' }: DividerSectionProps) {
   const [showNotification, setShowNotification] = useState(false);
+  const [activePopup, setActivePopup] = useState<PopupState | null>(null);
+  const [hoveredCaseStudy, setHoveredCaseStudy] = useState(false);
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>, popup: PopupData) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const popupWidth = 320;
+    const padding = 16;
+    const rawX = rect.left + rect.width / 2;
+    const clampedX = Math.max(
+      popupWidth / 2 + padding,
+      Math.min(rawX, window.innerWidth - popupWidth / 2 - padding)
+    );
 
-  const handleCaseStudyClick = () => {
-    setShowNotification(true);
+    const gap = 12;
+    const headerBottom = 81;
+    const bottomSafe = 16;
+    const estHeight = 300;
+    const spaceAbove = rect.top - headerBottom - gap;
+    const spaceBelow = window.innerHeight - rect.bottom - gap - bottomSafe;
+
+    let placement: 'above' | 'below';
+    if (spaceAbove >= estHeight) {
+      placement = 'above';
+    } else if (spaceBelow >= estHeight) {
+      placement = 'below';
+    } else {
+      placement = spaceAbove >= spaceBelow ? 'above' : 'below';
+    }
+
+    setActivePopup({
+      data: popup,
+      x: clampedX,
+      placement,
+      anchorTop: rect.top,
+      anchorBottom: rect.bottom,
+    });
   };
+
+  const handleMouseLeave = () => setActivePopup(null);
 
   if (variant === 'angled') {
     return (
-      <div className="bg-[#171c39] box-border flex items-center relative w-full isolate z-10 h-[80px]" data-name="section">
+      <div className="bg-[#171c39] box-border flex items-center relative w-full isolate z-10 h-[64px]" data-name="section">
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none z-0"
@@ -48,7 +164,7 @@ export default function DividerSection({ variant = 'default' }: DividerSectionPr
             backgroundRepeat: 'repeat',
             backgroundSize: '350px 350px',
             mixBlendMode: 'soft-light',
-            opacity: 0.65,
+            opacity: 0.85,
           }}
         />
       </div>
@@ -74,6 +190,8 @@ export default function DividerSection({ variant = 'default' }: DividerSectionPr
 
   // Duplicate for seamless loop
   const track = [...logos, ...logos];
+  const popupLogoWidth = activePopup?.data.logoWidth ?? 96;
+  const popupLogoHeight = activePopup?.data.logoHeight ?? 35;
 
   return (
     <>
@@ -99,37 +217,137 @@ export default function DividerSection({ variant = 'default' }: DividerSectionPr
             WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
           }}
         >
-          <div className="flex animate-marquee" style={{ width: 'max-content' }}>
-            {track.map((logo, i) => (
-              <div
-                key={`${logo.alt}-${i}`}
-                onClick={logo.caseStudy ? handleCaseStudyClick : undefined}
-                className={`group flex flex-col items-center gap-2 mx-[22px] ${logo.caseStudy ? 'cursor-pointer' : ''}`}
-              >
-                <div className="relative h-10 w-36 opacity-65 group-hover:opacity-100 transition-opacity duration-200">
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <button
-                  onClick={logo.caseStudy ? handleCaseStudyClick : undefined}
-                  className={`transition-opacity duration-200 text-[#a5aee9] text-[11px] font-medium border border-[#3f4367] bg-[#0a0e1f]/60 rounded-full px-3 py-[3px] tracking-wide whitespace-nowrap inline-flex items-center gap-1 ${logo.caseStudy ? 'opacity-65 group-hover:opacity-100 cursor-pointer' : 'invisible'}`}
-                >
+          <div
+            className="flex animate-marquee pb-1"
+            style={{ width: 'max-content', animationPlayState: activePopup || hoveredCaseStudy ? 'paused' : 'running' }}
+          >
+            {track.map((logo, i) => {
+              const badgeBase = `transition-opacity duration-200 text-[#a5aee9] text-[11px] font-medium border border-[#3f4367] bg-[#0a0e1f]/60 rounded-full px-3 py-[3px] tracking-wide whitespace-nowrap inline-flex items-center gap-1`;
+              const badgeVisibility = logo.caseStudy ? 'opacity-65 group-hover:opacity-100' : 'invisible';
+              const badgePulse = logo.popup ? 'badge-pulse-on-hover' : '';
+              const badge = (
+                <span className={`${badgeBase} ${badgeVisibility} ${badgePulse}`}>
                   Case study
                   <span className="inline-block transition-transform duration-500 group-hover:rotate-[360deg]">
-                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
                       <path d="M1 5H11M11 5L7 1M11 5L7 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
-                </button>
-              </div>
-            ))}
+                </span>
+              );
+              const logoImg = (
+                <div className="relative h-10 w-36 opacity-65 group-hover:opacity-100 transition-opacity duration-200">
+                  <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+                </div>
+              );
+
+              if (logo.popup) {
+                return (
+                  <Link
+                    key={`${logo.alt}-${i}`}
+                    href={logo.popup.href}
+                    onMouseEnter={(e) => {
+                      setHoveredCaseStudy(true);
+                      handleMouseEnter(e as unknown as React.MouseEvent<HTMLDivElement>, logo.popup!);
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredCaseStudy(false);
+                      handleMouseLeave();
+                    }}
+                    className="group flex flex-col items-center gap-2 mx-[14px] cursor-pointer"
+                  >
+                    {logoImg}{badge}
+                  </Link>
+                );
+              }
+
+              return (
+                <div
+                  key={`${logo.alt}-${i}`}
+                  onClick={logo.caseStudy ? () => setShowNotification(true) : undefined}
+                  onMouseEnter={logo.caseStudy ? () => setHoveredCaseStudy(true) : undefined}
+                  onMouseLeave={logo.caseStudy ? () => setHoveredCaseStudy(false) : undefined}
+                  className={`group flex flex-col items-center gap-2 mx-[14px] ${logo.caseStudy ? 'cursor-pointer' : ''}`}
+                >
+                  {logoImg}{badge}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
+
+      {/* Hover popup */}
+      {activePopup && (
+        <div
+          className="fixed z-50 pointer-events-none"
+          style={{
+            left: activePopup.x,
+            top:
+              activePopup.placement === 'above'
+                ? activePopup.anchorTop - 12
+                : activePopup.anchorBottom + 12,
+            transform: 'translateX(-50%)',
+          }}
+        >
+          <div
+            dir="ltr"
+            className={`w-[320px] overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#1d2241] text-left ${
+              activePopup.placement === 'above'
+                ? 'animate-popup-in-y-above'
+                : 'animate-popup-in-y-below'
+            }`}
+            style={{
+              boxShadow: '0 0 16px 4px rgba(5, 9, 32, 0.45)',
+            }}
+          >
+          {/* Logo + brand: outer flex justify-start pins the cluster to the left; inner row is shrink-wrapped (no flex-1 / no full-width title cell) */}
+          <div className="flex w-full flex-row justify-start px-[24px] pt-[24px] pb-[20px]">
+            <div className="flex flex-row items-center gap-[10px]">
+              <div
+                className="relative shrink-0 overflow-hidden rounded-[4px]"
+                style={{ width: `${popupLogoWidth}px`, height: `${popupLogoHeight}px` }}
+              >
+                <Image
+                  src={activePopup.data.logo}
+                  alt=""
+                  fill
+                  sizes={`${popupLogoWidth}px`}
+                  className="object-contain object-left"
+                />
+              </div>
+              {activePopup.data.brandName ? (
+                <span className="text-left text-[16px] font-normal leading-[1.25] text-[#dcdff2]">
+                  {activePopup.data.brandName}
+                </span>
+              ) : null}
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="mx-[24px] border-t border-[#3f4367]" />
+
+          {/* Quote */}
+          <p className="px-[24px] pt-[16px] pb-[20px] text-[14px] font-normal leading-[1.6] text-[#a5aee9] italic">
+            &ldquo;{activePopup.data.quote}&rdquo;
+          </p>
+
+          {/* Divider */}
+          <div className="mx-[24px] border-t border-[#3f4367]" />
+
+          {/* Avatar */}
+          <div className="flex items-center gap-[10px] px-[24px] pt-[16px] pb-[24px]">
+            <div className="relative h-[40px] w-[40px] shrink-0 overflow-hidden rounded-full bg-[#171c39]">
+              <Image src={activePopup.data.avatar} alt={activePopup.data.avatarName} fill className="object-cover" />
+            </div>
+            <div className="flex flex-col gap-[2px]">
+              <p className="text-[13px] font-medium leading-[1.2] text-[#dcdff2]">{activePopup.data.avatarName}</p>
+              <p className="text-[11px] font-normal leading-[1.3] text-[#7078B8]">{activePopup.data.avatarTitle}</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      )}
 
       <Notification
         isVisible={showNotification}

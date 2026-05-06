@@ -349,6 +349,37 @@ body {
   }
 }
 
+/* Popup: outer wrapper uses translateX(-50%) for horizontal clamp; inner only animates Y */
+@keyframes popupInYAbove {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-100% + 10px));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-100%);
+  }
+}
+
+.animate-popup-in-y-above {
+  animation: popupInYAbove 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes popupInYBelow {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-popup-in-y-below {
+  animation: popupInYBelow 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
 /* Logo marquee */
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -361,4 +392,14 @@ body {
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  20%      { transform: scale(1.08); }
+  40%      { transform: scale(1); }
+}
+
+.group:hover .badge-pulse-on-hover {
+  animation: badge-pulse 1.5s ease-in-out infinite;
 }

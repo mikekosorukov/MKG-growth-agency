@@ -42,7 +42,7 @@ export default function ChallengesSection() {
           backgroundRepeat: 'repeat',
           backgroundSize: '350px 350px',
           mixBlendMode: 'soft-light',
-          opacity: 0.65,
+          opacity: 0.85,
         }}
       />
 
@@ -68,7 +68,7 @@ export default function ChallengesSection() {
             return (
             <article
               key={index}
-              className={`group relative h-[200px] overflow-hidden border border-solid border-[#3f4367] bg-[#171c39] cursor-default ${
+              className={`group relative h-[200px] overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#171c39] cursor-default ${
                 isLastRow ? 'lg:col-span-3' : 'lg:col-span-2'
               }`}
             >

@@ -16,7 +16,7 @@ export default function SolutionIntroSection() {
           backgroundRepeat: 'repeat',
           backgroundSize: '350px 350px',
           mixBlendMode: 'soft-light',
-          opacity: 0.65,
+          opacity: 0.85,
         }}
       />
       <div className="box-border flex w-full max-w-[1280px] flex-col gap-[34px] px-0 text-center sm:px-[70px] md:px-[100px] lg:px-[180px]">

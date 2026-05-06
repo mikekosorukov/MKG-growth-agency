@@ -56,7 +56,7 @@ export default function ComparisonSection() {
           backgroundRepeat: 'repeat',
           backgroundSize: '350px 350px',
           mixBlendMode: 'soft-light',
-          opacity: 0.65,
+          opacity: 0.85,
         }}
       />
 

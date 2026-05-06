@@ -145,7 +145,7 @@ const tiers: PricingTier[] = [
     description: '',
     items: [
       '30-45 minutes call',
-      'Discuss your challenges and get expert opinion',
+      'Discuss your challenges',
       'Explore working together',
     ],
     arrowItems: [],
@@ -154,10 +154,18 @@ const tiers: PricingTier[] = [
   },
 ];
 
-function PricingCard({ tier, centered }: { tier: PricingTier; centered?: boolean }) {
+function PricingCard({
+  tier,
+  centered,
+  showCta = true,
+}: {
+  tier: PricingTier;
+  centered?: boolean;
+  showCta?: boolean;
+}) {
   return (
     <article
-      className="grid grid-rows-subgrid row-span-5 gap-[20px] p-[28px] lg:p-[32px] border border-solid border-[#3f4367] bg-[#1d2241]"
+      className={`grid grid-rows-subgrid gap-[20px] overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#1d2241] p-[20px] lg:p-[24px] ${showCta ? 'row-span-5' : 'row-span-4'}`}
     >
       {/* Block 1: Title */}
       <div className={`flex flex-col gap-[4px] ${centered ? 'items-center text-center' : ''}`}>
@@ -221,19 +229,21 @@ function PricingCard({ tier, centered }: { tier: PricingTier; centered?: boolean
       </div>
 
       {/* Block 5: CTA */}
-      <div className="flex flex-col gap-[24px] justify-end">
-        <Link
-          href="/bookings"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative h-[42px] flex w-full items-center justify-center border border-[#8c99eb] bg-gradient-to-r from-[#323966] to-[#232b5c] hover:from-[#3a4170] hover:to-[#2a3467] transition-all"
-          aria-label={`${tier.ctaText || 'Get in touch'} — ${tier.title}`}
-        >
-          <span className="text-sm sm:text-base font-medium tracking-wide bg-gradient-to-r from-[#c9d1ff] to-[#8c99eb] bg-clip-text text-transparent">
-            {tier.ctaText || 'Get in touch'}
-          </span>
-        </Link>
-      </div>
+      {showCta && (
+        <div className="flex flex-col gap-[24px] justify-end">
+          <Link
+            href="/bookings"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative h-[42px] flex w-full items-center justify-center border border-[#8c99eb] bg-gradient-to-r from-[#323966] to-[#232b5c] hover:from-[#3a4170] hover:to-[#2a3467] transition-all"
+            aria-label={`${tier.ctaText || 'Get in touch'} — ${tier.title}`}
+          >
+            <span className="text-sm sm:text-base font-medium tracking-wide bg-gradient-to-r from-[#c9d1ff] to-[#8c99eb] bg-clip-text text-transparent">
+              {tier.ctaText || 'Get in touch'}
+            </span>
+          </Link>
+        </div>
+      )}
     </article>
   );
 }
@@ -254,7 +264,7 @@ export default function PricingSection() {
           backgroundRepeat: 'repeat',
           backgroundSize: '350px 350px',
           mixBlendMode: 'soft-light',
-          opacity: 0.65,
+          opacity: 0.85,
         }}
       />
 
@@ -270,9 +280,9 @@ export default function PricingSection() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid w-full max-w-[1040px] grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
           {tiers.slice(0, 3).map((tier) => (
-            <PricingCard key={tier.title} tier={tier} />
+            <PricingCard key={tier.title} tier={tier} showCta={false} />
           ))}
         </div>
         {/* Centered 4th card */}
@@ -280,13 +290,15 @@ export default function PricingSection() {
           <p className="w-full text-center text-[20px] font-normal leading-[1.4] text-[#a5aee9] sm:text-[22px] md:text-[24px] pt-[16px] sm:pt-[24px] md:pt-[32px]">
             Not sure what&apos;s best for you?
           </p>
-          <div className="relative w-full lg:max-w-[calc(66.666%-5px)]">
-            <div className="absolute -top-[13px] left-1/2 -translate-x-1/2 z-10 rounded-[12px] bg-[#171c39]">
-              <div className="bg-[rgba(231,165,233,0.15)] border border-solid border-[#E7A5E9] flex items-center justify-center px-[12px] py-[2px] rounded-[12px] w-fit">
-                <span className="text-[13px] font-medium leading-[1.4] text-[#E7A5E9] whitespace-nowrap">Start here</span>
+          <div className="relative mx-auto flex w-full max-w-[1040px] justify-center">
+            <div className="relative w-full lg:w-[calc((100%-32px)/3)] lg:max-w-none">
+              <div className="absolute -top-[13px] left-1/2 -translate-x-1/2 z-10 rounded-[12px] bg-[#171c39]">
+                <div className="bg-[rgba(231,165,233,0.15)] border border-solid border-[#E7A5E9] flex items-center justify-center px-[12px] py-[2px] rounded-[12px] w-fit">
+                  <span className="text-[13px] font-medium leading-[1.4] text-[#E7A5E9] whitespace-nowrap">Start here</span>
+                </div>
               </div>
+              <PricingCard tier={tiers[3]} centered />
             </div>
-            <PricingCard tier={tiers[3]} centered />
           </div>
         </div>
       </div>
