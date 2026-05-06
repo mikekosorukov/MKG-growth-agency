@@ -3,6 +3,7 @@ import Image from 'next/image';
 import CaseStudyLayout from '@/components/CaseStudyLayout';
 import { getCaseStudyBySlug } from '@/lib/case-studies';
 import Stats from '@/components/mdx/Stats';
+import VideoTestimonialPreview from '@/components/VideoTestimonialPreview';
 
 const CheckIcon = () => (
   <svg className="mt-[4px] size-[22px] shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -147,6 +148,7 @@ export default function NoclickCaseStudyPage() {
       </p>
 
       <div className="my-[32px] rounded-[5px] border border-[#3f4367] bg-[#1d2241] px-[24px] py-[24px] sm:px-[28px] sm:py-[28px]">
+        <VideoTestimonialPreview className="mb-[20px]" />
         <p className="mb-[20px] text-[16px] italic font-normal leading-[1.6] text-[#c5caf0] sm:text-[17px]">
           &ldquo;The diagnostic gave us clarity we had been missing for months — a clear picture
           of where to focus and why. Mike&apos;s ability to cut through the noise and surface the
