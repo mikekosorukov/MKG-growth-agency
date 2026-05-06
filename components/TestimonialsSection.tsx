@@ -2,25 +2,48 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Notification from './Notification';
 
 interface Testimonial {
   authorName: string;
   authorRole: string;
-  testimonialText: React.ReactNode;
+  testimonialText?: React.ReactNode;
   authorTitle: string;
   employmentType: string;
   avatarUrl: string;
+  isVideoTestimonial?: boolean;
+  videoSummary?: React.ReactNode;
 }
 
 const INITIAL_VISIBLE_TESTIMONIALS = 6;
 const LOAD_MORE_INCREMENT = 3;
+const VIDEO_TESTIMONIAL_EMBED_URL = 'https://www.youtube-nocookie.com/embed/nDM8yZnmESU?autoplay=1&rel=0&modestbranding=1';
 
 export default function TestimonialsSection() {
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_TESTIMONIALS);
   const [showNotification, setShowNotification] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isVideoModalOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsVideoModalOpen(false);
+      }
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isVideoModalOpen]);
 
   const testimonials: Testimonial[] = [
     {
@@ -32,12 +55,13 @@ export default function TestimonialsSection() {
       avatarUrl: '/testimonial-1.png',
     },
     {
-      authorName: 'Kateryna Hornysh',
-      authorRole: 'Head of Product at aqua-cloud',
-      testimonialText: <>&ldquo;Mike consistently impressed me with his strong focus on the customer needs and his commitment to driving <strong className="font-semibold text-[#dcdff2]">growth for key metrics</strong>. If you&apos;re looking for someone who truly knows how to deliver results, Mike is your guy :)&rdquo;</>,
-      authorTitle: '',
-      employmentType: '',
-      avatarUrl: '/kate.png',
+      authorName: 'Dhruv Yadav',
+      authorRole: 'Founder at NoClick',
+      authorTitle: 'Founder',
+      employmentType: 'Advisor',
+      avatarUrl: '/dhruv.png',
+      isVideoTestimonial: true,
+      videoSummary: <>The diagnostic gave us clarity on where to focus and surfaced the <strong className="font-semibold text-[#dcdff2]">highest-leverage GTM opportunities</strong>.</>,
     },
     {
       authorName: 'Leonid Netrebskii',
@@ -64,16 +88,112 @@ export default function TestimonialsSection() {
       avatarUrl: '/testimonial-icon-2.jpeg',
     },
     {
-      authorName: 'Dhruv Yadav',
-      authorRole: 'Founder at NoClick',
-      testimonialText: <>&ldquo;The diagnostic gave us clarity we had been missing for months — a clear picture of where to focus and why. Mike&apos;s ability to cut through the noise and surface the <strong className="font-semibold text-[#dcdff2]">highest-leverage GTM priorities</strong> was exactly what we needed.&rdquo;</>,
-      authorTitle: 'Founder',
-      employmentType: 'Advisor',
-      avatarUrl: '/dhruv.png',
+      authorName: 'Kateryna Hornysh',
+      authorRole: 'Head of Product at aqua-cloud',
+      testimonialText: <>&ldquo;Mike consistently impressed me with his strong focus on the customer needs and his commitment to driving <strong className="font-semibold text-[#dcdff2]">growth for key metrics</strong>. If you&apos;re looking for someone who truly knows how to deliver results, Mike is your guy :)&rdquo;</>,
+      authorTitle: '',
+      employmentType: '',
+      avatarUrl: '/kate.png',
     },
   ];
   const visibleTestimonials = testimonials.slice(0, visibleCount);
   const hasMoreTestimonials = visibleCount < testimonials.length;
+  const getColumns = (columnCount: number) =>
+    Array.from({ length: columnCount }, (_, columnIndex) =>
+      visibleTestimonials.filter((_, index) => index % columnCount === columnIndex),
+    );
+  const mediumColumns = getColumns(2);
+  const largeColumns = getColumns(3);
+
+  const renderTestimonialCard = (testimonial: Testimonial) => (
+    <article
+      key={testimonial.authorName}
+      className="relative flex min-w-0 flex-col overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#171c39] px-[40px] py-[24px]"
+    >
+      <div className="relative z-10 flex flex-col gap-[16px]">
+        <div className="flex h-[64px] items-center justify-start gap-[8px]">
+          <div className="relative h-[40px] w-[40px] shrink-0 overflow-hidden rounded-full bg-[#1d2241]">
+            <Image
+              src={testimonial.avatarUrl}
+              alt={testimonial.authorName}
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="flex min-w-0 flex-col items-start">
+            <p className="w-full text-[14px] font-medium leading-[1.1] text-[#dcdff2]">
+              {testimonial.authorName}
+            </p>
+            <p className="w-full text-[10px] font-normal leading-[1.4] text-[#a5aee9]">
+              {testimonial.authorRole}
+            </p>
+          </div>
+        </div>
+
+        {testimonial.isVideoTestimonial ? (
+          <button
+            type="button"
+            onClick={() => setIsVideoModalOpen(true)}
+            className="group/video relative aspect-video w-full cursor-pointer overflow-hidden rounded-[5px] border border-[#3f4367] bg-[#10152f] text-left transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-[#8c99eb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8c99eb] focus-visible:ring-offset-2 focus-visible:ring-offset-[#171c39]"
+            aria-label={`Play video testimonial from ${testimonial.authorName}`}
+          >
+            <Image
+              src="/noclickthumbnail.png"
+              alt=""
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="relative size-[51px] transition-transform duration-300 group-hover/video:scale-110">
+                <Image
+                  src="/play-circle-icon.svg"
+                  alt=""
+                  fill
+                  className="block max-w-none"
+                />
+              </span>
+            </div>
+          </button>
+        ) : (
+          <blockquote className="text-center font-normal leading-[1.4] text-[#a5aee9]" style={{ fontSize: 'clamp(14px, 1.4vw, 18px)' }}>
+            <p>{testimonial.testimonialText}</p>
+          </blockquote>
+        )}
+
+        {testimonial.isVideoTestimonial ? (
+          <p className="pt-[24px] text-center font-normal leading-[1.4] text-[#a5aee9]" style={{ fontSize: 'clamp(14px, 1.4vw, 18px)' }}>
+            &ldquo;{testimonial.videoSummary}&rdquo;
+          </p>
+        ) : (
+          <div className="flex justify-start pt-[24px]">
+            <Link
+              href="https://www.linkedin.com/in/mkosorukov/details/recommendations/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative z-10 flex w-fit shrink-0 cursor-pointer items-center justify-center border border-solid border-[#7078B8] bg-[rgba(112,120,184,0.01)] px-[12px] py-[6px] transition-all hover:border-[#8c99eb] hover:bg-[#1f2446]"
+              aria-label="View recommendation on LinkedIn"
+            >
+              <div className="flex items-center justify-center gap-[6px] px-[4px] py-0">
+                <span className="whitespace-pre text-[12px] font-medium leading-none tracking-[0.5px] text-[#7078B8] transition-colors group-hover:text-[#8c99eb]">
+                  View on Ln
+                </span>
+              </div>
+              <div className="relative h-[12px] w-[12px] overflow-hidden text-[#7078B8] transition-all group-hover:text-[#8c99eb]">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 size-full translate-x-0 transform transition-all duration-300 ease-in-out group-hover:translate-x-full group-hover:opacity-0">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                </svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 size-full -translate-x-full transform opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  <path d="M15 3h6v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                </svg>
+              </div>
+            </Link>
+          </div>
+        )}
+      </div>
+    </article>
+  );
 
   return (
     <section
@@ -93,64 +213,24 @@ export default function TestimonialsSection() {
         }}
       />
       
-      {/* Cards grid */}
-      <div className="relative z-10 grid w-full max-w-[1280px] grid-cols-1 gap-[16px] md:grid-cols-2 lg:grid-cols-3">
-        {visibleTestimonials.map((testimonial, index) => (
-          <article
-            key={index}
-            className="relative flex min-w-0 flex-col overflow-hidden rounded-[5px] border border-solid border-[#3f4367] bg-[#171c39] px-[40px] py-[24px]"
-          >
-            <div className="relative z-10 flex flex-grow flex-col gap-[16px]">
-              <div className="flex h-[64px] items-center justify-start gap-[8px]">
-                <div className="relative h-[40px] w-[40px] shrink-0 overflow-hidden rounded-full bg-[#1d2241]">
-                  <Image
-                    src={testimonial.avatarUrl}
-                    alt={testimonial.authorName}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex min-w-0 flex-col items-start">
-                  <p className="w-full text-[14px] font-medium leading-[1.1] text-[#dcdff2]">
-                    {testimonial.authorName}
-                  </p>
-                  <p className="w-full text-[10px] font-normal leading-[1.4] text-[#a5aee9]">
-                    {testimonial.authorRole}
-                  </p>
-                </div>
-              </div>
+      {/* Cards masonry */}
+      <div className="relative z-10 grid w-full max-w-[1280px] grid-cols-1 gap-[16px] md:hidden">
+        {visibleTestimonials.map(renderTestimonialCard)}
+      </div>
 
-              <blockquote className="text-center font-normal leading-[1.4] text-[#a5aee9]" style={{ fontSize: 'clamp(14px, 1.4vw, 18px)' }}>
-                <p>{testimonial.testimonialText}</p>
-              </blockquote>
+      <div className="relative z-10 hidden w-full max-w-[1280px] grid-cols-2 gap-[16px] md:grid lg:hidden">
+        {mediumColumns.map((column, columnIndex) => (
+          <div key={columnIndex} className="flex flex-col gap-[16px]">
+            {column.map(renderTestimonialCard)}
+          </div>
+        ))}
+      </div>
 
-              <div className="mt-auto flex justify-start pt-[24px]">
-                <Link
-                  href="https://www.linkedin.com/in/mkosorukov/details/recommendations/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative z-10 flex w-fit shrink-0 cursor-pointer items-center justify-center border border-solid border-[#7078B8] bg-[rgba(112,120,184,0.01)] px-[12px] py-[6px] transition-all hover:border-[#8c99eb] hover:bg-[#1f2446]"
-                  aria-label="View recommendation on LinkedIn"
-                >
-                  <div className="flex items-center justify-center gap-[6px] px-[4px] py-0">
-                    <span className="whitespace-pre text-[12px] font-medium leading-none tracking-[0.5px] text-[#7078B8] transition-colors group-hover:text-[#8c99eb]">
-                      View on Ln
-                    </span>
-                  </div>
-                  <div className="relative h-[12px] w-[12px] overflow-hidden text-[#7078B8] transition-all group-hover:text-[#8c99eb]">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 size-full translate-x-0 transform transition-all duration-300 ease-in-out group-hover:translate-x-full group-hover:opacity-0">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
-                    </svg>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 size-full -translate-x-full transform opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                      <path d="M15 3h6v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                      <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                    </svg>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </article>
+      <div className="relative z-10 hidden w-full max-w-[1280px] grid-cols-3 gap-[16px] lg:grid">
+        {largeColumns.map((column, columnIndex) => (
+          <div key={columnIndex} className="flex flex-col gap-[16px]">
+            {column.map(renderTestimonialCard)}
+          </div>
         ))}
       </div>
 
@@ -180,6 +260,42 @@ export default function TestimonialsSection() {
         isVisible={showNotification}
         onClose={() => setShowNotification(false)}
       />
+
+      {isVideoModalOpen && (
+        <div
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-[#0a0e1f]/85 px-[20px] py-[32px] backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Video testimonial"
+          onClick={() => setIsVideoModalOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-[960px] overflow-hidden rounded-[5px] border border-[#3f4367] bg-[#0a0e1f] shadow-[0_24px_80px_rgba(0,0,0,0.45)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsVideoModalOpen(false)}
+              className="absolute right-[12px] top-[12px] z-10 flex size-[40px] cursor-pointer items-center justify-center rounded-full border border-[#7078B8] bg-[#171c39]/90 text-[#dcdff2] transition-all hover:border-[#8c99eb] hover:bg-[#1f2446] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8c99eb]"
+              aria-label="Close video testimonial"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+              </svg>
+            </button>
+            <div className="relative aspect-video w-full">
+              <iframe
+                className="absolute inset-0 size-full"
+                src={VIDEO_TESTIMONIAL_EMBED_URL}
+                title="Dhruv Yadav video testimonial"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
