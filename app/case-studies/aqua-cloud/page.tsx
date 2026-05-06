@@ -41,10 +41,6 @@ export default function AquaCloudCaseStudyPage() {
         teamSize: '23',
         dateRange: '9 months, 2023',
       }}
-      nextCaseStudy={{
-        href: '/case-studies/jet-admin',
-        label: 'Jet Admin - $150k to $2M ARR Growth in 18 Months',
-      }}
     >
       <div className="border-l-2 border-[#ff885d] pl-[20px] sm:pl-[24px]">
         <h3>Executive Summary</h3>

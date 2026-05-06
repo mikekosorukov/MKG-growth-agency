@@ -29,10 +29,6 @@ export default function NoclickCaseStudyPage() {
         avatar: '/dhruv.png',
       }}
       heroImage="/noclickhome.png"
-      nextCaseStudy={{
-        href: '/case-studies/rent-ready',
-        label: 'Rent Ready – Customer churn reduced by 30%',
-      }}
     >
       <div className="border-l-2 border-[#ff885d] pl-[20px] sm:pl-[24px]">
         <h3>Executive Summary</h3>

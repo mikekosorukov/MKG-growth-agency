@@ -10,7 +10,7 @@ const logos = [
   { src: '/rent_logo.png', alt: 'Rent' },
   { src: '/drivt_logo.png', alt: 'Drivt' },
   { src: '/andagon_logo.png', alt: 'Andagon' },
-  { src: '/noclick.png', alt: 'Noclick' },
+  { src: '/Noclick.png', alt: 'Noclick' },
 ];
 
 const track = [...logos, ...logos];
