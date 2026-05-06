@@ -254,7 +254,7 @@ export default function CaseStudyLayout({
                     [&_strong]:font-bold [&_strong]:text-[#dcdff2]
                     [&_em]:text-[#c5caf0]
                     [&_a]:text-[#8c99eb] [&_a]:underline [&_a]:underline-offset-2
-                    [&_ul]:list-disc [&_ul]:pl-[24px] [&_ul]:mb-[16px]
+                    [&_ul]:mb-[16px] [&_ul:not([data-checklist])]:list-disc [&_ul:not([data-checklist])]:pl-[24px]
                     [&_ol]:list-decimal [&_ol]:pl-[24px] [&_ol]:mb-[16px]
                     [&_li]:text-[16px] [&_li]:font-normal [&_li]:leading-[1.6] [&_li]:text-[#a5aee9] [&_li]:mb-[4px]
                     sm:[&_li]:text-[17px] md:[&_li]:text-[18px]

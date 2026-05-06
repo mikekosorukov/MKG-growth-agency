@@ -23,7 +23,7 @@ function IconList({ items, variant }: { items: ReactNode[]; variant: 'check' | '
   const Icon = variant === 'check' ? CheckIcon : CrossIcon;
 
   return (
-    <ul className="!list-none !pl-0">
+    <ul className="!list-none !pl-0" data-checklist="">
       {items.map((item, index) => (
         <li key={index} className="flex gap-[10px] !text-[#a5aee9]">
           <Icon />
@@ -54,7 +54,7 @@ export default function JetMarketplaceCaseStudyPage() {
       heroImage="/jethomepage.png"
       nextCaseStudy={{
         href: '/case-studies/aqua-cloud',
-        label: 'aqua cloud – $1.2M in net-new qualified pipeline in 3 months',
+        label: 'aqua cloud – $1.2M in net-new qualified pipeline in 2.5 months',
       }}
     >
       <div className="border-l-2 border-[#ff885d] pl-[20px] sm:pl-[24px]">
@@ -263,7 +263,22 @@ export default function JetMarketplaceCaseStudyPage() {
               </div>
             </div>
           </>,
-          <>Built and launched <a href="https://www.youtube.com/playlist?list=PLSkzi9eq0vBnUGMnwXrRRVo9TXUjZ7uSj" target="_blank" rel="noopener noreferrer">&ldquo;Jet University&rdquo;</a> — a video-based knowledge base for self-serve adoption</>,
+          <>
+            <span>
+              Built and launched{' '}
+              <a href="https://www.youtube.com/playlist?list=PLSkzi9eq0vBnUGMnwXrRRVo9TXUjZ7uSj" target="_blank" rel="noopener noreferrer">&ldquo;Jet University&rdquo;</a>{' '}
+              — a video-based knowledge base for self-serve adoption
+            </span>
+            <div className="mt-[16px] mb-[20px] overflow-hidden rounded-[5px] border border-[#3f4367] bg-[#171c39]">
+              <Image
+                src="/videolibraryjet.png"
+                alt="Jet University video knowledge base"
+                width={1200}
+                height={720}
+                className="h-auto w-full object-cover"
+              />
+            </div>
+          </>,
           <>
             <span>Built a template library that doubled as conversion assets and SEO-ranked pages</span>
             <div className="mt-[16px] mb-[20px] overflow-hidden rounded-[5px] border border-[#3f4367] bg-[#171c39]">

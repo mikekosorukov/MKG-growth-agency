@@ -3,12 +3,18 @@ import Image from 'next/image';
 import CaseStudyLayout from '@/components/CaseStudyLayout';
 import { getCaseStudyBySlug } from '@/lib/case-studies';
 import Stats from '@/components/mdx/Stats';
-import VideoPlaceholder from '@/components/VideoPlaceholder';
+
+const CheckIcon = () => (
+  <svg className="mt-[4px] size-[22px] shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="12" cy="12" r="11" stroke="#4ade80" strokeWidth="1.2" fill="none" />
+    <path d="M7.5 12.5L10.5 15.5L16.5 9.5" stroke="#4ade80" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 export const metadata: Metadata = {
   title: 'Customer churn reduced by 30%',
   description:
-    'How identifying the leading churn indicator and rebuilding the supplier quality loop reduced customer churn by 30% in three months.',
+    'How structured product discovery, a rebuilt QA workflow, and vendor profile improvements reduced Rent Ready customer churn by 30% in three months.',
 };
 
 export default function RentReadyCaseStudyPage() {
@@ -25,77 +31,187 @@ export default function RentReadyCaseStudyPage() {
       heroImage="/RRhome.png"
       nextCaseStudy={{
         href: '/case-studies/aqua-cloud',
-        label: 'aqua cloud – $1.2M in net-new qualified pipeline in 3 months',
+        label: 'aqua cloud – $1.2M in net-new qualified pipeline in 2.5 months',
       }}
     >
       <div className="border-l-2 border-[#ff885d] pl-[20px] sm:pl-[24px]">
         <h3>Executive Summary</h3>
         <p>
-          Jet is a growth-stage B2B marketplace with roughly 110 employees. Despite healthy
-          acquisition numbers, early customer churn was eroding revenue momentum. By diagnosing
-          the root cause as an activation failure rather than a product issue, and redesigning
-          the onboarding experience accordingly, we reduced churn by 30% within three months.
+          Rent Ready was losing property managers faster than it could acquire them. Despite
+          heavy investment in sales and onboarding, paid customer churn was eroding growth — and
+          the team couldn&apos;t agree on why. I ran a structured product discovery process —
+          interviewing 20+ customers, mapping assumptions against behavioral data, and isolating
+          the root causes. The biggest driver turned out to be vendor quality: poor work triggered
+          callbacks, wasted property managers&apos; time, and destroyed trust in the platform. I
+          designed and shipped a new QA workflow and portal, rebuilt vendor profiles with a
+          matching and rating system, and delivered a 30% reduction in churn within three months —
+          alongside a 40× increase in deficiency detection, the key leading indicator.
         </p>
       </div>
 
       <Stats items={[
-        { value: '30%', label: 'Reduction in monthly customer churn' },
-        { value: '40x', label: 'Improvement in leading churn metric' },
-        { value: '4 Months', label: 'Timeline' },
+        { value: '30%', label: 'Reduction in property manager churn' },
+        { value: '40×', label: 'Increase in deficiency detection rate' },
+        { value: '20+', label: 'Customer interviews conducted' },
       ]} />
 
       <hr />
 
-      <div className="my-[40px]">
-        <VideoPlaceholder />
+      <h2>What is Rent Ready?</h2>
+      <p>
+        Rent Ready is a proptech platform that connects multifamily property managers with vetted
+        maintenance professionals — cleaners, painters, and other make-ready specialists. The
+        core value proposition is speed: by combining a curated vendor marketplace with digital
+        scheduling and coordination tools, property managers can significantly reduce unit turn
+        times and get apartments rent-ready faster. The business model is a managed marketplace —
+        Rent Ready owns the vendor relationship and the quality standard, which makes trust in the
+        supply side a make-or-break factor for retention.
+      </p>
+
+      <h2>The Challenge — Enormous Paid Customer Churn</h2>
+      <p>
+        By the time I joined the engagement, Rent Ready had a painful pattern: significant
+        resources going into acquiring and onboarding property managers, only to watch them churn
+        within months at an alarming rate.
+      </p>
+      <p>
+        The root cause wasn&apos;t clear. The team had generated plenty of hypotheses — vendor
+        quality, onboarding gaps, pricing friction, feature limitations — but without a structured
+        way to test them, no single explanation had enough conviction behind it to drive action.
+        The result was a kind of organizational paralysis: too many theories, not enough clarity,
+        and meanwhile churn kept compounding.
+      </p>
+      <p>
+        This wasn&apos;t just a retention problem. It was actively undermining the growth trajectory.
+        Every churned customer represented sunk acquisition cost, lost revenue, and — critically —
+        a negative signal in a market where property management networks share intel fast.
+      </p>
+
+      <h2>The Solution — QA Portal and Vendor Profiles Rebuilt</h2>
+
+      <h3>Continuous Product Discovery</h3>
+      <p>
+        I started by assembling everything the organization already knew but hadn&apos;t synthesized:
+        fragments of qualitative data from customer success conversations, sales call recordings,
+        and anecdotal observations from the team. This let me build an initial assumption map — a
+        structured view of what the company believed was causing churn and where the evidence gaps
+        were.
+      </p>
+      <p>
+        From there, I ran over 20 in-depth customer interviews across different cohorts — recent
+        churns, long-tenured accounts, and new customers still in their first 90 days. These
+        weren&apos;t satisfaction surveys. I used advanced interviewing techniques designed to surface
+        actual behavioral drivers rather than post-hoc opinions, separating what customers
+        <em>said</em> mattered from what their actions showed actually triggered cancellation.
+      </p>
+      <div className="mt-[16px] mb-[24px] overflow-hidden rounded-[5px] border border-[#3f4367] bg-[#171c39]">
+        <Image
+          src="/rrdiscovery.png"
+          alt="Rent Ready product discovery and customer interviews"
+          width={1200}
+          height={720}
+          className="h-auto w-full object-cover"
+        />
       </div>
 
-      <h2>What is Jet Admin?</h2>
+      <h3>QA Workflow and Portal Redesign</h3>
       <p>
-        Jet Admin is a low-code platform for building internal tools and admin experiences on top
-        of your databases and APIs—so teams can ship secure, role-based back-office UIs without
-        maintaining a bespoke stack. At the time of this work, Jet was a growth-stage B2B company
-        scaling acquisition; the product was strong, but early lifecycle retention was the
-        constraint on revenue compounding.
+        The discovery work pointed clearly to one dominant churn driver: vendor work quality,
+        measured by the callback rate. When pros delivered substandard work, property managers had
+        to initiate callbacks — costing them time, breaking trust, and ultimately leading to
+        contract cancellations. This was the single biggest contributor to churn by a wide margin.
       </p>
-
-      <h2>The Challenge - Flat Traction but No Growth</h2>
+      <div className="mt-[16px] mb-[24px] overflow-hidden rounded-[5px] border border-[#3f4367] bg-[#171c39]">
+        <Image
+          src="/rrdiscovery2.png"
+          alt="Rent Ready QA workflow and deficiency detection"
+          width={1200}
+          height={720}
+          className="h-auto w-full object-cover"
+        />
+      </div>
       <p>
-        Jet was acquiring customers steadily, but month-two retention was consistently poor.
-        The customer success team was fielding high volumes of support requests from users
-        who felt lost in the product. Leadership assumed the issue was post-sale service quality.
+        The existing quality assurance process was rudimentary — it existed, but lacked the
+        structure and enforcement to catch issues before they reached the customer. I designed and
+        built a complete replacement:
       </p>
-      <ul>
-        <li>No defined activation milestone — success looked different to every team member</li>
-        <li>Onboarding sequence built around product features, not customer outcomes</li>
-        <li>High time-to-first-value: median 14 days before customers did anything meaningful</li>
-        <li>CS team reactive, spending time on triage rather than proactive success</li>
+      <ul className="!list-none !pl-0" data-checklist="">
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>Pattern identification through data analysis.</strong> I analyzed callback data to isolate the specific deficiency types and job categories that drove the most rework, then validated those patterns at scale.
+          </div>
+        </li>
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>Embedded QA checkpoints in vendor workflows.</strong> Every vendor was now required to document specific attributes of their completed work through dedicated video calls with a QA team — shifting quality enforcement from reactive (post-complaint) to proactive (pre-delivery).
+          </div>
+        </li>
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>A purpose-built QA Portal.</strong> The new portal gave QA specialists a proper interface to review, flag, and track deficiencies systematically, replacing scattered manual processes with a centralized workflow.
+          </div>
+        </li>
       </ul>
-
-      <h2>The Solution – Understand THE WHY and Build the GTM System</h2>
-
-      <h3>1. Churn Diagnosis</h3>
+      <div className="mt-[16px] mb-[24px] overflow-hidden rounded-[5px] border border-[#3f4367] bg-[#171c39]">
+        <Image
+          src="/rrportal.png"
+          alt="Rent Ready QA portal"
+          width={1200}
+          height={720}
+          className="h-auto w-full object-cover"
+        />
+      </div>
       <p>
-        We mapped the customer journey from signup to first meaningful action, interviewing
-        churned customers and reviewing product analytics. A clear pattern emerged: customers
-        who completed three specific actions in their first session had dramatically better
-        30-day retention. Those who skipped those steps almost always churned.
+        The impact was immediate: a <strong>40× uplift in deficiency detection rate</strong> after
+        launch. The platform was catching problems that had previously flowed straight through to
+        property managers — and catching them before they could trigger a callback or erode trust.
       </p>
 
-      <h3>2. Activation Milestone Definition</h3>
+      <h3>Vendor Matching and Profiles</h3>
       <p>
-        Defined a single activation milestone — the combination of actions correlated with
-        long-term retention — and rebuilt the entire onboarding flow around driving new
-        users to that moment as quickly as possible. Removed every step that didn&apos;t
-        serve that goal.
+        The second driver — less severe than callbacks but still significant — was a lack of trust
+        in Rent Ready&apos;s vendor network. Property managers didn&apos;t feel confident that the platform
+        was matching them with the right pros for the job.
       </p>
-
-      <h3>3. Onboarding Redesign</h3>
       <p>
-        Worked with the product team to implement an outcome-first onboarding sequence:
-        progressive disclosure of features, contextual tooltips tied to the activation path,
-        and an automated email trigger when users stalled mid-onboarding. CS was repositioned
-        to intervene proactively at the 48-hour mark for accounts not yet activated.
+        I tackled this from the platform side (a separate team handled improvements to vendor
+        vetting itself):
+      </p>
+      <ul className="!list-none !pl-0" data-checklist="">
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>Vendor profile redesign.</strong> Rebuilt profiles to surface the information property managers actually cared about — track record, specializations, and quality history — rather than generic bios.
+          </div>
+        </li>
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>Rating system.</strong> Developed a comprehensive rating framework grounded in the discovery findings. Ratings reflected actual job performance data, not just subjective reviews, giving property managers a credible signal when evaluating vendor suggestions.
+          </div>
+        </li>
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>Matching mechanism.</strong> Improved how the platform paired vendors to jobs, factoring in performance history and job-type fit.
+          </div>
+        </li>
+      </ul>
+      <div className="mt-[16px] mb-[24px] overflow-hidden rounded-[5px] border border-[#3f4367] bg-[#171c39]">
+        <Image
+          src="/rrrating.png"
+          alt="Rent Ready vendor profiles and rating system"
+          width={1200}
+          height={720}
+          className="h-auto w-full object-cover"
+        />
+      </div>
+      <p>
+        Together, these changes meaningfully improved customer satisfaction scores and reinforced
+        the trust loop that keeps property managers on the platform.
       </p>
 
       <div className="my-[32px] rounded-[5px] border border-[#3f4367] bg-[#1d2241] px-[24px] py-[24px] sm:px-[28px] sm:py-[28px]">
@@ -115,17 +231,32 @@ export default function RentReadyCaseStudyPage() {
         </div>
       </div>
 
-      <h2>The Results - &ldquo;Hockey Stick&rdquo; Growth</h2>
-      <p>
-        Measured over three months following the onboarding redesign launch, compared against
-        the prior three-month cohort:
-      </p>
-      <ul>
-        <li><strong>30%</strong> reduction in monthly customer churn</li>
-        <li>Median time-to-first-value cut from 14 days to 3 days</li>
-        <li><strong>58%</strong> of new users reaching the activation milestone within 48 hours (up from 21%)</li>
-        <li>CS support volume down 35% — team redirected to strategic accounts</li>
-        <li>NPS improved from 28 to 47 over the period</li>
+      <h2>The Results — 30% Churn Reduction and Improved Customer Satisfaction</h2>
+      <ul className="!list-none !pl-0" data-checklist="">
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>30% reduction in property manager churn</strong> within three months — directly extending customer lifetime value and stabilizing revenue.
+          </div>
+        </li>
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>40× increase in deficiency detection rate</strong> — the key leading indicator — meaning quality issues were caught and resolved before reaching the customer.
+          </div>
+        </li>
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>Rebuilt QA portal</strong> that enforced a proactive quality workflow while delivering a significantly better experience for both vendors and QA specialists.
+          </div>
+        </li>
+        <li className="flex gap-[10px] !text-[#a5aee9]">
+          <CheckIcon />
+          <div className="flex-1">
+            <strong>Redesigned vendor profiles and rating system</strong> that increased customer satisfaction and rebuilt trust in the platform&apos;s supply side.
+          </div>
+        </li>
       </ul>
     </CaseStudyLayout>
   );
