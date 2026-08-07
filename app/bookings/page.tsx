@@ -54,7 +54,7 @@ export default function BookingsPage() {
       // Create the inline embed
       window.Cal('inline', {
         elementOrSelector: '#cal-embed',
-        calLink: 'mike-kosorukov/25min',
+        calLink: 'mikekos/25min',
         layout: 'month_view',
         config: {
           theme: 'dark',
